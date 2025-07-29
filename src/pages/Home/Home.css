@@ -113,3 +113,33 @@
   color: #222;
   box-shadow: 0 4px 20px rgba(255, 255, 255, 0.5);
 }
+
+@media (max-width: 768px) {
+  .home-header-wrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .home-header {
+    width: auto;
+    text-align: center;
+  }
+
+  .home-cube {
+    width: 80px;
+    height: 150px;
+    margin-top: 0;
+  }
+
+  .home-role {
+    font-size: 1.8rem;
+    margin-top: -2rem;
+  }
+
+  .text3d-container {
+    height: 150px;
+    min-width: auto;
+  }
+}
