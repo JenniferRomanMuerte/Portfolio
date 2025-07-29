@@ -1,11 +1,11 @@
 import "./Home.css";
 import TechCube from "../../components/TechCube/TechCube";
-import Text3DName from "../../components/Text3dName/Text3dName";
+import Text3D from "../../components/Text3d/Text3d";
 
 export default function Home() {
   return (
     <main className="home-container">
-       <div className="background-overlay" />
+      <div className="background-overlay" />
       <video className="background-video" autoPlay loop muted playsInline>
         <source src="/assets/VideoCode.mp4" type="video/mp4" />
         Tu navegador no soporta el vídeo.
@@ -13,7 +13,15 @@ export default function Home() {
 
       <div className="home-header-wrapper">
         <div className="home-header">
-          <Text3DName />
+          <Text3D
+            text="Jennifer Román"
+            fontUrl="/fonts/Caveat_Regular.json"
+            size={2.8}
+            position={[-10, -1.5, 0]}
+            color="#ffffff"
+            metalness={0.1}
+            roughness={0.8}
+          />
           <p className="home-role">
             <em>Desarrolladora web full stack</em>
           </p>
@@ -33,10 +41,15 @@ export default function Home() {
 
         <div className="home-about-box">
           <p>
-            Desarrolladora web full stack con experiencia en proyectos reales que combinan frontend moderno y backend robusto.
-            He trabajado con tecnologías como React, Vite, Angular, Three.js y Electron, creando aplicaciones tanto web como de escritorio.
-            Tras una trayectoria previa en atención al cliente, he canalizado mi capacidad resolutiva y mi pasión por la tecnología hacia el desarrollo de soluciones intuitivas, eficientes y bien estructuradas.
-            Me motiva el aprendizaje continuo y disfruto enfrentando retos técnicos con una mentalidad analítica y colaborativa.
+            Desarrolladora web full stack con experiencia en proyectos reales
+            que combinan frontend moderno y backend robusto. He trabajado con
+            tecnologías como React, Vite, Angular, Three.js y Electron, creando
+            aplicaciones tanto web como de escritorio. Tras una trayectoria
+            previa en atención al cliente, he canalizado mi capacidad resolutiva
+            y mi pasión por la tecnología hacia el desarrollo de soluciones
+            intuitivas, eficientes y bien estructuradas. Me motiva el
+            aprendizaje continuo y disfruto enfrentando retos técnicos con una
+            mentalidad analítica y colaborativa.
           </p>
         </div>
       </div>

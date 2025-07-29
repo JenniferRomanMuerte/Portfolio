@@ -1,0 +1,74 @@
+.project-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #fdfaea;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  max-width: 350px;
+  width: 100%;
+  transition: transform 0.3s ease;
+  padding-bottom: 1.5rem; /* Espacio inferior */
+}
+.project-card:hover {
+  transform: translateY(-8px);
+}
+
+.project-image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  max-height: 220px;
+  margin: 0 auto;
+  display: block;
+  border: 2px solid #ddd; /* borde claro */
+  border-radius: 0.75rem;
+}
+
+.project-content {
+  padding: 1rem;
+  color: #222;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.project-content p {
+  text-align: justify;
+}
+
+.project-techs {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tech-badge {
+  background-color: #eee;
+  padding: 0.3rem 0.6rem;
+  border-radius: 10px;
+  font-size: 0.8rem;
+}
+
+.project-link {
+  align-self: flex-end;
+  margin-top: 1rem; /* da espacio con lo de arriba */
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  color: #663399;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.project-link:hover {
+  color: #FFD700; /* amarillo intenso */
+  text-shadow:
+    -1px -1px 0 #663399,
+     1px -1px 0 #663399,
+    -1px  1px 0 #663399,
+     1px  1px 0 #663399;
+  transition: all 0.2s ease;
+}
