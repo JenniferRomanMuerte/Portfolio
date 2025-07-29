@@ -1,0 +1,115 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat&display=swap");
+
+.home-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 0.25;
+  filter: blur(1px);
+}
+
+.background-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(60, 30, 100, 0.5) 0%,
+    rgba(30, 60, 120, 0.5) 100%
+  );
+  z-index: -1;
+}
+
+.text3d-container {
+  flex: 1 1 auto;
+  height: 250px;
+  position: relative;
+  margin-top: 1rem;
+  min-width: 500px;
+  max-width: none;
+}
+
+.home-header-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 2rem;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  width: 100%;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.home-header {
+  width: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+.home-cube {
+  width: 100px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 60px;
+}
+
+.home-role {
+  font-size: 2.5rem;
+  font-style: italic;
+  margin-top: -4rem;
+  opacity: 0.6;
+  font-family: "Caveat", cursive;
+}
+
+.home-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  gap: 5rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.home-image {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 1.5rem;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.home-about-box {
+  max-width: 650px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 20px;
+  padding: 20px;
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: justify;
+  color: #222;
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.5);
+}
