@@ -34,7 +34,7 @@ export default function Navbar() {
           }}
         >
           <FaHome className={`icon ${hoveredLink === "home" ? "icon-colored" : ""}`} />
-          Home
+          Inicio
         </Link>
 
         <Link
@@ -48,11 +48,11 @@ export default function Navbar() {
           }}
         >
           <FaProjectDiagram className={`icon ${hoveredLink === "projects" ? "icon-colored" : ""}`} />
-          Projects
+          Proyectos
         </Link>
 
         <Link
-          to="/about"
+          to="/experience"
           className={`navbar-link ${hoveredLink === "about" ? "link-hovered" : ""}`}
           onMouseEnter={() => setHoveredLink("about")}
           onMouseLeave={() => setHoveredLink(null)}
@@ -62,7 +62,7 @@ export default function Navbar() {
           }}
         >
           <FaUser className={`icon ${hoveredLink === "about" ? "icon-colored" : ""}`} />
-          About
+          Formación y experiencia
         </Link>
       </div>
     </nav>

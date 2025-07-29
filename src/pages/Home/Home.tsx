@@ -16,7 +16,7 @@ export default function Home() {
           <Text3D
             text="Jennifer Román"
             fontUrl="/fonts/Caveat_Regular.json"
-            size={2.8}
+            size={3.8}
             position={[-10, -1.5, 0]}
             color="#ffffff"
             metalness={0.1}

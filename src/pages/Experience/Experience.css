@@ -1,0 +1,138 @@
+ .experience-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.experience-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+  opacity: 0.25;
+  filter: blur(1px);
+}
+
+.experience-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 215, 100, 0.1) 100%,
+    rgba(200, 130, 255, 0.3) 0%
+  );
+  z-index: -1;
+}
+
+.experience-content {
+  position: relative;
+  z-index: 1;
+  padding: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.experience-title {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.experience-box {
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 2rem;
+  border-radius: 1.5rem;
+  margin-bottom: 3rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.experience-box h2 {
+  font-size: 1.6rem;
+  color: #663399;
+  margin-bottom: 1.2rem;
+  text-align: center;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  border-bottom: 2px solid #815baa;
+  padding-bottom: 0.5rem;
+}
+
+.experience-item {
+  display: flex;
+  align-items: flex-start; /* Alinea todo arriba */
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  animation: fadeInUp 0.5s ease forwards;
+  opacity: 0;
+}
+
+.experience-item:nth-child(1) { animation-delay: 0.2s; }
+.experience-item:nth-child(2) { animation-delay: 0.4s; }
+
+
+.experience-icon {
+  font-size: 1.8rem;
+  color: #815baa;
+  flex-shrink: 0;
+  margin-top: 4px; /* opcional si quieres que baje un poco */
+}
+
+.experience-date {
+  font-style: italic;
+  font-size: 0.95rem;
+  color: #444;
+  opacity: 0.7;
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+/* Para que el texto y párrafo estén bien organizados */
+.experience-text {
+  flex: 1;
+}
+
+.experience-item div {
+  color: #222;
+}
+
+.experience-item strong {
+  color: #000;
+}
+
+.experience-box p {
+  color: #333;
+  font-size: 0.95rem;
+  margin-top: 0.8rem;
+  line-height: 1.5;
+}
+
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .experience-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .experience-date {
+    margin-left: 0;
+    margin-top: 0.5rem;
+  }
+}
