@@ -6,10 +6,15 @@ import "./Navbar.css";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [hoveredLink, setHoveredLink] = useState<"home" | "projects" | "about" | null>(null);
+  const [hoveredLink, setHoveredLink] = useState<"home" | "projects" | "experience" | null>(null);
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const isDarkMode = isOpen || hoveredLink !== null;
+
+  const handleMobileLinkClick = (link: "home" | "projects" | "experience") => {
+  setHoveredLink(link);
+  if (isOpen) setIsOpen(false); // Solo cierra si está abierto (modo hamburguesa)
+};
 
   return (
     <nav className={`navbar ${isDarkMode ? "navbar-dark" : ""}`}>
@@ -28,10 +33,7 @@ export default function Navbar() {
           className={`navbar-link ${hoveredLink === "home" ? "link-hovered" : ""}`}
           onMouseEnter={() => setHoveredLink("home")}
           onMouseLeave={() => setHoveredLink(null)}
-          onTouchStart={() => {
-            setHoveredLink("home");
-            setIsOpen(false);
-          }}
+          onClick={() => handleMobileLinkClick("home")}
         >
           <FaHome className={`icon ${hoveredLink === "home" ? "icon-colored" : ""}`} />
           Inicio
@@ -42,10 +44,7 @@ export default function Navbar() {
           className={`navbar-link ${hoveredLink === "projects" ? "link-hovered" : ""}`}
           onMouseEnter={() => setHoveredLink("projects")}
           onMouseLeave={() => setHoveredLink(null)}
-          onTouchStart={() => {
-            setHoveredLink("projects");
-            setIsOpen(false);
-          }}
+          onClick={() => handleMobileLinkClick("projects")}
         >
           <FaProjectDiagram className={`icon ${hoveredLink === "projects" ? "icon-colored" : ""}`} />
           Proyectos
@@ -53,15 +52,12 @@ export default function Navbar() {
 
         <Link
           to="/experience"
-          className={`navbar-link ${hoveredLink === "about" ? "link-hovered" : ""}`}
-          onMouseEnter={() => setHoveredLink("about")}
+          className={`navbar-link ${hoveredLink === "experience" ? "link-hovered" : ""}`}
+          onMouseEnter={() => setHoveredLink("experience")}
           onMouseLeave={() => setHoveredLink(null)}
-          onTouchStart={() => {
-            setHoveredLink("about");
-            setIsOpen(false);
-          }}
+          onClick={() => handleMobileLinkClick("experience")}
         >
-          <FaUser className={`icon ${hoveredLink === "about" ? "icon-colored" : ""}`} />
+          <FaUser className={`icon ${hoveredLink === "experience" ? "icon-colored" : ""}`} />
           Formación y experiencia
         </Link>
       </div>

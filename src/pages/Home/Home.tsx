@@ -1,8 +1,18 @@
 import "./Home.css";
+import { useEffect, useState } from "react";
 import TechCube from "../../components/TechCube/TechCube";
 import Text3D from "../../components/Text3d/Text3d";
 
 export default function Home() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   return (
     <main className="home-container">
       <div className="background-overlay" />
@@ -16,12 +26,13 @@ export default function Home() {
           <Text3D
             text="Jennifer Román"
             fontUrl="/fonts/Caveat_Regular.json"
-            size={3.8}
-            position={[-10, -1.5, 0]}
+            size={isMobile ? 2.2 : 3.8}
+            position={isMobile ? [-6, -1.5, 0] : [-10, -1.5, 0]}
             color="#ffffff"
             metalness={0.1}
             roughness={0.8}
           />
+
           <p className="home-role">
             <em>Desarrolladora web full stack</em>
           </p>

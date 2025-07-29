@@ -1,8 +1,17 @@
 import "./Projects.css";
 import Text3D from "../../components/Text3d/Text3d";
 import ProjectCard from "../../components/ProjectCard/ProjectCard";
+import { useEffect, useState } from "react"; // al principio del archivo
 
 export default function Projects() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile(); // detecta si es móvil al cargar
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
   const projects = [
     {
       title: "Gestor de facturación",
@@ -11,7 +20,6 @@ export default function Projects() {
       imageUrl: "/assets/project-facturacion.png",
       techs: ["React", "Electron", "SQLite"],
       link: "https://github.com/JenniferRomanMuerte/facturacion_fisio_pilates",
-
     },
     {
       title: "Asociación de fumadores",
@@ -60,8 +68,8 @@ export default function Projects() {
           <Text3D
             text="Mis Proyectos"
             fontUrl="/fonts/Caveat_Regular.json"
-            size={4}
-            position={[-12, 0, 0]}
+            size={isMobile ? 2.5 : 4}
+            position={isMobile ? [-6, 0, 0] : [-12, 0, 0]}
             color="#815baa"
             metalness={0.8}
             roughness={0.5}
