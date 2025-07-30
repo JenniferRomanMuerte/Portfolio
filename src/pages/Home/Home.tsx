@@ -2,7 +2,7 @@ import "./Home.css";
 import { useEffect, useState } from "react";
 import TechCube from "../../components/TechCube/TechCube";
 import Text3D from "../../components/Text3d/Text3d";
-import LoadingOverlay from "../../components/LoadingOverlay/LoadingOverlay";
+
 
 export default function Home({ on3DReady }: { on3DReady: () => void }) {
   const [isMobile, setIsMobile] = useState(false);

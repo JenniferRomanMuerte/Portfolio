@@ -1,6 +1,6 @@
 import { Canvas } from "@react-three/fiber";
 import { Text3D as DreiText3D } from "@react-three/drei";
-import { Suspense, useEffect, useState } from "react";
+import { Suspense } from "react";
 
 interface Text3DProps {
   text: string;
