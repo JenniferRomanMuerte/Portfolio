@@ -4,6 +4,12 @@
   position: relative;
   width: 100%;
   overflow: hidden;
+  opacity: 0;
+  transition: opacity 1.5s ease;
+}
+
+.home-container.visible {
+  opacity: 1;
 }
 
 .background-video {

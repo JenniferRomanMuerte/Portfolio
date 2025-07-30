@@ -5,7 +5,7 @@ import { useEffect, useState } from "react"; // al principio del archivo
 
 export default function Projects() {
   const [isMobile, setIsMobile] = useState(false);
-
+  
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile(); // detecta si es móvil al cargar

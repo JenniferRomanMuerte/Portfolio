@@ -1,6 +1,6 @@
 import { Canvas } from "@react-three/fiber";
 import { Text3D as DreiText3D } from "@react-three/drei";
-import { Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 interface Text3DProps {
   text: string;
@@ -10,6 +10,42 @@ interface Text3DProps {
   color?: string;
   metalness?: number;
   roughness?: number;
+  onReady?: () => void;
+}
+
+function InnerText3D({
+  text,
+  fontUrl,
+  size,
+  position,
+  color,
+  metalness,
+  roughness,
+  onReady,
+}: Text3DProps) {
+  return (
+    <DreiText3D
+      font={fontUrl as string}
+      size={size}
+      height={0.3}
+      position={position}
+      curveSegments={12}
+      bevelEnabled
+      bevelThickness={0.02}
+      bevelSize={0.01}
+      bevelSegments={5}
+      onAfterRender={() => {
+        onReady?.();
+      }}
+    >
+      {text}
+      <meshStandardMaterial
+        color={color}
+        metalness={metalness}
+        roughness={roughness}
+      />
+    </DreiText3D>
+  );
 }
 
 export default function Text3D({
@@ -20,6 +56,7 @@ export default function Text3D({
   color = "#ffffff",
   metalness = 0.1,
   roughness = 0.8,
+  onReady,
 }: Text3DProps) {
   return (
     <div className="text3d-container">
@@ -27,24 +64,16 @@ export default function Text3D({
         <ambientLight intensity={0.5} />
         <directionalLight position={[0, 2, 10]} />
         <Suspense fallback={null}>
-          <DreiText3D
-            font={fontUrl}
+          <InnerText3D
+            text={text}
+            fontUrl={fontUrl}
             size={size}
-            height={0.3}
             position={position}
-            curveSegments={12}
-            bevelEnabled
-            bevelThickness={0.02}
-            bevelSize={0.01}
-            bevelSegments={5}
-          >
-            {text}
-            <meshStandardMaterial
-              color={color}
-              metalness={metalness}
-              roughness={roughness}
-            />
-          </DreiText3D>
+            color={color}
+            metalness={metalness}
+            roughness={roughness}
+            onReady={onReady}
+          />
         </Suspense>
       </Canvas>
     </div>

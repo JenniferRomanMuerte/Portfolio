@@ -2,9 +2,19 @@ import "./Home.css";
 import { useEffect, useState } from "react";
 import TechCube from "../../components/TechCube/TechCube";
 import Text3D from "../../components/Text3d/Text3d";
+import LoadingOverlay from "../../components/LoadingOverlay/LoadingOverlay";
 
-export default function Home() {
+export default function Home({ on3DReady }: { on3DReady: () => void }) {
   const [isMobile, setIsMobile] = useState(false);
+  const [textReady, setTextReady] = useState(false);
+  const [cubeReady, setCubeReady] = useState(false);
+
+  useEffect(() => {
+    if (textReady && cubeReady) {
+      console.log("🔁 Ambos listos: llamando on3DReady()");
+      on3DReady();
+    }
+  }, [textReady, cubeReady, on3DReady]);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 840);
@@ -13,8 +23,9 @@ export default function Home() {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
+
   return (
-    <div className="home-container">
+    <div className={`home-container ${textReady && cubeReady ? "visible" : ""}`}>
       <div className="background-overlay" />
       <video className="background-video" autoPlay loop muted playsInline>
         <source src="/assets/VideoCode.mp4" type="video/mp4" />
@@ -31,6 +42,7 @@ export default function Home() {
             color="#ffffff"
             metalness={0.1}
             roughness={0.8}
+            onReady={() => setTextReady(true)}
           />
 
           <p className="home-role">
@@ -39,7 +51,13 @@ export default function Home() {
         </div>
 
         <div className="home-cube">
-          {!isMobile && <TechCube size={3.5} canvasSize={200} />}
+          {!isMobile && (
+            <TechCube
+              size={3.5}
+              canvasSize={200}
+              onReady={() => setCubeReady(true)}
+            />
+          )}
         </div>
       </div>
 
@@ -52,7 +70,11 @@ export default function Home() {
               className="home-image"
             />
             <div className="home-cube-mobile">
-              <TechCube size={3.5} canvasSize={200} />
+              <TechCube
+                size={3.5}
+                canvasSize={200}
+                onReady={() => setCubeReady(true)}
+              />
             </div>
           </div>
         ) : (
