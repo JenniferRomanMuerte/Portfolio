@@ -28,7 +28,7 @@ export default function Experience() {
             text="Formación"
             fontUrl="/fonts/Caveat_Regular.json"
             size={isMobile ? 2.8 : 3.8}
-            position={isMobile ? [-12, 0, 0] : [-10, 0, 0]}
+            position={isMobile ? [-14, 0, 0] : [-10, 0, 0]}
             color="#815baa"
             metalness={0.8}
             roughness={0.5}
@@ -113,7 +113,7 @@ export default function Experience() {
             text="Experiencia"
             fontUrl="/fonts/Caveat_Regular.json"
             size={isMobile ? 2.8 : 3.8}
-            position={isMobile ? [-12, 0, 0] : [-10, 0, 0]}
+            position={isMobile ? [-14, 0, 0] : [-10, 0, 0]}
             color="#815baa"
             metalness={0.8}
             roughness={0.5}
