@@ -12,7 +12,12 @@ const texturePaths = [
   "/tech/SQL.png",
 ];
 
-function LogoCube() {
+interface TechCubeProps {
+  size?: number; // tamaño del cubo (lado)
+  canvasSize?: number; // tamaño en píxeles del canvas (ancho/alto)
+}
+
+function LogoCube({ size = 2.5 }: { size: number }) {
   const groupRef = useRef<THREE.Group>(null!);
   const textures = useLoader(THREE.TextureLoader, texturePaths);
 
@@ -21,68 +26,61 @@ function LogoCube() {
     groupRef.current.rotation.x += 0.005;
   });
 
+  const offset = size / 2 + 0.01;
+
+  const positions = [
+    [0, 0, offset],
+    [0, 0, -offset],
+    [offset, 0, 0],
+    [-offset, 0, 0],
+    [0, offset, 0],
+    [0, -offset, 0],
+  ];
+
+  const rotations = [
+    [0, 0, 0],
+    [0, Math.PI, 0],
+    [0, -Math.PI / 2, 0],
+    [0, Math.PI / 2, 0],
+    [-Math.PI / 2, 0, 0],
+    [Math.PI / 2, 0, 0],
+  ];
+
   return (
     <group ref={groupRef}>
-      {/* Cubo gris con material que refleja luz y sombras */}
       <mesh castShadow receiveShadow>
-        <boxGeometry args={[2.5, 2.5, 2.5]} />
+        <boxGeometry args={[size, size, size]} />
         <meshStandardMaterial color="#ffffff" roughness={0.5} metalness={0.1} />
         <Edges threshold={15} color="#adadad" />
       </mesh>
 
-      {/* Logos en planos flotantes */}
-      {textures.map((texture, i) => {
-        const positions = [
-          [0, 0, 1.26],
-          [0, 0, -1.26],
-          [1.26, 0, 0],
-          [-1.26, 0, 0],
-          [0, 1.26, 0],
-          [0, -1.26, 0],
-        ];
-        const rotations = [
-          [0, 0, 0],
-          [0, Math.PI, 0],
-          [0, -Math.PI / 2, 0],
-          [0, Math.PI / 2, 0],
-          [-Math.PI / 2, 0, 0],
-          [Math.PI / 2, 0, 0],
-        ];
-
-        return (
-          <mesh
-            key={i}
-            position={positions[i] as [number, number, number]}
-            rotation={rotations[i] as [number, number, number]}
-            receiveShadow
-          >
-            <planeGeometry args={[2.4, 2.4]} />
-            <meshBasicMaterial
-              map={texture}
-              transparent
-              alphaTest={0.1}
-              side={THREE.DoubleSide}
-            />
-          </mesh>
-        );
-      })}
+      {textures.map((texture, i) => (
+        <mesh
+          key={i}
+          position={positions[i] as [number, number, number]}
+          rotation={rotations[i] as [number, number, number]}
+          receiveShadow
+        >
+          <planeGeometry args={[size * 0.96, size * 0.96]} />
+          <meshBasicMaterial
+            map={texture}
+            transparent
+            alphaTest={0.1}
+            side={THREE.DoubleSide}
+          />
+        </mesh>
+      ))}
     </group>
   );
 }
 
-export default function TechCube() {
+export default function TechCube({ size = 2.5, canvasSize = 400 }: TechCubeProps) {
   return (
-    <div style={{ width: "400px", height: "400px" }}>
+    <div style={{ width: canvasSize, height: canvasSize }}>
       <Canvas camera={{ position: [5, 5, 5] }} shadows>
         <ambientLight intensity={0.5} />
-        <directionalLight
-          position={[5, 5, 5]}
-          intensity={1}
-          castShadow
-          shadow-mapSize-width={1024}
-          shadow-mapSize-height={1024}
-        />
-        <LogoCube />
+        <directionalLight position={[5, 5, 5]} intensity={1} castShadow />
+        <LogoCube size={size} />
         <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={2} />
       </Canvas>
     </div>

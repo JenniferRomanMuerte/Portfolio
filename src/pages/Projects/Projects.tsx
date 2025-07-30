@@ -69,7 +69,7 @@ export default function Projects() {
             text="Mis Proyectos"
             fontUrl="/fonts/Caveat_Regular.json"
             size={isMobile ? 2.5 : 4}
-            position={isMobile ? [-6, 0, 0] : [-12, 0, 0]}
+            position={isMobile ? [-8, 0, 0] : [-12, 0, 0]}
             color="#815baa"
             metalness={0.8}
             roughness={0.5}

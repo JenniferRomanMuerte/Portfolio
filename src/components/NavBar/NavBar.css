@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Caveat&display=swap");
 
 .navbar {
   position: sticky;
@@ -19,7 +19,7 @@
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  font-family: 'Caveat', cursive;
+  font-family: "Caveat", cursive;
   font-size: 2.8rem;
   color: #ffffff;
   animation: float 3s ease-in-out infinite;
@@ -46,7 +46,8 @@
 }
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -117,8 +118,6 @@
   color: transparent;
 }
 
-
-
 /* NUEVO botón hamburguesa */
 .navbar-hamburger {
   display: none;
@@ -142,6 +141,10 @@
 
   .navbar-hamburger {
     display: block;
+  }
+
+  .navbar-img {
+    display: none;
   }
 
   .navbar-logo {
@@ -169,7 +172,6 @@
   .navbar-links.open {
     display: flex;
   }
-
 
   .navbar-links.open .navbar-link {
     background: linear-gradient(to right, #ccbade, #7091ca);

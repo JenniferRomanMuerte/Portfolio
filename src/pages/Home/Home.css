@@ -73,6 +73,11 @@
   margin-top: 20px;
 }
 
+/* Solo visible en móvil */
+.home-cube-mobile {
+  display: none;
+}
+
 .home-role {
   font-size: 1.8rem;
   font-style: italic;
@@ -115,6 +120,14 @@
   box-shadow: 0 4px 20px rgba(255, 255, 255, 0.5);
 }
 
+/* Contenedor que agrupa imagen y cubo solo en móvil */
+.home-image-cube-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
 @media (max-width: 768px) {
   .home-header-wrapper {
     flex-direction: column;
@@ -129,13 +142,30 @@
   }
 
   .home-cube {
-    width: 80px;
-    height: 150px;
-    margin-top: 0;
+    display: none;
+  }
+
+  .home-cube-mobile {
+    display: block;
+    margin: 0;
+  }
+
+  .home-content {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .home-image {
+    width: 140px;
+    height: 140px;
+  }
+
+  .home-about-box {
+    margin-top: 1rem;
   }
 
   .text3d-container {
-    height: 120px; /* antes era 150 */
+    height: 120px;
   }
 
   .home-role {

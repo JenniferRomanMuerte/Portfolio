@@ -1,4 +1,8 @@
 .project-card {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -6,11 +10,10 @@
   border-radius: 1.5rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   overflow: hidden;
-  max-width: 350px;
-  width: 100%;
   transition: transform 0.3s ease;
-  padding-bottom: 1.5rem; /* Espacio inferior */
+  padding-bottom: 1.5rem;
 }
+
 .project-card:hover {
   transform: translateY(-8px);
 }

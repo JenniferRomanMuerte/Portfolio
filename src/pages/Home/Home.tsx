@@ -14,7 +14,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="home-container">
+    <div className="home-container">
       <div className="background-overlay" />
       <video className="background-video" autoPlay loop muted playsInline>
         <source src="/assets/VideoCode.mp4" type="video/mp4" />
@@ -26,8 +26,8 @@ export default function Home() {
           <Text3D
             text="Jennifer Román"
             fontUrl="/fonts/Caveat_Regular.json"
-            size={isMobile ? 2.2 : 3.8}
-            position={isMobile ? [-6, -1.5, 0] : [-10, -1.5, 0]}
+            size={isMobile ? 2.5 : 3.8}
+            position={isMobile ? [-9, -1.5, 0] : [-10, -1.5, 0]}
             color="#ffffff"
             metalness={0.1}
             roughness={0.8}
@@ -39,17 +39,29 @@ export default function Home() {
         </div>
 
         <div className="home-cube">
-          <TechCube />
+          {!isMobile && <TechCube size={3.5} canvasSize={200} />}
         </div>
       </div>
 
       <div className="home-content">
-        <img
-          src="/assets/Jennifer.jpg"
-          alt="Jennifer Román"
-          className="home-image"
-        />
-
+        {isMobile ? (
+          <div className="home-image-cube-wrapper">
+            <img
+              src="/assets/Jennifer.jpg"
+              alt="Jennifer Román"
+              className="home-image"
+            />
+            <div className="home-cube-mobile">
+              <TechCube size={3.5} canvasSize={200} />
+            </div>
+          </div>
+        ) : (
+          <img
+            src="/assets/Jennifer.jpg"
+            alt="Jennifer Román"
+            className="home-image"
+          />
+        )}
         <div className="home-about-box">
           <p>
             Desarrolladora web full stack con experiencia en proyectos reales
@@ -64,6 +76,6 @@ export default function Home() {
           </p>
         </div>
       </div>
-    </main>
+    </div>
   );
 }

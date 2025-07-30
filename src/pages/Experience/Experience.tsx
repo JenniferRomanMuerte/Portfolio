@@ -1,8 +1,18 @@
 import "./Experience.css";
 import Text3D from "../../components/Text3d/Text3d";
 import { FaGraduationCap, FaBriefcase } from "react-icons/fa";
+import { useEffect, useState } from "react";
 
 export default function Experience() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   return (
     <main className="experience-container">
       <div className="experience-overlay" />
@@ -17,8 +27,8 @@ export default function Experience() {
           <Text3D
             text="Formación"
             fontUrl="/fonts/Caveat_Regular.json"
-            size={3.8}
-            position={[-10, 0, 0]}
+            size={isMobile ? 2.8 : 3.8}
+            position={isMobile ? [-12, 0, 0] : [-10, 0, 0]}
             color="#815baa"
             metalness={0.8}
             roughness={0.5}
@@ -96,13 +106,14 @@ export default function Experience() {
             <span className="experience-date">2025</span>
           </div>
         </section>
+
         {/* EXPERIENCIA */}
         <div className="experience-title">
           <Text3D
             text="Experiencia"
             fontUrl="/fonts/Caveat_Regular.json"
-            size={3.8}
-            position={[-10, 0, 0]}
+            size={isMobile ? 2.8 : 3.8}
+            position={isMobile ? [-12, 0, 0] : [-10, 0, 0]}
             color="#815baa"
             metalness={0.8}
             roughness={0.5}
@@ -115,7 +126,7 @@ export default function Experience() {
             <div>
               <strong>Desarrolladora de aplicaciones web (prácticas)</strong>
               <br />
-              VT-LAB · Desorrollo web con JavaScript
+              VT-LAB · Desarrollo web con JavaScript
             </div>
             <span className="experience-date">2023</span>
           </div>
@@ -125,8 +136,7 @@ export default function Experience() {
             <div>
               <strong>Desarrolladora junior</strong>
               <br />
-              VT-LAB · Desarrollo app de productos de datos unidos a BIM
-              mediante knowledgeGraph
+              VT-LAB · Desarrollo app de productos de datos unidos a BIM mediante knowledgeGraph
             </div>
             <span className="experience-date">2023 – 2024</span>
           </div>
