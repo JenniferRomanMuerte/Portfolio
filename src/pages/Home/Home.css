@@ -1,205 +1,62 @@
-@import url("https://fonts.googleapis.com/css2?family=Caveat&display=swap");
-
-.home-container {
+/* Contenedor principal de la Home */
+.home{
   position: relative;
-  width: 100%;
-  overflow: hidden;
-  opacity: 0;
-  transition: opacity 1.5s ease;
+  min-height: 100svh; /* mejor en móviles que 100vh */
+  isolation: isolate; /* crea su propio stacking context */
 }
 
-.home-container.visible {
-  opacity: 1;
-}
-
-.background-video {
+/* Capa de fondo con el vídeo */
+.home__bg{
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
+  z-index: 0;            /* detrás del contenido, delante del body */
+  pointer-events: none;  /* no bloquea clics/scroll */
+  background: #fff;      /* fallback blanco mientras carga el vídeo */
+}
+
+/* Vídeo ajustado a pantalla + filtros para blanco/gris */
+.home__video{
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: -1;
-  opacity: 0.25;
-  filter: blur(1px);
+
+  /* 1) pasamos todo a escala de grises
+     2) invertimos: negro -> blanco, verde -> gris oscuro
+     3) afinamos luz/contraste para que el texto no quede negro puro */
+  filter: grayscale(1) invert(1) brightness(1.06) contrast(0.86);
+
+  /* visibilidad del vídeo; si quieres menos “presencia”, baja a 0.7–0.85 */
+  opacity: 0.95;
 }
 
-.background-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    rgba(60, 30, 100, 0.5) 0%,
-    rgba(30, 60, 120, 0.5) 100%
-  );
-  z-index: -1;
-}
-
-.text3d-container {
-  flex: 1 1 auto;
-  height: 250px;
-  position: relative;
-  margin-top: 1rem;
-  min-width: 500px;
-  max-width: none;
-}
-
-.home-header-wrapper {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  margin-top: 2rem;
-  flex-wrap: nowrap;
-  gap: 1rem;
-  width: 100%;
-  max-width: 1400px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.home-header {
-  width: 700px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-}
-
-.home-cube {
-  width: 100px;
-  height: 200px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  margin-top: 20px;
-}
-
-/* Solo visible en móvil */
-.home-cube-mobile {
-  display: none;
-}
-
-.home-role {
-  font-size: 1.8rem;
-  font-style: italic;
-  margin-top: -2rem;
-  opacity: 0.7;
-  font-family: "Caveat", cursive;
-  text-align: center;
-}
-
-.home-content {
+/* Contenido por encima del fondo */
+.home__content{
   position: relative;
   z-index: 1;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
-  padding: 2rem;
-  width: 100%;
-  box-sizing: border-box;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 4rem 1.6rem;
+  color: var(--fg-body);
 }
 
-
-.home-image {
-  width: 180px;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 1.5rem;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+.home__title{
+  font-family: var(--font-title);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-size: clamp(2.2rem, 6vw, 5rem);
+  margin: 0 0 .5rem 0;
 }
 
-.home-about-box {
-  width: 100%;
-  max-width: 650px;
-  margin: 1rem auto;
-  padding: 1rem;
-  box-sizing: border-box;
-  background-color: rgba(255, 255, 255, 0.6);
-  border-radius: 20px;
-  font-size: 1rem;
-  line-height: 1.6;
-  text-align: justify;
-  color: #222;
-  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.5);
-  word-break: break-word;
-  overflow-wrap: break-word;
+.home__tagline{
+  color: var(--muted);
+  font-size: clamp(1.4rem, 2.4vw, 1.8rem);
+  margin: 0;
 }
 
-
-/* Contenedor que agrupa imagen y cubo solo en móvil */
-.home-image-cube-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-}
-
-@media (max-width: 840px) {
-  .home-header-wrapper {
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    margin-top: 1rem;
-  }
-
-  .home-header {
-    width: auto;
-    text-align: center;
-  }
-
-  .home-cube {
-    display: none;
-  }
-
-  .home-cube-mobile {
-    display: block;
-    margin: 0;
-  }
-
-  .home-content {
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .home-image {
-    width: 140px;
-    height: 140px;
-  }
-
-  .home-about-box {
-    margin: 1rem auto;
-    padding: 1rem;
-    width: 100%;
-    max-width: 650px;
-    box-sizing: border-box;
-  }
-  .text3d-container {
-    height: 120px;
-  }
-
-  .home-role {
-    font-size: 1.4rem;
-    margin-top: -1.5rem;
-  }
-}
-
-@media (max-width: 400px) {
-  .home-content {
-    padding: 1rem !important;
-  }
-
-  .home-about-box {
-    width: 100%;
-    max-width: 100%;
-    padding: 1rem;
-    margin: 0;
-    border-radius: 16px;
-  }
-}
+/* (Opcional) Si quieres todavía más sutil el texto del vídeo:
+   .home__video { contrast: 0.8; }
+*/

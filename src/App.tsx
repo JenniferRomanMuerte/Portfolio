@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
@@ -18,16 +17,7 @@ function App() {
         <Navbar />
         <div className="flex-grow p-4">
           <Routes>
-            <Route
-              path="/"
-              element={
-                <Home
-                  on3DReady={() => {
-                    setTimeout(() => setIsLoading(false), 100);
-                  }}
-                />
-              }
-            />
+            <Route path="/" element={<Home onReady={() => setIsLoading(false)} />} />
             <Route path="/experience" element={<Experience />} />
             <Route path="/projects" element={<Projects />} />
           </Routes>

@@ -1,6 +1,49 @@
-body {
-  background: linear-gradient(to right, #ccbade, #7091ca);
-  color: white;
+/* Tipos y variables */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Sora:wght@400;600;700&display=swap");
+
+:root{
+  /* Base */
+  --bg-body: #ffffff;        /* fondo blanco */
+  --fg-body: #222222;        /* texto principal gris oscuro */
+  --muted: #666666;          /* texto secundario gris medio */
+
+  /* Navbar */
+  --bg-nav: #111111;         /* navbar negra */
+  --fg-nav: #ffffff;         /* texto de navbar blanco */
+
+  /* Acentos */
+  --accent: #000000;         /* negro puro como acento (botones, títulos) */
+  --accent-alt: #444444;     /* gris oscuro alternativo */
+
+  /* Extras */
+  --radius: 20px;
+  --shadow: 0 10px 30px rgba(0,0,0,.15);
+
+  /* Tipografías */
+  --font-base: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  --font-title: "Sora", var(--font-base);
+}
+
+
+/* Reset base mínimo */
+*{ box-sizing: border-box; }
+html{ font-size: 62.5%; }
+body{
   margin: 0;
-  font-family: sans-serif;
+  font-family: var(--font-base);
+  color: var(--fg-body);
+  background: var(--bg-body);
+}
+
+/* Loader global  */
+.global-loader {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(to bottom right, #fef7cc, #dad9d4);
+  color: black;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
 }
