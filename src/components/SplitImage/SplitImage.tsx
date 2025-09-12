@@ -1,38 +1,70 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./SplitImage.css";
 
 export default function SplitImage() {
   const [animate, setAnimate] = useState(false);
-  const [divider, setDivider] = useState(50);
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  // Actualiza el corte global (porcentaje 0..100)
+  const setSplit = (pct: number) => {
+    const home = rootRef.current?.closest(".home") as HTMLElement | null;
+    if (!home) return;
+    const p = Math.max(0, Math.min(100, pct));
+    home.style.setProperty("--split-p", `${p}%`);
+  };
+
+  // Marca que el usuario movió → los títulos pasan a seguir al slider
+  const setHasMoved = () => {
+    const home = rootRef.current?.closest(".home");
+    home?.classList.add("has-moved");
+  };
 
   useEffect(() => {
-    const timer = setTimeout(() => setAnimate(true), 200);
-    return () => clearTimeout(timer);
+    // Estado de reposo: mitad/mitad y animación de entrada
+    setSplit(50);
+    const t = setTimeout(() => setAnimate(true), 50);
+    return () => clearTimeout(t);
   }, []);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const newDivider = (x / rect.width) * 100;
-    setDivider(newDivider);
+  const moveFrom = (clientX: number, target: HTMLDivElement) => {
+    const r = target.getBoundingClientRect();
+    const pct = ((clientX - r.left) / r.width) * 100;
+    setSplit(pct);
+  };
+
+  const onMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    moveFrom(e.clientX, e.currentTarget);
+    setHasMoved();
+  };
+
+  const onTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    const t = e.touches[0];
+    moveFrom(t.clientX, e.currentTarget);
+    setHasMoved();
   };
 
   return (
-    <div className="split-container" onMouseMove={handleMouseMove}>
-      {/* Color desde la izquierda */}
+    <div
+      ref={rootRef}
+      className="split-container"
+      onMouseMove={onMouseMove}
+      onTouchMove={onTouchMove}
+      role="img"
+      aria-label="Retrato mitad color, mitad blanco y negro con deslizador"
+    >
+      {/* Color (izquierda) */}
       <img
         src="/assets/androide-art.webp"
-        alt="Versión artística"
+        alt=""
         className={`half left ${animate ? "animate" : ""}`}
-        style={{ clipPath: `inset(0 ${100 - divider}% 0 0)` }}
+        style={{ clipPath: `inset(0 var(--split-r) 0 0)` }}
       />
-
-      {/* Blanco y negro desde la derecha */}
+      {/* Blanco y negro (derecha) */}
       <img
         src="/assets/androide.webp"
-        alt="Versión realista"
+        alt=""
         className={`half right ${animate ? "animate" : ""}`}
-        style={{ clipPath: `inset(0 0 0 ${divider}%)` }}
+        style={{ clipPath: `inset(0 0 0 var(--split-p))` }}
       />
     </div>
   );

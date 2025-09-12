@@ -3,16 +3,16 @@ import "./Home.css";
 import SplitImage from "../../components/SplitImage/SplitImage";
 
 export default function Home() {
-  const [animate, setAnimate] = useState(false);
+  const [inView, setInView] = useState(false);
 
   useEffect(() => {
-    const t = setTimeout(() => setAnimate(true), 500);
+    const t = setTimeout(() => setInView(true), 200);
     return () => clearTimeout(t);
   }, []);
 
   return (
     <main className="home">
-      {/* Fondo con vídeo */}
+      {/* Fondo vídeo */}
       <div className="home__bg" aria-hidden="true">
         <video
           className="home__video"
@@ -29,14 +29,21 @@ export default function Home() {
 
       {/* Contenido */}
       <section className="home__content">
-        <h1 className={`home__title ${animate ? "animate-left" : ""}`}>
-          Jennifer Román
+        {/* H1: capas superpuestas */}
+        <h1 className={`home__title from-left ${inView ? "is-in" : ""}`} aria-label="Jennifer Román">
+          <span className="home__measure" aria-hidden>Jennifer Román</span>
+          <span className="home__layer home__layer--mono" aria-hidden>Jennifer Román</span>
+          <span className="home__layer home__layer--rainbow" aria-hidden>Jennifer Román</span>
         </h1>
 
+        {/* Imagen con slider (actualiza --split-p y activa .has-moved) */}
         <SplitImage />
 
-        <h2 className={`home__subtitle ${animate ? "animate-right" : ""}`}>
-          Fullstack Developer
+        {/* H2: capas superpuestas */}
+        <h2 className={`home__subtitle from-right ${inView ? "is-in" : ""}`} aria-label="Fullstack Developer">
+          <span className="home__measure" aria-hidden>Fullstack Developer</span>
+          <span className="home__layer home__layer--mono" aria-hidden>Fullstack Developer</span>
+          <span className="home__layer home__layer--rainbow" aria-hidden>Fullstack Developer</span>
         </h2>
       </section>
     </main>

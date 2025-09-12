@@ -1,5 +1,5 @@
 /* Tipos y variables */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Sora:wght@400;600;700&display=swap");
+
 @import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Inter:wght@300;400;600;800&family=Sora:wght@400;600;700&display=swap");
 
 :root{
@@ -11,7 +11,7 @@
   /* Navbar */
   --bg-nav: #111111;         /* navbar negra */
   --fg-nav: #ffffff;         /* texto de navbar blanco */
-  --navbar-height: 6rem; /* altura de la navbar en rem */
+  --navbar-height: 8rem; /* altura de la navbar en rem */
 
   /* Acentos */
   --accent: #000000;         /* negro puro como acento (botones, títulos) */
@@ -23,7 +23,13 @@
 
   /* Tipografías */
   --font-base: "Caveat", cursive;
-  --font-title: "Sora", var(--font-base);
+  --font-title: var(--font-base);
+
+  /*Animaciones */
+   --fx-dur: 2s;            /* ⬅️ súbelo para ir más lento (p.ej. 1.8s, 2s) */
+  --fx-ease: cubic-bezier(.16,1,.3,1); /* easing suave tipo ease-out */
+  --fx-delay-title: .10s;    /* retardo opcional del título */
+  --fx-delay-sub:   .10s;    /* retardo opcional del subtítulo */
 }
 
 
@@ -37,15 +43,3 @@ body{
   background: var(--bg-body);
 }
 
-/* Loader global  */
-.global-loader {
-  position: fixed;
-  inset: 0;
-  background: linear-gradient(to bottom right, #fef7cc, #dad9d4);
-  color: black;
-  font-size: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-}
