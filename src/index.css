@@ -1,5 +1,6 @@
 /* Tipos y variables */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Sora:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Inter:wght@300;400;600;800&family=Sora:wght@400;600;700&display=swap");
 
 :root{
   /* Base */
@@ -10,6 +11,7 @@
   /* Navbar */
   --bg-nav: #111111;         /* navbar negra */
   --fg-nav: #ffffff;         /* texto de navbar blanco */
+  --navbar-height: 6rem; /* altura de la navbar en rem */
 
   /* Acentos */
   --accent: #000000;         /* negro puro como acento (botones, títulos) */
@@ -20,7 +22,7 @@
   --shadow: 0 10px 30px rgba(0,0,0,.15);
 
   /* Tipografías */
-  --font-base: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  --font-base: "Caveat", cursive;
   --font-title: "Sora", var(--font-base);
 }
 

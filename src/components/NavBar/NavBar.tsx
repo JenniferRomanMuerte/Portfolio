@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaHome, FaProjectDiagram, FaUser, FaBars } from "react-icons/fa";
 import programadoraImg from "/assets/programadora.png";
-import "./Navbar.css";
+import "./NavBar.css";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,21 +12,24 @@ export default function Navbar() {
   const isDarkMode = isOpen || hoveredLink !== null;
 
   const handleMobileLinkClick = (link: "home" | "projects" | "experience") => {
-  setHoveredLink(link);
-  if (isOpen) setIsOpen(false); // Solo cierra si está abierto (modo hamburguesa)
-};
+    setHoveredLink(link);
+    if (isOpen) setIsOpen(false); // Solo cierra si está abierto
+  };
 
   return (
     <nav className={`navbar ${isDarkMode ? "navbar-dark" : ""}`}>
+      {/* Botón hamburguesa (mobile first) */}
       <div className="navbar-hamburger" onClick={toggleMenu}>
         <FaBars className={`hamburger-icon ${isDarkMode ? "icon-colored" : ""}`} />
       </div>
 
+      {/* Logo */}
       <div className="navbar-logo">
         <img src={programadoraImg} alt="Programadora" className="navbar-img" />
         <span className="navbar-title">Jennifer Román</span>
       </div>
 
+      {/* Links */}
       <div className={`navbar-links ${isOpen ? "open" : ""}`}>
         <Link
           to="/"

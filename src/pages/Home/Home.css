@@ -1,62 +1,111 @@
-/* Contenedor principal de la Home */
+/* Contenedor principal */
 .home{
-  position: relative;
-  min-height: 100svh; /* mejor en móviles que 100vh */
-  isolation: isolate; /* crea su propio stacking context */
+  /* ocupamos exactamente el alto disponible sin sumar navbar */
+  height: calc(100svh - var(--navbar-height));
+  /* NO hace falta margin-top porque la navbar está en el flujo */
+  overflow: hidden;
 }
 
-/* Capa de fondo con el vídeo */
-.home__bg{
+/* Fondo vídeo */
+.home__bg {
   position: fixed;
   inset: 0;
-  z-index: 0;            /* detrás del contenido, delante del body */
-  pointer-events: none;  /* no bloquea clics/scroll */
-  background: #fff;      /* fallback blanco mientras carga el vídeo */
+  z-index: 0;
+  pointer-events: none;
+  background: #fff;
 }
 
-/* Vídeo ajustado a pantalla + filtros para blanco/gris */
-.home__video{
+.home__video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-
-  /* 1) pasamos todo a escala de grises
-     2) invertimos: negro -> blanco, verde -> gris oscuro
-     3) afinamos luz/contraste para que el texto no quede negro puro */
-  filter: grayscale(1) invert(1) brightness(1.06) contrast(0.86);
-
-  /* visibilidad del vídeo; si quieres menos “presencia”, baja a 0.7–0.85 */
-  opacity: 0.95;
+  filter: grayscale(1) invert(1) brightness(1.56) contrast(0.96);
+  opacity: 0.75;
 }
 
-/* Contenido por encima del fondo */
+/* Contenido */
 .home__content{
   position: relative;
   z-index: 1;
-  min-height: 100svh;
+
+  width: 100%;
+  max-width: 1200px;
+  height: 100%;
+  min-height: 0;
+  margin: 0 auto;
+
+  /* Mobile First: apilado y que la imagen ocupe el espacio disponible */
   display: grid;
-  place-items: center;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  align-items: center;
+  justify-items: center;
+
+  padding: 1rem;
+  box-sizing: border-box;
   text-align: center;
-  padding: 4rem 1.6rem;
   color: var(--fg-body);
 }
 
-.home__title{
+
+/* Títulos */
+.home__title,
+.home__subtitle {
+  margin: 1rem 0;
   font-family: var(--font-title);
   font-weight: 800;
   letter-spacing: -0.02em;
-  font-size: clamp(2.2rem, 6vw, 5rem);
-  margin: 0 0 .5rem 0;
+  opacity: 0;
+  transform: translateX(0);
+  transition: transform 1.5s ease, opacity 1.5s ease;
 }
 
-.home__tagline{
+.home__title {
+  font-size: clamp(2rem, 6vw, 4rem);
+}
+
+.home__subtitle {
+  font-size: clamp(1.8rem, 5vw, 3.2rem);
   color: var(--muted);
-  font-size: clamp(1.4rem, 2.4vw, 1.8rem);
-  margin: 0;
 }
 
-/* (Opcional) Si quieres todavía más sutil el texto del vídeo:
-   .home__video { contrast: 0.8; }
-*/
+/* Animaciones de entrada */
+.animate-left {
+  opacity: 1;
+  transform: translateX(-30px);
+}
+
+.animate-right {
+  opacity: 1;
+  transform: translateX(30px);
+}
+
+/* Desktop: tres columnas (nombre | imagen | developer) */
+@media (min-width: 1024px){
+   .home__content{
+    /* tres columnas: nombre | imagen | developer */
+    grid-template-rows: 1fr;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    column-gap: 4rem;
+    text-align: left;
+    justify-items: center;
+    align-items: center;
+    padding: 2rem 4rem;
+    height: 100%;
+    min-height: 0;
+  }
+
+  /* 🔸 Estiramos SOLO el item de la imagen para que ocupe toda la altura */
+  .home__content > .split-container {
+    align-self: stretch;
+    height: 100%;
+    min-height: 0;
+    width: 100%;
+  }
+
+  .home__title,
+  .home__subtitle{
+    margin: 0;
+  }
+}
