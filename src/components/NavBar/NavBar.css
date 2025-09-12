@@ -1,128 +1,173 @@
-@import url("https://fonts.googleapis.com/css2?family=Caveat&display=swap");
-
-/* 🔹 Base: MOBILE FIRST */
-.navbar {
+/* Barra */
+.navbar{
   position: sticky;
   top: 0;
-  width: 100%;
-  height: var(--navbar-height);
   z-index: 999;
+  height: var(--navbar-height);
+  width: 100%;
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: center;
-  padding: 0 1.5rem;
-  background: linear-gradient(to bottom, #ccbade, #7091ca);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+
+  padding: 0 1.6rem;
+  background: var(--bg-nav) !important;  /* negro por defecto */
+  color: var(--fg-nav);                   /* texto blanco */
+  border-bottom: 1px solid rgba(255,255,255,.15);
   box-sizing: border-box;
+  transition: background-color .25s ease, color .25s ease, border-color .25s ease;
 }
 
-/* Logo */
-.navbar-logo {
+/* IZQUIERDA */
+.nav-left{
   display: flex;
   align-items: center;
   gap: 1rem;
-  font-family: "Caveat", cursive;
+}
+
+/* Botón hamburguesa (móvil) */
+.nav-burger{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.2rem;
+  height: 3.2rem;
+  border: 0;
+  background: transparent;
+  color: currentColor;
+  cursor: pointer;
   font-size: 2rem;
-  color: #ffffff;
-  min-width: 0;
 }
 
-.navbar-img {
-  display: none; /* oculto en móvil */
-  height: 50px;
-  width: 50px;
-  object-fit: cover;
-  border-radius: 12px;
-}
-
-.navbar-title {
-  color: #ffffff;
-  font-size: 2.2rem;
-  white-space: nowrap;
-}
-
-/* Links (mobile → menú hamburguesa) */
-.navbar-links {
+/* Menú de páginas (dropdown en móvil) */
+.nav-pages{
   display: none;
-  flex-direction: column;
-  gap: 1rem;
-  padding: 1rem;
-  background: black;
-  border-radius: 4px;
   position: absolute;
   top: 100%;
   left: 1rem;
-  width: max-content;
-  min-width: 140px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  margin: 0;
+  padding: .8rem;
+  list-style: none;
+
+  background: var(--bg-nav);
+  color: var(--fg-nav);
+  border-radius: 0 0 8px 8px;           /* solo esquinas inferiores redondeadas */
+  box-shadow: 0 8px 20px rgba(0,0,0,.25);
   z-index: 1000;
+  gap: .6rem;
 }
+.nav-pages.open{ display: flex; flex-direction: column; }
 
-.navbar-links.open {
-  display: flex;
-}
-
-.navbar-link {
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 1.4rem;
-  font-weight: bold;
+/* DERECHA: socials */
+.nav-right{
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  list-style: none;
+  gap: clamp(1.2rem, 2vw, 3.2rem);
+  margin: 0;
+  padding: 0;
 }
 
-.icon {
-  font-size: 1.4rem;
+/* Enlaces genéricos */
+.nav-link{
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+
+  font-size: clamp(1.8rem, 0.8vw + 1.4rem, 2.2rem);
+  line-height: 1;
+  padding: .2rem .2rem;
+  color: inherit;
+  -webkit-text-fill-color: currentColor;
+  transition: color .18s var(--fx-ease), transform .18s var(--fx-ease), filter .18s var(--fx-ease);
 }
 
-.navbar-hamburger {
+.icon{
+  font-size: 1.2em; /* acompasa al texto */
+  color: currentColor;
+}
+
+/* Iconos PNG de socials */
+.social-icon{
+  width: clamp(22px, 1.2vw + 18px, 28px);
+  height: clamp(22px, 1.2vw + 18px, 28px);
   display: block;
-  cursor: pointer;
+  object-fit: contain;
+  transition: transform .18s var(--fx-ease), filter .18s var(--fx-ease);
+  filter: drop-shadow(0 0 0 rgba(0,0,0,0)); /* base sin sombra */
 }
 
-.hamburger-icon {
-  font-size: 1.8rem;
-  color: white;
+/* En móvil SOLO iconos en los socials */
+.nav-right .label{ display: none; }
+
+/* Hover/Focus del link: arcoíris para el texto */
+.nav-link:hover,
+.nav-link:focus-visible{
+  background: var(--grad-rainbow);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  text-shadow: var(--nav-hover-shadow);
+  transform: translateY(-1px);
 }
 
-/* 🔹 Tablet (>=768px) */
-@media (min-width: 768px) {
-  .navbar {
-    padding: 0 2rem;
-  }
+/* Enlaces sociales: mueve el PNG (icono no cambia de color) */
+.nav-right .nav-link:hover .social-icon,
+.nav-right .nav-link:focus-visible .social-icon{
+  transform: translateY(-2px) rotate(-3deg) scale(1.06);
+  filter: drop-shadow(0 2px 2px rgba(0,0,0,.25)) saturate(1.1) brightness(1.05);
+}
 
-  .navbar-img {
-    display: block;
-  }
+/* ≥768px: páginas visibles en línea, y socials con texto */
+@media (min-width: 768px){
+  .nav-burger{ display: none; }
 
-  .navbar-links {
+  .nav-pages{
+    position: static;
     display: flex;
     flex-direction: row;
-    position: static;
     background: none;
     box-shadow: none;
-    gap: 2rem;
     padding: 0;
+    gap: clamp(2rem, 3vw, 3.6rem);
+    align-items: center;
   }
 
-  .navbar-hamburger {
-    display: none;
+  .nav-right .label{ display: inline; }
+
+  /* Inversión al pasar el cursor por la barra (fondo blanco / texto negro) */
+  .navbar:hover{
+    background: var(--nav-hover-bg) !important; /* blanco */
+    color: var(--nav-hover-fg) !important;      /* negro */
+    border-bottom: 5px solid var(--bg-nav);     /* línea negra */
+  }
+
+  /* Con barra blanca, el texto del link sigue arcoíris al hover */
+  .navbar:hover .nav-link{
+    color: var(--nav-hover-fg);
+    -webkit-text-fill-color: var(--nav-hover-fg);
+  }
+  .navbar:hover .nav-link:hover{
+    background-image: var(--grad-rainbow);
+    background-size: var(--grad-rainbow-size);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
   }
 }
 
-/* 🔹 Desktop (>=1024px) */
-@media (min-width: 1024px) {
-  .navbar-logo {
-    font-size: 2.8rem;
-    gap: 1.5rem;
+/* 📱 Feedback táctil: mueve icono al tocar (sin cambiar color) */
+@media (hover: none){
+  .navbar .nav-link { -webkit-tap-highlight-color: transparent; }
+  .nav-right .nav-link:active .social-icon{
+    transform: translateY(-1px) scale(1.04);
+    filter: drop-shadow(0 1px 1px rgba(0,0,0,.2));
   }
+}
 
-  .navbar-title {
-    font-size: 2.8rem;
-  }
-
-  .navbar-link {
-    font-size: 1.2rem;
-  }
+/* ≥1024px: un poco más de aire */
+@media (min-width: 1024px){
+  .navbar{ padding: 0 2.4rem; }
+  .nav-right{ gap: clamp(1.6rem, 2.2vw, 3.6rem); }
 }

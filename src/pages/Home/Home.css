@@ -114,6 +114,11 @@
   --cut: var(--split-p);
 }
 
+/* Mientras está bloqueado, no acepta interacción ni muestra cursor */
+.home.locked .split-container { pointer-events: none; cursor: default; }
+/* Cuando está listo, cursor de “resizable” */
+.home.ready  .split-container { cursor: ew-resize; }
+
 /* ───────────────── Animaciones HORIZONTALES con rebote ────────────────── */
 .from-left  { transform: translateX(-120vw); }
 .from-right { transform: translateX( 120vw); }

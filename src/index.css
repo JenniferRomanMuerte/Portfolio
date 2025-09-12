@@ -8,10 +8,21 @@
   --fg-body: #222222;        /* texto principal gris oscuro */
   --muted: #666666;          /* texto secundario gris medio */
 
+
+  /* Gradientes */
+  --grad-rainbow: linear-gradient(90deg,
+    #ff3b3b, #ff8a00, #ffd400, #28d764, #1ea7ff, #7a3cff
+  ); /* Gradiente arcoíris reutilizable */
+  --grad-rainbow-size: 100% 100%; /* Tamaño 100% para ver TODO el arcoíris en cada palabra */
+  --nav-hover-shadow: 0 1px 0 rgba(0,0,0,.45), 0 0 6px rgba(0,0,0,.35);
+
+
   /* Navbar */
   --bg-nav: #111111;         /* navbar negra */
   --fg-nav: #ffffff;         /* texto de navbar blanco */
-  --navbar-height: 8rem; /* altura de la navbar en rem */
+  --nav-hover-bg: #ffffff; /* fondo al pasar el cursor (>=768px) */
+  --nav-hover-fg: #000000; /* texto al pasar el cursor */
+  --navbar-height: 10rem; /* altura de la navbar en rem */
 
   /* Acentos */
   --accent: #000000;         /* negro puro como acento (botones, títulos) */
@@ -43,3 +54,5 @@ body{
   background: var(--bg-body);
 }
 
+  /* Sin subrayado global */
+  a, a:visited, a:hover, a:active { text-decoration: none; }

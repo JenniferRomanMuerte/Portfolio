@@ -1,11 +1,11 @@
+// SplitImage.tsx
 import { useEffect, useRef, useState } from "react";
 import "./SplitImage.css";
 
-export default function SplitImage() {
+export default function SplitImage({ disabled = false }: { disabled?: boolean }) {
   const [animate, setAnimate] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
 
-  // Actualiza el corte global (porcentaje 0..100)
   const setSplit = (pct: number) => {
     const home = rootRef.current?.closest(".home") as HTMLElement | null;
     if (!home) return;
@@ -13,20 +13,19 @@ export default function SplitImage() {
     home.style.setProperty("--split-p", `${p}%`);
   };
 
-  // Marca que el usuario movió → los títulos pasan a seguir al slider
   const setHasMoved = () => {
     const home = rootRef.current?.closest(".home");
     home?.classList.add("has-moved");
   };
 
   useEffect(() => {
-    // Estado de reposo: mitad/mitad y animación de entrada
     setSplit(50);
     const t = setTimeout(() => setAnimate(true), 50);
     return () => clearTimeout(t);
   }, []);
 
   const moveFrom = (clientX: number, target: HTMLDivElement) => {
+    if (disabled) return; // ⛔ bloqueado
     const r = target.getBoundingClientRect();
     const pct = ((clientX - r.left) / r.width) * 100;
     setSplit(pct);
@@ -34,13 +33,12 @@ export default function SplitImage() {
 
   const onMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     moveFrom(e.clientX, e.currentTarget);
-    setHasMoved();
+    if (!disabled) setHasMoved();
   };
-
   const onTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
     const t = e.touches[0];
     moveFrom(t.clientX, e.currentTarget);
-    setHasMoved();
+    if (!disabled) setHasMoved();
   };
 
   return (
@@ -52,14 +50,12 @@ export default function SplitImage() {
       role="img"
       aria-label="Retrato mitad color, mitad blanco y negro con deslizador"
     >
-      {/* Color (izquierda) */}
       <img
         src="/assets/androide-art.webp"
         alt=""
         className={`half left ${animate ? "animate" : ""}`}
         style={{ clipPath: `inset(0 var(--split-r) 0 0)` }}
       />
-      {/* Blanco y negro (derecha) */}
       <img
         src="/assets/androide.webp"
         alt=""
