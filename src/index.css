@@ -41,6 +41,8 @@
   --fx-ease: cubic-bezier(.16,1,.3,1); /* easing suave tipo ease-out */
   --fx-delay-title: .10s;    /* retardo opcional del título */
   --fx-delay-sub:   .10s;    /* retardo opcional del subtítulo */
+
+
 }
 
 
