@@ -1,45 +1,63 @@
+import { useEffect, useState } from "react";
 import "./About.css";
 
 export default function About() {
+  const [showPolaroid, setShowPolaroid] = useState(false);
+  const [fadeIn, setFadeIn] = useState(false);
+
+  useEffect(() => {
+    const t = setTimeout(() => setFadeIn(true), 100);
+    return () => clearTimeout(t);
+  }, []);
+
   return (
     <section className="about">
-      {/* 1) Título */}
-      <h1 className="about__title">Sobre mí</h1>
+      {!showPolaroid && (
+        <h1 className={`about-title ${fadeIn ? "visible" : ""}`}>Sobre mí</h1>
+      )}
 
-      {/* 2) Polaroid (png único) */}
-      <figure className="polaroid">
-        <img
-          src="/assets/jennifer-polaroid.png"
-          alt="Jennifer Román en una foto estilo polaroid"
-          loading="lazy"
-          decoding="async"
-          sizes="(max-width: 768px) 96vw, 720px"
-        />
-      </figure>
+      {/* Libreta + área de texto + cámara anclada a la libreta */}
+      {!showPolaroid && (
+        <figure className={`notebook-wrapper ${fadeIn ? "visible" : ""}`}>
+          <img src="/assets/notebook.png" alt="Fondo libreta" className="notebook-img" />
 
-      {/* 3) Libreta con el texto (imagen única) */}
-      <figure className="notebook-img">
-        <picture>
-          <source type="image/png" srcSet="/assets/cuaderno-texto.png 1x" />
+          <figcaption className="notebook-text">
+            <p>
+              Soy desarrolladora web full stack, con experiencia en proyectos
+              reales que combinan front-end moderno y back-end robusto.
+            </p>
+            <p>
+              He trabajado con React, Angular, Node.js, Three.js, Electron,
+              creando aplicaciones web y de escritorio.
+            </p>
+            <p>
+              Tras una trayectoria en atención al cliente y el ámbito social, he
+              canalizado mi capacidad resolutiva y mi pasión por la tecnología
+              hacia el desarrollo de soluciones intuitivas, eficientes y bien
+              estructuradas.
+            </p>
+            <p>Me motiva el aprendizaje continuo y disfruto enfrentando retos.</p>
+          </figcaption>
+
+          {/* Cámara anclada al borde inferior-derecho de la libreta */}
           <img
-            src="/assets/cuaderno-texto.png"
-            alt="Sobre mí: desarrolladora web full stack con experiencia en front-end moderno y back-end robusto; React, Angular, Node.js, Three.js y Electron; soluciones intuitivas y bien estructuradas."
-            loading="lazy"
-            decoding="async"
-            sizes="(max-width: 768px) 98vw, 720px"
+            src="/assets/camera.png"
+            alt="Icono de cámara"
+            className="camera-btn"
+            onClick={() => setShowPolaroid(true)}
           />
-        </picture>
+        </figure>
+      )}
 
-        {/* A11y/SEO (oculto visualmente) */}
-        <figcaption className="sr-only">
-          Desarrolladora web full stack con experiencia en proyectos reales que combinan front-end
-          moderno y back-end robusto. He trabajado con React, Angular, Node.js, Three.js y Electron,
-          creando aplicaciones web y de escritorio. Tras una trayectoria en atención al cliente y el
-          ámbito social, he canalizado mi capacidad resolutiva y mi pasión por la tecnología hacia el
-          desarrollo de soluciones intuitivas, eficientes y bien estructuradas. Me motiva el
-          aprendizaje continuo y disfruto enfrentando retos.
-        </figcaption>
-      </figure>
+      {/* Polaroid (sustituye a la libreta) */}
+      {showPolaroid && (
+        <img
+          src="/assets/polaroid_text.png"
+          alt="Foto estilo polaroid de Jennifer Román"
+          className="polaroid-img"
+          onClick={() => setShowPolaroid(false)}
+        />
+      )}
     </section>
   );
 }

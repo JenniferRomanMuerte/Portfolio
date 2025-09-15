@@ -2,59 +2,72 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Inter:wght@300;400;600;800&family=Sora:wght@400;600;700&display=swap");
 
-:root{
+:root {
   /* Base */
-  --bg-body: #ffffff;        /* fondo blanco */
-  --fg-body: #222222;        /* texto principal gris oscuro */
-  --muted: #666666;          /* texto secundario gris medio */
-
+  --bg-body: #ffffff; /* fondo blanco */
+  --fg-body: #222222; /* texto principal gris oscuro */
+  --muted: #666666; /* texto secundario gris medio */
 
   /* Gradientes */
-  --grad-rainbow: linear-gradient(90deg,
-    #ff3b3b, #ff8a00, #ffd400, #28d764, #1ea7ff, #7a3cff
+  --grad-rainbow: linear-gradient(
+    90deg,
+    #ff3b3b,
+    #ff8a00,
+    #ffd400,
+    #28d764,
+    #1ea7ff,
+    #7a3cff
   ); /* Gradiente arcoíris reutilizable */
   --grad-rainbow-size: 100% 100%; /* Tamaño 100% para ver TODO el arcoíris en cada palabra */
-  --nav-hover-shadow: 0 1px 0 rgba(0,0,0,.45), 0 0 6px rgba(0,0,0,.35);
-
+  --nav-hover-shadow: 0 1px 0 rgba(0, 0, 0, 0.45), 0 0 6px rgba(0, 0, 0, 0.35);
 
   /* Navbar */
-  --bg-nav: #111111;         /* navbar negra */
-  --fg-nav: #ffffff;         /* texto de navbar blanco */
+  --bg-nav: #111111; /* navbar negra */
+  --fg-nav: #ffffff; /* texto de navbar blanco */
   --nav-hover-bg: #ffffff; /* fondo al pasar el cursor (>=768px) */
   --nav-hover-fg: #000000; /* texto al pasar el cursor */
   --navbar-height: 10rem; /* altura de la navbar en rem */
 
   /* Acentos */
-  --accent: #000000;         /* negro puro como acento (botones, títulos) */
-  --accent-alt: #444444;     /* gris oscuro alternativo */
+  --accent: #000000; /* negro puro como acento (botones, títulos) */
+  --accent-alt: #444444; /* gris oscuro alternativo */
 
   /* Extras */
   --radius: 20px;
-  --shadow: 0 10px 30px rgba(0,0,0,.15);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 
   /* Tipografías */
   --font-base: "Caveat", cursive;
   --font-title: var(--font-base);
 
   /*Animaciones */
-   --fx-dur: 2s;            /* ⬅️ súbelo para ir más lento (p.ej. 1.8s, 2s) */
-  --fx-ease: cubic-bezier(.16,1,.3,1); /* easing suave tipo ease-out */
-  --fx-delay-title: .10s;    /* retardo opcional del título */
-  --fx-delay-sub:   .10s;    /* retardo opcional del subtítulo */
+  --fx-dur: 2s;
+  --fx-ease: cubic-bezier(0.16, 1, 0.3, 1); /* easing suave tipo ease-out */
+  --fx-delay-title: 0.1s; /* retardo opcional del título */
+  --fx-delay-sub: 0.1s; /* retardo opcional del subtítulo */
 
-
+  /* Altura segura */
+  --height-h: calc(100svh - var(--navbar-height));
 }
 
-
 /* Reset base mínimo */
-*{ box-sizing: border-box; }
-html{ font-size: 62.5%; }
-body{
+* {
+  box-sizing: border-box;
+}
+html {
+  font-size: 62.5%;
+}
+body {
   margin: 0;
   font-family: var(--font-base);
   color: var(--fg-body);
   background: var(--bg-body);
 }
 
-  /* Sin subrayado global */
-  a, a:visited, a:hover, a:active { text-decoration: none; }
+/* Sin subrayado global */
+a,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+}

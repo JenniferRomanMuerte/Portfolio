@@ -1,12 +1,10 @@
 /* Altura útil = viewport - navbar; sin scroll accidental */
 .home{
-  --home-h: calc(100svh - var(--navbar-height));
-
   /* corte global 0..100% (imagen y, tras moverse, títulos) */
   --split-p: 50%;
   --split-r: calc(100% - var(--split-p));
 
-  height: var(--home-h);
+  height: var(--height-h);
   overflow: hidden;
 }
 

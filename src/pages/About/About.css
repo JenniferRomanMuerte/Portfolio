@@ -1,90 +1,130 @@
-/* ===== Mobile-first ===== */
 .about{
+  position: relative;
+  height: var(--height-h);
   background:
-    linear-gradient(rgba(255,255,255,.76), rgba(255,255,255,.66)),
+    radial-gradient(circle, rgba(255,255,255,.7), rgba(255,255,255,.3)),
+    url("/assets/bg_letters.webp") center / cover no-repeat,
     url("/assets/fondo-sobre-mi.webp") center / cover no-repeat;
-  color: var(--fg-body);
-  min-height: 100dvh;
+  overflow: hidden;
+  padding: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(1rem, 2.5vh, 2rem); /* un poco más de aire entre título y libreta */
+}
+
+/* ===== Título ===== */
+.about-title{
+  font-family: var(--font-title);
+  font-size: clamp(3.8rem, 12vw, 6.8rem);
+  font-weight: 700;
+  color: var(--accent);
+  opacity: 0;
+  transform: translateX(-100%);
+  position: relative;
+  margin: .5rem 0 .8rem;
+  margin-left: 5%;
+  transition: transform 1s ease, opacity 1s ease;
+}
+.about-title.visible{ opacity: 1; transform: translateX(0); }
+.about-title::after{
+  content:"";
+  position:absolute;
+  left:0; bottom:-6px;
+  width:100%; height:3px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin:left;
+  transition: transform 1s ease .6s;
+}
+.about-title.visible::after{ transform: scaleX(1); }
+
+/* ===== Libreta ===== */
+.notebook-wrapper{
+  /* padding “foto real”: ajusta estos 4 valores y escala perfecto en todos los tamaños */
+  --pad-left:  11.5%;
+  --pad-right: 11.5%;
+  --pad-top:   26.5%;
+  --pad-bot:   17.5%;
+
+  /* colocación de la cámara respecto a la libreta */
+  --cam-right: -10.5%;   /* distancia del borde derecho de la libreta */
+  --cam-drop:  35.5%;   /* cuánto “cuelga” por debajo de la libreta */
+
+  position: relative;
+  width: 95%;
+  max-width: 620px;
+  margin-inline: auto;
+  margin-top: clamp(.20rem, 8.2vh, 10.2rem); /* un pelín más separada del título */
+  opacity: 0;
+  transform: scale(.9);
+  transition: all 1s ease;
+}
+.notebook-wrapper.visible{ opacity:1; transform: scale(1); }
+
+.notebook-img{
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 16px 26px rgba(0,0,0,.65));
+}
+
+/* ===== Área de texto que escala con la libreta ===== */
+.notebook-text{
+  position: absolute;
+  left:   var(--pad-left);
+  right:  var(--pad-right);
+  top:    var(--pad-top);
+  bottom: var(--pad-bot);
 
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  padding: 2rem 1.6rem 1.5rem;
+  justify-content: flex-start;
+
+  /* legibilidad mejorada */
+  padding: clamp(6px, 1.2vw, 14px);
+  font-size: clamp(1.45rem, 2.5vw, 2rem);
+  font-weight: 600; /* semi-bold */
+  line-height: 1.48;
+  text-align: justify;
+  color: #0e1113;                 /* más oscuro */
+  text-shadow: 0 1px 0 rgba(255,255,255,.35); /* sutil realce sobre el papel */
+
+  overflow: auto;
+  overscroll-behavior: contain;
+  scroll-padding-top: .5rem; /* permite ver la primera línea al iniciar el scroll */
 }
+.notebook-text p{ margin: .3em 0 .4em; }
 
-/* quitar márgenes por defecto de figure (clave para alineación) */
-.polaroid, .notebook-img { margin: 0; }
-
-/* ancho común en mobile */
-.about__title, .polaroid, .notebook-img{
-  width: min(96rem, 98vw);
-  margin-inline: auto;
+/* ===== Cámara anclada a la libreta (escala y se posiciona por % de la libreta) ===== */
+.camera-btn{
+  position: absolute;
+  right: var(--cam-right);
+  bottom: calc(-1 * var(--cam-drop)); /* cuelga un poco por debajo de la libreta */
+  width: clamp(120px, 60%, 300px);     /* 22% del ancho de la libreta, con límites */
+  height: auto;
+  cursor: pointer;
+  z-index: 3;
+  filter: drop-shadow(0 8px 14px rgba(0,0,0,.75));
+  transition: transform .25s ease;
 }
+.camera-btn:hover{ transform: scale(1.08); }
 
-/* libreta casi a pantalla completa en mobile */
-.notebook-img{
-  width: calc(100vw - 2rem);  /* ~1rem de margen a cada lado */
-  margin-inline: auto;
-}
-
-/* Título escalable */
-.about__title{
-  font-family: var(--font-title);
-  font-size: clamp(2.8rem, 10vw, 8rem);
-  text-align: center;
-  color: var(--accent);
-  margin: .5rem 0 .8rem;
-}
-
-/* Polaroid */
-.polaroid img{
-  display:block; width:100%; height:auto;
-  filter:
-    drop-shadow(0 14px 28px rgba(0,0,0,.42))
-    drop-shadow(0 3px 8px rgba(0,0,0,.88));
-}
-
-/* Libreta */
-.notebook-img img{
-  display:block; width:100%; height:auto;
-  filter:
-    drop-shadow(0 14px 28px rgba(0,0,0,.58))
-    drop-shadow(0 2px 6px rgba(0,0,0,.76));
-}
-
-/* A11y */
-.sr-only{
-  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
-  overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;
-}
-
-/* ===== Desktop (≥768px): título arriba + 2 columnas con grid-areas ===== */
-@media (min-width: 768px){
-  .about{
-    max-width: 1200px;
-    margin-inline: auto;
-
-    display: grid;
-    grid-template-rows: auto 1fr;                 /* fila 1: título */
-    grid-template-columns: 1fr 1fr;               /* dos columnas fluidas */
-    grid-template-areas:
-      "title    title"
-      "notebook polaroid";
-    justify-items: center;                        /* centra cada celda */
-    align-items: start;                           /* alinea arriba */
-    column-gap: clamp(2rem, 4vw, 5rem);
-    row-gap: 3rem;
-    padding: 2rem clamp(2rem, 5vw, 6rem) 3rem;
+/* Ajuste fino en pantallas muy estrechas */
+@media (max-width: 420px){
+  .notebook-wrapper{
+    --cam-right: 1.5%;
+    --cam-drop:  6%;
   }
+  .camera-btn{ width: clamp(88px, 26%, 180px); }
+}
 
-  /* reset de anchos móviles para que el grid mande */
-  .about__title, .polaroid, .notebook-img{
-    width: 100%;
-    margin-inline: 0;
-  }
-
-  /* ubicaciones explícitas (evita autocolocación rara) */
-  .about__title{ grid-area: title;  margin-bottom: clamp(1rem, 2vw, 2rem); }
-  .notebook-img{ grid-area: notebook; max-width: 560px; }
-  .polaroid{     grid-area: polaroid; max-width: 560px; }
+/* ===== Polaroid ===== */
+.polaroid-img{
+  max-width: 90%;
+  animation: fadeIn 1s ease forwards;
+}
+@keyframes fadeIn{
+  from{ opacity:0; transform:scale(.9) }
+  to  { opacity:1; transform:scale(1) }
 }
