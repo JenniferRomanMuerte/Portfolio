@@ -4,7 +4,10 @@ import "./About.css";
 export default function About() {
   const [typedText, setTypedText] = useState("");
   const [showPolaroid, setShowPolaroid] = useState(false);
+
   const paperRef = useRef<HTMLDivElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null); // 👈 wrapper (máquina + papel)
+  const containerRef = useRef<HTMLDivElement>(null); // 👈 contenedor (.about-right)
 
   const fullText = `Soy desarrolladora web full stack, con experiencia en proyectos reales que combinan front-end moderno y back-end robusto.
 
@@ -34,14 +37,32 @@ Me motiva el aprendizaje continuo y disfruto enfrentando retos.`;
     }
   }, [showPolaroid]);
 
+  // guardar altura del header en variable CSS
   useEffect(() => {
-  const header = document.querySelector(".about-header");
-  if (header) {
-    const h = header.getBoundingClientRect().height;
-    document.documentElement.style.setProperty("--about-header-h", `${h}px`);
-  }
-}, []);
+    const header = document.querySelector(".about-header");
+    if (header) {
+      const h = header.getBoundingClientRect().height;
+      document.documentElement.style.setProperty("--about-header-h", `${h}px`);
+    }
+  }, []);
 
+  // escalar wrapper dinámicamente
+  useEffect(() => {
+    function resize() {
+      if (!wrapperRef.current || !containerRef.current) return;
+
+      const containerH = containerRef.current.clientHeight;
+      const wrapperW = wrapperRef.current.offsetWidth; // ancho del wrapper
+      const naturalH = wrapperW * (900 / 1100); // 👈 proporción máquina
+
+      const scale = Math.min(1, containerH / naturalH);
+      wrapperRef.current.style.transform = `scale(${scale})`;
+    }
+
+    resize();
+    window.addEventListener("resize", resize);
+    return () => window.removeEventListener("resize", resize);
+  }, []);
 
   return (
     <section className="about">
@@ -78,8 +99,10 @@ Me motiva el aprendizaje continuo y disfruto enfrentando retos.`;
           </div>
         </div>
 
-        <div className="about-right">
-          <div className="typewriter-wrapper">
+        {/* 👇 asignamos containerRef aquí */}
+        <div className="about-right" ref={containerRef}>
+          {/* 👇 asignamos wrapperRef aquí */}
+          <div className="typewriter-wrapper" ref={wrapperRef}>
             <img
               className="typewriter-up"
               src="/assets/printwriter/typewriter_up-1100.webp"

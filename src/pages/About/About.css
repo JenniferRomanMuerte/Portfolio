@@ -62,13 +62,11 @@
 }
 
 .about-right {
-  /* limita altura según viewport */
-  max-height: calc((var(--height-h)) - var(--about-header-h, 0px));
+  height: calc(var(--height-h) - var(--about-header-h, 0px));
   display: flex;
   justify-content: center;
-  align-items: center;
-  /* quita el height:100% que pisaba */
-  overflow: hidden; /* asegura que nada se salga */
+  align-items: flex-start;
+  overflow: hidden;
 }
 
 .about-left,
@@ -76,37 +74,20 @@
   height: 100%;
 }
 
-@media (min-width: 768px) {
-  .about-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    align-items: center;
-  }
 
-  .mobile-only {
-    display: none;
-  }
-  .desktop-only {
-    display: block;
-  }
-}
-
-.about-right {
-  height: 100%;
-}
 
 /* ====== Máquina + papel ====== */
 
 .typewriter-wrapper {
-  position: relative; /* para que up/down/paper se ubiquen bien */
-  aspect-ratio: 1100 / 900; /* proporción del conjunto */
-  width: 100%; /* ocupa todo el ancho disponible */
-  height: auto; /* se calcula con aspect-ratio */
-  max-height: 100%; /* nunca más grande que su contenedor */
+  position: relative;
+  width: 100%;
+  height: 100%;   /* 👈 ahora mide lo mismo que about-right */
+  max-width: 1100px;
   margin: 0 auto;
   overflow: hidden;
+  transform-origin: top center;
 }
+
 
 /* Parte superior */
 .typewriter-up {
@@ -213,4 +194,20 @@
   display: block;
   filter: drop-shadow(0 3px 3px rgba(0, 0, 0, 0.4))
     drop-shadow(0 8px 12px rgba(0, 0, 0, 0.25));
+}
+
+@media (min-width: 768px) {
+  .about-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .mobile-only {
+    display: none;
+  }
+  .desktop-only {
+    display: block;
+  }
 }
