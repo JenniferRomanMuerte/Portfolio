@@ -6,8 +6,8 @@ export default function About() {
   const [showPolaroid, setShowPolaroid] = useState(false);
 
   const paperRef = useRef<HTMLDivElement>(null);
-  const wrapperRef = useRef<HTMLDivElement>(null); // 👈 wrapper (máquina + papel)
-  const containerRef = useRef<HTMLDivElement>(null); // 👈 contenedor (.about-right)
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const fullText = `Soy desarrolladora web full stack, con experiencia en proyectos reales que combinan front-end moderno y back-end robusto.
 
@@ -26,7 +26,6 @@ Me motiva el aprendizaje continuo y disfruto enfrentando retos.`;
         i += 1;
         setTypedText(fullText.slice(0, i));
 
-        // 👇 Mantener siempre visible la última línea
         if (paperRef.current) {
           paperRef.current.scrollTop = paperRef.current.scrollHeight;
         }
@@ -37,7 +36,7 @@ Me motiva el aprendizaje continuo y disfruto enfrentando retos.`;
     }
   }, [showPolaroid]);
 
-  // guardar altura del header en variable CSS
+  // guardar altura del header
   useEffect(() => {
     const header = document.querySelector(".about-header");
     if (header) {
@@ -46,15 +45,13 @@ Me motiva el aprendizaje continuo y disfruto enfrentando retos.`;
     }
   }, []);
 
-  // escalar wrapper dinámicamente
+  // escalar wrapper dinámicamente (solo máquina)
   useEffect(() => {
     function resize() {
       if (!wrapperRef.current || !containerRef.current) return;
-
       const containerH = containerRef.current.clientHeight;
-      const wrapperW = wrapperRef.current.offsetWidth; // ancho del wrapper
-      const naturalH = wrapperW * (900 / 1100); // 👈 proporción máquina
-
+      const wrapperW = wrapperRef.current.offsetWidth;
+      const naturalH = wrapperW * (900 / 1100);
       const scale = Math.min(1, containerH / naturalH);
       wrapperRef.current.style.transform = `scale(${scale})`;
     }
@@ -86,7 +83,7 @@ Me motiva el aprendizaje continuo y disfruto enfrentando retos.`;
         )}
       </div>
 
-      {/* Layout responsive */}
+      {/* Layout */}
       <div className="about-layout">
         <div className="about-left desktop-only">
           <h1 className="about-title">Sobre mí</h1>
@@ -99,37 +96,57 @@ Me motiva el aprendizaje continuo y disfruto enfrentando retos.`;
           </div>
         </div>
 
-        {/* 👇 asignamos containerRef aquí */}
         <div className="about-right" ref={containerRef}>
-          {/* 👇 asignamos wrapperRef aquí */}
-          <div className="typewriter-wrapper" ref={wrapperRef}>
-            <img
-              className="typewriter-up"
-              src="/assets/printwriter/typewriter_up-1100.webp"
-              alt="Parte superior máquina"
-            />
-
-            {/* Paper fijo con scroll interno */}
-            <div className="paper" ref={paperRef}>
-              {!showPolaroid ? (
+          {!showPolaroid ? (
+            // Máquina
+            <div className="typewriter-wrapper" ref={wrapperRef}>
+              <img
+                className="typewriter-up"
+                src="/assets/printwriter/typewriter_up-1100.webp"
+                alt="Parte superior máquina"
+              />
+              <div className="paper" ref={paperRef}>
                 <p>{typedText}</p>
-              ) : (
-                <div className="polaroid-in mobile-only">
-                  <img
-                    src="/assets/polaroid_Jennifer.png"
-                    alt="Polaroid de Jennifer Román"
-                    draggable={false}
-                  />
-                </div>
-              )}
+              </div>
+              <img
+                className="typewriter-down"
+                src="/assets/printwriter/typewriter_down-1100.webp"
+                alt="Parte inferior máquina"
+              />
             </div>
+          ) : (
+            // Polaroids (solo en mobile)
+            <div className="polaroid-stack mobile-only">
+              {/* Principal */}
+              <div className="polaroid-main flip-in">
+                <img
+                  src="/assets/polaroid_Jennifer.png"
+                  alt="Jennifer Román"
+                  draggable={false}
+                />
+              </div>
 
-            <img
-              className="typewriter-down"
-              src="/assets/printwriter/typewriter_down-1100.webp"
-              alt="Parte inferior máquina"
-            />
-          </div>
+              {/* Fondo */}
+              <img
+                src="/assets/polaroid_Jennifer.png"
+                alt=""
+                className="polaroid-back left filter-gray"
+                draggable={false}
+              />
+              <img
+                src="/assets/polaroid_Jennifer.png"
+                alt=""
+                className="polaroid-back right filter-sepia"
+                draggable={false}
+              />
+              <img
+                src="/assets/polaroid_Jennifer.png"
+                alt=""
+                className="polaroid-back bottom filter-bright"
+                draggable={false}
+              />
+            </div>
+          )}
         </div>
       </div>
     </section>
