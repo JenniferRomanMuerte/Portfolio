@@ -42,20 +42,21 @@
 
 /* ───────────────────────── Títulos base (Caveat) ───────────────────────── */
 .home__title,
+.home__title,
 .home__subtitle{
-  position: relative;                 /* para colocar las capas absolutas */
-  font-family: var(--font-base);      /* Caveat */
+  position: relative;
+  font-family: var(--font-title);   /* Caveat */
   font-weight: 700;
-  letter-spacing: 0;
   text-align: center;
   margin-inline: auto;
-
-  font-size: clamp(3.2rem, min(9vw, calc(var(--home-h) * 0.10)), 6.4rem);
-  line-height: 1.02;
+  line-height: 1.05;
   text-wrap: balance;
   max-width: 28ch;
-
   opacity: 0;
+  letter-spacing: .5px;
+
+  /* Base: móvil pequeño */
+  font-size: clamp(3.6rem, 8vw, 5.2rem);
 }
 
 /* márgenes locales */
@@ -166,6 +167,11 @@
     max-height: 100%;
   }
 
+  .home__title,
+  .home__subtitle{
+    font-size: clamp(4.2rem, 6vw, 7.2rem);
+  }
+
   .home__title{
     place-self: center start;
     margin-block: 0;
@@ -193,7 +199,6 @@
   }
   .home__title,
   .home__subtitle{
-    font-size: clamp(4rem, calc(var(--home-h) * 0.10), 7.6rem);
-    max-width: 32ch;
+    font-size: clamp(5rem, 4.8vw, 9rem);
   }
 }

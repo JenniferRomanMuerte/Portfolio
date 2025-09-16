@@ -1,14 +1,13 @@
 /* Tipos y variables */
-
-@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Inter:wght@300;400;600;800&family=Sora:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Caveat:wght@400;600;700&family=Sora:wght@400;600;700&display=swap");
 
 :root {
-  /* Base */
-  --bg-body: #ffffff; /* fondo blanco */
-  --fg-body: #222222; /* texto principal gris oscuro */
-  --muted: #666666; /* texto secundario gris medio */
+  /* ===== Colores base ===== */
+  --bg-body: #ffffff;     /* fondo */
+  --fg-body: #222222;     /* texto principal */
+  --muted:   #666666;     /* texto secundario */
 
-  /* Gradientes */
+  /* ===== Gradientes ===== */
   --grad-rainbow: linear-gradient(
     90deg,
     #ff3b3b,
@@ -17,57 +16,57 @@
     #28d764,
     #1ea7ff,
     #7a3cff
-  ); /* Gradiente arcoíris reutilizable */
-  --grad-rainbow-size: 100% 100%; /* Tamaño 100% para ver TODO el arcoíris en cada palabra */
+  );
+  --grad-rainbow-size: 100% 100%;
   --nav-hover-shadow: 0 1px 0 rgba(0, 0, 0, 0.45), 0 0 6px rgba(0, 0, 0, 0.35);
 
-  /* Navbar */
-  --bg-nav: #111111; /* navbar negra */
-  --fg-nav: #ffffff; /* texto de navbar blanco */
-  --nav-hover-bg: #ffffff; /* fondo al pasar el cursor (>=768px) */
-  --nav-hover-fg: #000000; /* texto al pasar el cursor */
-  --navbar-height: 10rem; /* altura de la navbar en rem */
+  /* ===== Navbar ===== */
+  --bg-nav: #111111;
+  --fg-nav: #ffffff;
+  --nav-hover-bg: #ffffff;
+  --nav-hover-fg: #000000;
+  --navbar-height: 6rem;
 
-  /* Acentos */
-  --accent: #000000; /* negro puro como acento (botones, títulos) */
-  --accent-alt: #444444; /* gris oscuro alternativo */
+  /* ===== Acentos ===== */
+  --accent: #000000;
+  --accent-alt: #444444;
 
-  /* Extras */
+  /* ===== Extras ===== */
   --radius: 20px;
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 
-  /* Tipografías */
-  --font-base: "Caveat", cursive;
-  --font-title: var(--font-base);
+  /* ===== Tipografías ===== */
+  --font-base: "Roboto", sans-serif;  /* textos corridos */
+  --font-title: "Caveat", cursive;    /* títulos */
+  --font-alt: "Sora", sans-serif;     /* opcional: subtítulos, UI */
 
-  /*Animaciones */
+  /* ===== Animaciones ===== */
   --fx-dur: 2s;
-  --fx-ease: cubic-bezier(0.16, 1, 0.3, 1); /* easing suave tipo ease-out */
-  --fx-delay-title: 0.1s; /* retardo opcional del título */
-  --fx-delay-sub: 0.1s; /* retardo opcional del subtítulo */
+  --fx-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --fx-delay-title: 0.1s;
+  --fx-delay-sub: 0.1s;
 
-  /* Altura segura */
+  /* ===== Altura útil (contenido sin scroll extra) ===== */
   --height-h: calc(100svh - var(--navbar-height));
 }
 
-/* Reset base mínimo */
-* {
-  box-sizing: border-box;
-}
-html {
-  font-size: 62.5%;
-}
+/* Reset mínimo */
+* { box-sizing: border-box; }
+html { font-size: 62.5%; } /* 1rem = 10px */
 body {
   margin: 0;
   font-family: var(--font-base);
   color: var(--fg-body);
   background: var(--bg-body);
+  line-height: 1.5;
 }
 
-/* Sin subrayado global */
-a,
-a:visited,
-a:hover,
-a:active {
+/* Links sin subrayado global */
+a, a:visited, a:hover, a:active {
   text-decoration: none;
+  color: inherit;
+  font-size: 1.6rem;  /* = 16px, porque html tiene font-size:62.5% */
+  font-weight: 500;
+  font-family: var(--font-base); /* Roboto por defecto */
+  line-height: 1.4;
 }

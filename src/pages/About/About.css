@@ -1,130 +1,216 @@
-.about{
-  position: relative;
+/* ====== Layout general ====== */
+.about {
   height: var(--height-h);
-  background:
-    radial-gradient(circle, rgba(255,255,255,.7), rgba(255,255,255,.3)),
-    url("/assets/bg_letters.webp") center / cover no-repeat,
-    url("/assets/fondo-sobre-mi.webp") center / cover no-repeat;
   overflow: hidden;
-  padding: 1.6rem;
+  padding: 1.2rem;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: clamp(1rem, 2.5vh, 2rem); /* un poco más de aire entre título y libreta */
+  gap: 1.2rem;
+
+  background: radial-gradient(
+      circle at 50% 30%,
+      rgba(255, 255, 255, 0.9) 0%,
+      rgba(255, 255, 255, 0.9) 100%
+    ),
+    url("/assets/fondo-sobre-mi.webp"), url("/assets/bg_letters.webp");
+  background-size: cover, cover, cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-blend-mode: normal, multiply, normal;
 }
 
-/* ===== Título ===== */
-.about-title{
+/* Mobile first */
+.desktop-only {
+  display: none;
+}
+.mobile-only {
+  display: block;
+}
+
+/* ====== Header móvil ====== */
+.about-header {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: clamp(56px, 10vh, 96px);
+}
+
+.about-title {
   font-family: var(--font-title);
-  font-size: clamp(3.8rem, 12vw, 6.8rem);
+  font-size: clamp(3.2rem, 10vw, 6rem);
   font-weight: 700;
   color: var(--accent);
-  opacity: 0;
-  transform: translateX(-100%);
-  position: relative;
-  margin: .5rem 0 .8rem;
-  margin-left: 5%;
-  transition: transform 1s ease, opacity 1s ease;
+  margin: 0;
 }
-.about-title.visible{ opacity: 1; transform: translateX(0); }
-.about-title::after{
-  content:"";
-  position:absolute;
-  left:0; bottom:-6px;
-  width:100%; height:3px;
-  background: var(--accent);
-  transform: scaleX(0);
-  transform-origin:left;
-  transition: transform 1s ease .6s;
+
+.action-btn {
+  width: clamp(60px, 20vw, 80px);
+  cursor: pointer;
+  transition: transform 0.25s ease;
 }
-.about-title.visible::after{ transform: scaleX(1); }
-
-/* ===== Libreta ===== */
-.notebook-wrapper{
-  /* padding “foto real”: ajusta estos 4 valores y escala perfecto en todos los tamaños */
-  --pad-left:  11.5%;
-  --pad-right: 11.5%;
-  --pad-top:   26.5%;
-  --pad-bot:   17.5%;
-
-  /* colocación de la cámara respecto a la libreta */
-  --cam-right: -10.5%;   /* distancia del borde derecho de la libreta */
-  --cam-drop:  35.5%;   /* cuánto “cuelga” por debajo de la libreta */
-
-  position: relative;
-  width: 95%;
-  max-width: 620px;
-  margin-inline: auto;
-  margin-top: clamp(.20rem, 8.2vh, 10.2rem); /* un pelín más separada del título */
-  opacity: 0;
-  transform: scale(.9);
-  transition: all 1s ease;
+.action-btn:hover {
+  transform: scale(1.1);
 }
-.notebook-wrapper.visible{ opacity:1; transform: scale(1); }
 
-.notebook-img{
+/* ====== Grid tablet/desktop ====== */
+.about-layout {
+  flex: 1 1 auto;
+  display: block;
   width: 100%;
+  height: 100%;
+}
+
+.about-right {
+  /* limita altura según viewport */
+  max-height: calc((var(--height-h)) - var(--about-header-h, 0px));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* quita el height:100% que pisaba */
+  overflow: hidden; /* asegura que nada se salga */
+}
+
+.about-left,
+.about-right {
+  height: 100%;
+}
+
+@media (min-width: 768px) {
+  .about-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .mobile-only {
+    display: none;
+  }
+  .desktop-only {
+    display: block;
+  }
+}
+
+.about-right {
+  height: 100%;
+}
+
+/* ====== Máquina + papel ====== */
+
+.typewriter-wrapper {
+  position: relative; /* para que up/down/paper se ubiquen bien */
+  aspect-ratio: 1100 / 900; /* proporción del conjunto */
+  width: 100%; /* ocupa todo el ancho disponible */
+  height: auto; /* se calcula con aspect-ratio */
+  max-height: 100%; /* nunca más grande que su contenedor */
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+/* Parte superior */
+.typewriter-up {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 18%; /* ajusta según imagen */
+  object-fit: cover;
+  z-index: 3;
+
+-webkit-mask-image:
+    /* borde superior */
+    linear-gradient(to top, transparent 0%, black 0.1%, black 98%, transparent 100%),
+    /* laterales */
+    linear-gradient(to right, transparent 0%, black 0.1%, black 98%, transparent 100%),
+    linear-gradient(to left, transparent 0%, black 0.1%, black 98%, transparent 100%);
+  -webkit-mask-composite: intersect; /* combina ambas */
+  mask-composite: intersect;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+
+}
+
+/* Parte inferior */
+.typewriter-down {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 28%; /* ajusta según imagen */
+  object-fit: cover;
+  z-index: 3;
+
+  -webkit-mask-image:
+/* borde inferior */
+    linear-gradient(to bottom, transparent 0%, black 0.1%, black 98%, transparent 100%),
+    /* laterales */
+    linear-gradient(to right, transparent 0%, black 0.1%, black 98%, transparent 100%),
+    linear-gradient(to left, transparent 0%, black 0.1%, black 98%, transparent 100%);
+  -webkit-mask-composite: intersect; /* combina ambas */
+  mask-composite: intersect;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+
+}
+
+/* Papel */
+.paper {
+  position: absolute;
+  top: 18%; /* empieza justo debajo de la parte de arriba */
+  bottom: 28%; /* termina justo encima de la parte de abajo */
+  left: 0.1%;
+  right: 0.1%;
+
+   background:
+    /* sombreado difuso arriba */
+    linear-gradient(to bottom, rgba(0,0,0,0.12) 0%, transparent 4%),
+    /* esquinas superiores más oscuras */
+    radial-gradient(circle at top left, #9fa6b5 0.5%, transparent 10%),
+    radial-gradient(circle at top right, #9fa6b5 0.5%, transparent 10%),
+    /* degradado general vertical */
+    linear-gradient(to bottom, #d3dbde 0%, #e1e5e8 100%);
+
+
+
+  box-shadow: 0 0px 16px rgba(0,0,0,0.2);
+
+  font-family: "Courier New", monospace;
+  font-size: clamp(1.4rem, 1.5vw, 2rem);
+  line-height: 1.6;
+
+  overflow-y: auto;
+  padding: clamp(12px, 2vw, 20px);
+
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.35));
+  z-index: 2;
+
+  /* Bordes difuminados */
+  -webkit-mask-image:
+  linear-gradient(to right,transparent 0,black 2%,black 98%,transparent 100%
+  );
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+}
+
+.paper p {
+  white-space: pre-wrap;
+  margin: 0;
+}
+
+/* ====== Polaroid ====== */
+.polaroid-block,
+.polaroid-in {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.polaroid-block img,
+.polaroid-in img {
+  max-width: 100%;
   height: auto;
   display: block;
-  filter: drop-shadow(0 16px 26px rgba(0,0,0,.65));
-}
-
-/* ===== Área de texto que escala con la libreta ===== */
-.notebook-text{
-  position: absolute;
-  left:   var(--pad-left);
-  right:  var(--pad-right);
-  top:    var(--pad-top);
-  bottom: var(--pad-bot);
-
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-
-  /* legibilidad mejorada */
-  padding: clamp(6px, 1.2vw, 14px);
-  font-size: clamp(1.45rem, 2.5vw, 2rem);
-  font-weight: 600; /* semi-bold */
-  line-height: 1.48;
-  text-align: justify;
-  color: #0e1113;                 /* más oscuro */
-  text-shadow: 0 1px 0 rgba(255,255,255,.35); /* sutil realce sobre el papel */
-
-  overflow: auto;
-  overscroll-behavior: contain;
-  scroll-padding-top: .5rem; /* permite ver la primera línea al iniciar el scroll */
-}
-.notebook-text p{ margin: .3em 0 .4em; }
-
-/* ===== Cámara anclada a la libreta (escala y se posiciona por % de la libreta) ===== */
-.camera-btn{
-  position: absolute;
-  right: var(--cam-right);
-  bottom: calc(-1 * var(--cam-drop)); /* cuelga un poco por debajo de la libreta */
-  width: clamp(120px, 60%, 300px);     /* 22% del ancho de la libreta, con límites */
-  height: auto;
-  cursor: pointer;
-  z-index: 3;
-  filter: drop-shadow(0 8px 14px rgba(0,0,0,.75));
-  transition: transform .25s ease;
-}
-.camera-btn:hover{ transform: scale(1.08); }
-
-/* Ajuste fino en pantallas muy estrechas */
-@media (max-width: 420px){
-  .notebook-wrapper{
-    --cam-right: 1.5%;
-    --cam-drop:  6%;
-  }
-  .camera-btn{ width: clamp(88px, 26%, 180px); }
-}
-
-/* ===== Polaroid ===== */
-.polaroid-img{
-  max-width: 90%;
-  animation: fadeIn 1s ease forwards;
-}
-@keyframes fadeIn{
-  from{ opacity:0; transform:scale(.9) }
-  to  { opacity:1; transform:scale(1) }
+  filter: drop-shadow(0 3px 3px rgba(0, 0, 0, 0.4))
+    drop-shadow(0 8px 12px rgba(0, 0, 0, 0.25));
 }
