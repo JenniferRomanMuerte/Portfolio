@@ -1,8 +1,8 @@
-/* Fondo oscuro/translúcido */
+/* Fondo global claro */
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.55);
+  background: rgba(255, 255, 255, 0.4); /* gris claro en toda la página */
   backdrop-filter: blur(3px);
   display: flex;
   align-items: center;
@@ -10,17 +10,27 @@
   z-index: 100;
 }
 
+/* 👇 Capa oscura detrás del modal */
+.modal-backdrop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35); /* oscurecimiento extra */
+  z-index: 101; /* por encima del gris global */
+}
+
 /* Caja principal */
 .modal-box {
-  background: rgba(255, 255, 255, 0.9);
+  position: relative;
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(6px);
   border-radius: 1rem;
   max-width: 600px;
   width: 90%;
   padding: 2rem;
-  position: relative;
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
   animation: fadeInScale 0.3s ease forwards;
+  z-index: 102; /* por encima de todo */
 }
 
 /* Botón cerrar */

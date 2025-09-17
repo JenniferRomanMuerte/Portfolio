@@ -15,140 +15,146 @@ export default function Experience() {
       <div className="experience-content">
 
         {/* EXPERIENCIA */}
-        <h1 className="experience-title">Experiencia</h1>
-        <section className="experience-box">
+        <div className="section-wrapper exp-section">
+          <h1 className="experience-title">Experiencia</h1>
+          <section className="experience-box">
 
-          {/* HORUS */}
-          <div className="experience-item clickable" onClick={() => setOpenModal("horus")}>
-            <FaBriefcase className="experience-icon" />
-            <div>
-              <strong>Horus Financial – Desarrolladora Web Full Stack</strong>
-              <br />
-              Plataforma web de gestión de inventario y depósitos
+            {/* HORUS */}
+            <div className="experience-item clickable" onClick={() => setOpenModal("horus")}>
+              <FaBriefcase className="experience-icon" />
+              <div>
+                <strong>Horus Financial – Desarrolladora Web Full Stack</strong>
+                <br />
+                Plataforma web de gestión de inventario y depósitos
+              </div>
+              <span className="experience-date">Mar 2025 – Sep 2025</span>
             </div>
-            <span className="experience-date">Mar 2025 – Sep 2025</span>
-          </div>
-          <Modal
-            isOpen={openModal === "horus"}
-            onClose={() => setOpenModal(null)}
-            title="Horus Financial – Desarrolladora Web Full Stack"
-            subtitle="Marzo 2025 – Septiembre 2025"
-            content={[
-              "Lenguajes: JavaScript, Java, SQL, HTML, CSS.",
-              "Frontend: React, Vite, Angular, Bootstrap, Three.js.",
-              "Backend: Node.js, SpringBoot.",
-              "Bases de datos: PostgreSQL, SQLite.",
-              "Herramientas: Git, GitHub, Docker, Electron.",
-              "Metodologías: Scrum, desarrollo ágil.",
-            ]}
-          />
+            <Modal
+              isOpen={openModal === "horus"}
+              onClose={() => setOpenModal(null)}
+              title="Horus Financial – Desarrolladora Web Full Stack"
+              subtitle="Marzo 2025 – Septiembre 2025"
+              content={[
+                "Lenguajes: JavaScript, Java, SQL, HTML, CSS.",
+                "Frontend: React, Vite, Angular, Bootstrap, Three.js.",
+                "Backend: Node.js, SpringBoot.",
+                "Bases de datos: PostgreSQL, SQLite.",
+                "Herramientas: Git, GitHub, Docker, Electron.",
+                "Metodologías: Scrum, desarrollo ágil.",
+              ]}
+            />
 
-          {/* VT-LAB */}
-          <div className="experience-item clickable" onClick={() => setOpenModal("vtlab")}>
-            <FaBriefcase className="experience-icon" />
-            <div>
-              <strong>VT-LAB – Desarrolladora Web (Prácticas FP – Proyecto I+D)</strong>
-              <br />
-              Soluciones web con React, Python y Knowledge Graphs
+            {/* VT-LAB */}
+            <div className="experience-item clickable" onClick={() => setOpenModal("vtlab")}>
+              <FaBriefcase className="experience-icon" />
+              <div>
+                <strong>VT-LAB – Desarrolladora Web (Prácticas FP – Proyecto I+D)</strong>
+                <br />
+                Soluciones web con React, Python y Knowledge Graphs
+              </div>
+              <span className="experience-date">2023 – 2024</span>
             </div>
-            <span className="experience-date">2023 – 2024</span>
-          </div>
-          <Modal
-            isOpen={openModal === "vtlab"}
-            onClose={() => setOpenModal(null)}
-            title="VT-LAB – Desarrolladora Web (Prácticas FP – Proyecto I+D)"
-            subtitle="2023 – 2024"
-            content={[
-              "Desarrollo de plataforma de gestión de inventario y depósitos con monitorización en tiempo real.",
-              "Implementación de alertas automáticas y reportes exportables.",
-              "Dashboard analítico con métricas clave y gráficos interactivos.",
-              "Diseño y desarrollo de la web corporativa con área privada y gestión documental.",
-              "Desarrollo de interfaces web con HTML, CSS, Bootstrap y JavaScript.",
-              "Creación de componentes reutilizables para mejorar eficiencia.",
-              "Soluciones web con React (frontend) y Python (backend).",
-              "Integración de modelos BIM con datos externos.",
-              "Gestión de bases de datos grafo (Neo4j) para Knowledge Graphs.",
-              "Validaciones de datos con JSON Schema para calidad e interoperabilidad.",
-              "Automatización de procesos con Celery, optimizando tareas asíncronas.",
-            ]}
-          />
+            <Modal
+              isOpen={openModal === "vtlab"}
+              onClose={() => setOpenModal(null)}
+              title="VT-LAB – Desarrolladora Web (Prácticas FP – Proyecto I+D)"
+              subtitle="2023 – 2024"
+              content={[
+                "Desarrollo de plataforma de gestión de inventario y depósitos con monitorización en tiempo real.",
+                "Implementación de alertas automáticas y reportes exportables.",
+                "Dashboard analítico con métricas clave y gráficos interactivos.",
+                "Diseño y desarrollo de la web corporativa con área privada y gestión documental.",
+                "Desarrollo de interfaces web con HTML, CSS, Bootstrap y JavaScript.",
+                "Creación de componentes reutilizables para mejorar eficiencia.",
+                "Soluciones web con React (frontend) y Python (backend).",
+                "Integración de modelos BIM con datos externos.",
+                "Gestión de bases de datos grafo (Neo4j) para Knowledge Graphs.",
+                "Validaciones de datos con JSON Schema para calidad e interoperabilidad.",
+                "Automatización de procesos con Celery, optimizando tareas asíncronas.",
+              ]}
+            />
 
-          {/* FREELANCE */}
-          <div className="experience-item clickable" onClick={() => setOpenModal("freelance")}>
-            <FaBriefcase className="experience-icon" />
-            <div>
-              <strong>Proyectos Freelance – Desarrolladora Web</strong>
-              <br />
-              Aplicaciones multiplataforma y páginas corporativas
+            {/* FREELANCE */}
+            <div className="experience-item clickable" onClick={() => setOpenModal("freelance")}>
+              <FaBriefcase className="experience-icon" />
+              <div>
+                <strong>Proyectos Freelance – Desarrolladora Web</strong>
+                <br />
+                Aplicaciones multiplataforma y páginas corporativas
+              </div>
+              <span className="experience-date">2024 – 2025</span>
             </div>
-            <span className="experience-date">2024 – 2025</span>
-          </div>
-          <Modal
-            isOpen={openModal === "freelance"}
-            onClose={() => setOpenModal(null)}
-            title="Proyectos Freelance – Desarrolladora Web"
-            subtitle="2024 – 2025"
-            content={[
-              "Web responsive con SEO y optimización de conversión.",
-              "Página corporativa con portfolio multimedia y blog autogestionable.",
-              "Aplicación multiplataforma para facturación, control de clientes y reportes de ventas.",
-              "Sistema de registro y seguimiento de miembros con base de datos segura y exportación de informes.",
-            ]}
-          />
-        </section>
+            <Modal
+              isOpen={openModal === "freelance"}
+              onClose={() => setOpenModal(null)}
+              title="Proyectos Freelance – Desarrolladora Web"
+              subtitle="2024 – 2025"
+              content={[
+                "Web responsive con SEO y optimización de conversión.",
+                "Página corporativa con portfolio multimedia y blog autogestionable.",
+                "Aplicación multiplataforma para facturación, control de clientes y reportes de ventas.",
+                "Sistema de registro y seguimiento de miembros con base de datos segura y exportación de informes.",
+              ]}
+            />
+          </section>
+        </div>
 
         {/* FORMACIÓN */}
-        <h1 className="experience-title">Formación</h1>
-        <section className="experience-box">
-          <div className="experience-item">
-            <FaGraduationCap className="experience-icon" />
-            <div className="experience-text">
-              <strong>FP Superior en Desarrollo de Aplicaciones Multiplataforma (DAM)</strong>
-              <br />
-              IFP
-              <p>
-                Programación en HTML, CSS, Java, SQL, SpringBoot, Android Studio, Bootstrap, UML. <br />
-                Proyecto final: Web de recetas con Angular y SpringBoot.
-              </p>
+        <div className="section-wrapper form-section">
+          <h1 className="experience-title">Formación</h1>
+          <section className="experience-box">
+            <div className="experience-item">
+              <FaGraduationCap className="experience-icon" />
+              <div className="experience-text">
+                <strong>FP Superior en Desarrollo de Aplicaciones Multiplataforma (DAM)</strong>
+                <br />
+                IFP
+                <p>
+                  Programación en HTML, CSS, Java, SQL, SpringBoot, Android Studio, Bootstrap, UML. <br />
+                  Proyecto final: Web de recetas con Angular y SpringBoot.
+                </p>
+              </div>
+              <span className="experience-date">2021 – 2023</span>
             </div>
-            <span className="experience-date">2021 – 2023</span>
-          </div>
 
-          <div className="experience-item">
-            <FaGraduationCap className="experience-icon" />
-            <div className="experience-text">
-              <strong>Bootcamp de Programación Web – Adalab</strong>
-              <br />
-              Desarrollo web con HTML, CSS, JavaScript, React, Node.js, PostgreSQL, Scrum, Git/GitHub.
+            <div className="experience-item">
+              <FaGraduationCap className="experience-icon" />
+              <div className="experience-text">
+                <strong>Bootcamp de Programación Web – Adalab</strong>
+                <br />
+                Desarrollo web con HTML, CSS, JavaScript, React, Node.js, PostgreSQL, Scrum, Git/GitHub.
+              </div>
+              <span className="experience-date">Actualidad</span>
             </div>
-            <span className="experience-date">Actualidad</span>
-          </div>
-        </section>
+          </section>
+        </div>
 
         {/* CURSOS */}
-        <h2 className="experience-subtitle">🧠 Cursos Complementarios</h2>
-        <section className="experience-grid">
-          <div className="experience-card">
-            <FaGraduationCap className="experience-icon" />
-            <div>SEO: Posicionar una Web en Google – Udemy</div>
-            <span className="experience-date">2024</span>
-          </div>
-          <div className="experience-card">
-            <FaGraduationCap className="experience-icon" />
-            <div>Git y GitHub – Udemy</div>
-            <span className="experience-date">2024</span>
-          </div>
-          <div className="experience-card">
-            <FaGraduationCap className="experience-icon" />
-            <div>JavaScript Básico – OpenBootcamp</div>
-            <span className="experience-date">2023</span>
-          </div>
-          <div className="experience-card">
-            <FaGraduationCap className="experience-icon" />
-            <div>Universidad CSS y HTML – Udemy</div>
-            <span className="experience-date">2022</span>
-          </div>
-        </section>
+        <div className="section-wrapper cursos-section">
+          <h2 className="experience-subtitle">🧠 Cursos Complementarios</h2>
+          <section className="experience-grid">
+            <div className="experience-card">
+              <FaGraduationCap className="experience-icon" />
+              <div>SEO: Posicionar una Web en Google – Udemy</div>
+              <span className="experience-date">2024</span>
+            </div>
+            <div className="experience-card">
+              <FaGraduationCap className="experience-icon" />
+              <div>Git y GitHub – Udemy</div>
+              <span className="experience-date">2024</span>
+            </div>
+            <div className="experience-card">
+              <FaGraduationCap className="experience-icon" />
+              <div>JavaScript Básico – OpenBootcamp</div>
+              <span className="experience-date">2023</span>
+            </div>
+            <div className="experience-card">
+              <FaGraduationCap className="experience-icon" />
+              <div>Universidad CSS y HTML – Udemy</div>
+              <span className="experience-date">2022</span>
+            </div>
+          </section>
+        </div>
 
       </div>
     </main>

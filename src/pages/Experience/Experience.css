@@ -4,7 +4,6 @@
   height: var(--height-h);
   overflow-x: clip;
   color: var(--fg-body);
-
 }
 
 /* ====== Fondos ====== */
@@ -43,7 +42,7 @@
   color: #000;
   text-align: center;
   margin-bottom: 1rem;
-  animation: fadeInDown 0.6s ease both;
+  transition: all 0.3s ease;
 }
 
 .experience-subtitle {
@@ -52,10 +51,36 @@
   color: #000;
   text-align: center;
   margin-bottom: 1rem;
-  animation: fadeInDown 0.6s ease both;
+  transition: all 0.3s ease;
 }
 
+/* Hover de secciones → gradiente en títulos */
+.exp-section:hover .experience-title,
+.form-section:hover .experience-title,
+.cursos-section:hover .experience-subtitle {
+  background: var(--grad-rainbow);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
+/* Animaciones de entrada en títulos */
+
+.experience-title, .experience-subtitle {
+  animation: zoomIn 2.8s ease both;
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ====== Items clicables ====== */
 .experience-item.clickable {
   cursor: pointer;
   transition: transform 0.2s ease;
@@ -70,7 +95,6 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-
 
 /* ====== Cajas generales ====== */
 .experience-box {
@@ -89,7 +113,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  animation: fadeInUp 0.5s ease forwards;
+  animation: fadeInUp 1.5s ease forwards;
   opacity: 0;
 }
 
@@ -122,23 +146,13 @@
 
 .experience-item strong {
   color: #000;
-  font-size: 1.3rem;  /* igual que formación */
-  
+  font-size: 1.3rem;
+  font-weight: 600;
 }
-
 
 .experience-text strong {
-  color: #000;
   display: inline-block;
   margin-bottom: 0.3rem;
-  font-size: 1.3rem;
-}
-
-.experience-box p {
-  color: #333;
-  font-size: 1rem;
-  margin-top: 0.5rem;
-  line-height: 1.5;
 }
 
 /* ====== Grid para cursos ====== */
