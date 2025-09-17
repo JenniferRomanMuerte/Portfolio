@@ -253,28 +253,38 @@
 }
 
 
+/* === DESKTOP: centra la polaroid verticalmente en la columna izquierda === */
 @media (min-width: 768px) {
-  .about-layout {
+  /* El grid general ocupa la altura útil de la sección */
+  .about-layout{
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
-    align-items: stretch; /* las dos columnas ocupan el mismo alto */
+    height: calc(var(--height-h) - var(--about-header-h, 0px));
   }
 
- .about-left {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;   /* 👈 centra todo verticalmente */
-    align-items: flex-start;       /* 👈 centra horizontalmente */
-    height: 100%;
-
+  .about-left{
+    display: grid;
+    grid-template-rows: auto 1fr;
+    align-content: space-evenly;
+    text-align: center;
   }
 
-  .about-left .about-title {
-    margin-bottom: 15%;
-    padding-left: 2rem;      /* separa el título de la polaroid */
+  /* Título arriba a la izquierda */
+  .about-left .about-title{
+    margin-bottom: 5rem;
+    text-decoration: wavy;
   }
 
-  .mobile-only { display: none; }
-  .desktop-only { display: block; }
+  /* Zona de la polaroid: centra vertical y deja a la izquierda */
+  .about-left .polaroid-block{
+    display: grid;
+    place-items: center start;   /* align-items:center (vertical), justify-items:start (horizontal) */
+    padding-left: 2rem;          /* alinear con el título */
+    width: 100%;
+  }
+
+  /* visibilidad desktop/mobile */
+  .mobile-only{ display: none; }
+  .desktop-only{ display: block; }
 }
