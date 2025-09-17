@@ -104,15 +104,34 @@ Me motiva el aprendizaje continuo y disfruto enfrentando retos.`;
         </div>
 
         <div className="about-right" ref={containerRef}>
+          {/* Desktop: siempre máquina */}
+          <div className="typewriter-wrapper desktop-only" ref={wrapperRef}>
+            <img
+              className="typewriter-up"
+              src="/assets/printwriter/typewriter_up-1100.webp"
+              alt="Parte superior máquina"
+              loading="eager"
+              fetchPriority="high"
+            />
+            <div className="paper" ref={paperRef}>
+              <p>{typedText}</p>
+            </div>
+            <img
+              className="typewriter-down"
+              src="/assets/printwriter/typewriter_down-1100.webp"
+              alt="Parte inferior máquina"
+              loading="eager"
+              fetchPriority="high"
+            />
+          </div>
+
+          {/* Mobile: alterna entre máquina y polaroid */}
           {!showPolaroid ? (
-            // Máquina
-            <div className="typewriter-wrapper" ref={wrapperRef}>
+            <div className="typewriter-wrapper mobile-only" ref={wrapperRef}>
               <img
                 className="typewriter-up"
                 src="/assets/printwriter/typewriter_up-1100.webp"
                 alt="Parte superior máquina"
-                loading="eager"
-                fetchPriority="high"
               />
               <div className="paper" ref={paperRef}>
                 <p>{typedText}</p>
@@ -121,19 +140,15 @@ Me motiva el aprendizaje continuo y disfruto enfrentando retos.`;
                 className="typewriter-down"
                 src="/assets/printwriter/typewriter_down-1100.webp"
                 alt="Parte inferior máquina"
-                loading="eager"
-                fetchPriority="high"
               />
             </div>
           ) : (
-            // Polaroid principal sobre fondo (solo mobile)
             <div className="polaroid-stack mobile-only">
-              <div className="polaroid-main">
+              <div className="polaroid-main flip-in">
                 <img
                   src="/assets/polaroid_Jennifer.png"
                   alt="Jennifer Román"
                   draggable={false}
-                  className="flip-in"
                 />
               </div>
             </div>
