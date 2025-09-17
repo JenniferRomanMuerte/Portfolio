@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState} from "react";
 import "./About.css";
 
 export default function About() {
@@ -60,6 +60,9 @@ Me motiva el aprendizaje continuo y disfruto enfrentando retos.`;
     window.addEventListener("resize", resize);
     return () => window.removeEventListener("resize", resize);
   }, []);
+
+
+
 
   return (
     <section className="about">
@@ -126,25 +129,6 @@ Me motiva el aprendizaje continuo y disfruto enfrentando retos.`;
                 />
               </div>
 
-              {/* Fondo */}
-              <img
-                src="/assets/polaroid_Jennifer.png"
-                alt=""
-                className="polaroid-back left filter-gray"
-                draggable={false}
-              />
-              <img
-                src="/assets/polaroid_Jennifer.png"
-                alt=""
-                className="polaroid-back right filter-sepia"
-                draggable={false}
-              />
-              <img
-                src="/assets/polaroid_Jennifer.png"
-                alt=""
-                className="polaroid-back bottom filter-bright"
-                draggable={false}
-              />
             </div>
           )}
         </div>
