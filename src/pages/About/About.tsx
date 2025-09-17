@@ -1,9 +1,12 @@
-import { useEffect, useRef, useState} from "react";
+import { useEffect, useRef, useState } from "react";
 import "./About.css";
 
 export default function About() {
   const [typedText, setTypedText] = useState("");
   const [showPolaroid, setShowPolaroid] = useState(false);
+
+  // para animar la polaroid cuando la imagen ya está decodificada
+  const [polaroidReady, setPolaroidReady] = useState(false);
 
   const paperRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -17,26 +20,26 @@ Tras una trayectoria en atención al cliente y el ámbito social, he canalizado 
 
 Me motiva el aprendizaje continuo y disfruto enfrentando retos.`;
 
-  // efecto "máquina de escribir"
+  // efecto "máquina de escribir" (menos reflows: añade 2 chars por tick)
   useEffect(() => {
     if (!showPolaroid) {
       let i = 0;
+      const STEP = 2;
       setTypedText("");
       const id = setInterval(() => {
-        i += 1;
+        i += STEP;
         setTypedText(fullText.slice(0, i));
-
-        if (paperRef.current) {
+        // auto-scroll con menos frecuencia
+        if (paperRef.current && i % 4 === 0) {
           paperRef.current.scrollTop = paperRef.current.scrollHeight;
         }
-
         if (i >= fullText.length) clearInterval(id);
-      }, 35);
+      }, 45);
       return () => clearInterval(id);
     }
   }, [showPolaroid]);
 
-  // guardar altura del header
+  // guardar altura del header para calcular alto útil
   useEffect(() => {
     const header = document.querySelector(".about-header");
     if (header) {
@@ -55,14 +58,10 @@ Me motiva el aprendizaje continuo y disfruto enfrentando retos.`;
       const scale = Math.min(1, containerH / naturalH);
       wrapperRef.current.style.transform = `scale(${scale})`;
     }
-
     resize();
     window.addEventListener("resize", resize);
     return () => window.removeEventListener("resize", resize);
   }, []);
-
-
-
 
   return (
     <section className="about">
@@ -95,6 +94,11 @@ Me motiva el aprendizaje continuo y disfruto enfrentando retos.`;
               src="/assets/polaroid_Jennifer.png"
               alt="Polaroid de Jennifer Román"
               draggable={false}
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
+              onLoad={() => setPolaroidReady(true)}
+              className={polaroidReady ? "ready" : ""}
             />
           </div>
         </div>
@@ -107,6 +111,8 @@ Me motiva el aprendizaje continuo y disfruto enfrentando retos.`;
                 className="typewriter-up"
                 src="/assets/printwriter/typewriter_up-1100.webp"
                 alt="Parte superior máquina"
+                loading="eager"
+                fetchPriority="high"
               />
               <div className="paper" ref={paperRef}>
                 <p>{typedText}</p>
@@ -115,20 +121,21 @@ Me motiva el aprendizaje continuo y disfruto enfrentando retos.`;
                 className="typewriter-down"
                 src="/assets/printwriter/typewriter_down-1100.webp"
                 alt="Parte inferior máquina"
+                loading="eager"
+                fetchPriority="high"
               />
             </div>
           ) : (
-            // Polaroids (solo en mobile)
+            // Polaroid principal sobre fondo (solo mobile)
             <div className="polaroid-stack mobile-only">
-              {/* Principal */}
-              <div className="polaroid-main flip-in">
+              <div className="polaroid-main">
                 <img
                   src="/assets/polaroid_Jennifer.png"
                   alt="Jennifer Román"
                   draggable={false}
+                  className="flip-in"
                 />
               </div>
-
             </div>
           )}
         </div>

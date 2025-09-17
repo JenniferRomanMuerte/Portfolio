@@ -36,14 +36,37 @@
   min-height: clamp(56px, 10vh, 96px);
 }
 
+/* --- Animaciones para el título --- */
 .about-title {
   font-family: var(--font-title);
   font-size: clamp(3.2rem, 10vw, 6rem);
   font-weight: 700;
   color: var(--accent);
   margin: 0;
+  transform-origin: left center;
+  will-change: transform, opacity;
 }
 
+.about-header .about-title {
+  animation: titleSlideIn 700ms cubic-bezier(0.2, 0.8, 0.2, 1) 300ms both;
+}
+
+@keyframes titleSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-28px) skewX(-2deg);
+  }
+  80% {
+    opacity: 1;
+    transform: translateX(2px) skewX(0deg);
+  } /* pequeño overshoot */
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Botón acción */
 .action-btn {
   width: clamp(60px, 20vw, 80px);
   cursor: pointer;
@@ -74,20 +97,17 @@
   height: 100%;
 }
 
-
-
 /* ====== Máquina + papel ====== */
 
 .typewriter-wrapper {
   position: relative;
   width: 100%;
-  height: 100%;   /* 👈 ahora mide lo mismo que about-right */
+  height: 100%; /* 👈 ahora mide lo mismo que about-right */
   max-width: 1100px;
   margin: 0 auto;
   overflow: hidden;
   transform-origin: top center;
 }
-
 
 /* Parte superior */
 .typewriter-up {
@@ -99,17 +119,33 @@
   object-fit: cover;
   z-index: 3;
 
--webkit-mask-image:
-    /* borde superior */
-    linear-gradient(to top, transparent 0%, black 0.1%, black 98%, transparent 100%),
+  -webkit-mask-image:
+    /* borde superior */ linear-gradient(
+      to top,
+      transparent 0%,
+      black 0.1%,
+      black 98%,
+      transparent 100%
+    ),
     /* laterales */
-    linear-gradient(to right, transparent 0%, black 0.1%, black 98%, transparent 100%),
-    linear-gradient(to left, transparent 0%, black 0.1%, black 98%, transparent 100%);
+      linear-gradient(
+        to right,
+        transparent 0%,
+        black 0.1%,
+        black 98%,
+        transparent 100%
+      ),
+    linear-gradient(
+      to left,
+      transparent 0%,
+      black 0.1%,
+      black 98%,
+      transparent 100%
+    );
   -webkit-mask-composite: intersect; /* combina ambas */
   mask-composite: intersect;
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-size: 100% 100%;
-
 }
 
 /* Parte inferior */
@@ -123,16 +159,32 @@
   z-index: 3;
 
   -webkit-mask-image:
-/* borde inferior */
-    linear-gradient(to bottom, transparent 0%, black 0.1%, black 98%, transparent 100%),
+/* borde inferior */ linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 0.1%,
+      black 98%,
+      transparent 100%
+    ),
     /* laterales */
-    linear-gradient(to right, transparent 0%, black 0.1%, black 98%, transparent 100%),
-    linear-gradient(to left, transparent 0%, black 0.1%, black 98%, transparent 100%);
+      linear-gradient(
+        to right,
+        transparent 0%,
+        black 0.1%,
+        black 98%,
+        transparent 100%
+      ),
+    linear-gradient(
+      to left,
+      transparent 0%,
+      black 0.1%,
+      black 98%,
+      transparent 100%
+    );
   -webkit-mask-composite: intersect; /* combina ambas */
   mask-composite: intersect;
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-size: 100% 100%;
-
 }
 
 /* Papel */
@@ -143,18 +195,19 @@
   left: 0.1%;
   right: 0.1%;
 
-   background:
-    /* sombreado difuso arriba */
-    linear-gradient(to bottom, rgba(0,0,0,0.12) 0%, transparent 4%),
+  background:
+    /* sombreado difuso arriba */ linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.12) 0%,
+      transparent 4%
+    ),
     /* esquinas superiores más oscuras */
-    radial-gradient(circle at top left, #9fa6b5 0.5%, transparent 10%),
+      radial-gradient(circle at top left, #9fa6b5 0.5%, transparent 10%),
     radial-gradient(circle at top right, #9fa6b5 0.5%, transparent 10%),
     /* degradado general vertical */
-    linear-gradient(to bottom, #d3dbde 0%, #e1e5e8 100%);
+      linear-gradient(to bottom, #d3dbde 0%, #e1e5e8 100%);
 
-
-
-  box-shadow: 0 0px 16px rgba(0,0,0,0.2);
+  box-shadow: 0 0px 16px rgba(0, 0, 0, 0.2);
 
   font-family: "Courier New", monospace;
   font-size: clamp(1.4rem, 1.5vw, 2rem);
@@ -167,16 +220,32 @@
   z-index: 2;
 
   /* Bordes difuminados */
-  -webkit-mask-image:
-  linear-gradient(to right,transparent 0,black 2%,black 98%,transparent 100%
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    black 2%,
+    black 98%,
+    transparent 100%
   );
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-size: 100% 100%;
+  animation: paperFadeIn 0.5s ease-out 0.4s both;
 }
 
 .paper p {
   white-space: pre-wrap;
   margin: 0;
+}
+
+@keyframes paperFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 /* ====== Polaroid ====== */
@@ -194,6 +263,19 @@
   display: block;
   filter: drop-shadow(0 3px 3px rgba(0, 0, 0, 0.4))
     drop-shadow(0 8px 12px rgba(0, 0, 0, 0.25));
+}
+
+/* Estado inicial: invisible y un poco reducido */
+.polaroid-block img {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Cuando ya cargó: aparece suave */
+.polaroid-block img.ready {
+  opacity: 1;
+  transform: scale(1);
 }
 
 /* ====== Polaroid stack (mobile) ====== */
@@ -235,11 +317,11 @@
     drop-shadow(0 8px 12px rgba(0, 0, 0, 0.95));
 }
 
-
-
 /* Animación flip para la principal */
 .flip-in {
-  animation: flipIn 0.8s ease forwards;
+  animation: flipIn 1s ease forwards;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
 }
 @keyframes flipIn {
   0% {
@@ -252,18 +334,17 @@
   }
 }
 
-
 /* === DESKTOP: centra la polaroid verticalmente en la columna izquierda === */
 @media (min-width: 768px) {
   /* El grid general ocupa la altura útil de la sección */
-  .about-layout{
+  .about-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
     height: calc(var(--height-h) - var(--about-header-h, 0px));
   }
 
-  .about-left{
+  .about-left {
     display: grid;
     grid-template-rows: auto 1fr;
     align-content: space-evenly;
@@ -271,20 +352,48 @@
   }
 
   /* Título arriba a la izquierda */
-  .about-left .about-title{
+  .about-left .about-title {
     margin-bottom: 5rem;
-    text-decoration: wavy;
+    animation: titleDropIn 750ms ease-out 60ms both;
+    transform-origin: top left;
   }
 
   /* Zona de la polaroid: centra vertical y deja a la izquierda */
-  .about-left .polaroid-block{
+  .about-left .polaroid-block {
     display: grid;
-    place-items: center start;   /* align-items:center (vertical), justify-items:start (horizontal) */
-    padding-left: 2rem;          /* alinear con el título */
+    place-items: center start; /* align-items:center (vertical), justify-items:start (horizontal) */
+    padding-left: 2rem; /* alinear con el título */
     width: 100%;
   }
 
+  @keyframes titleDropIn {
+    0% {
+      opacity: 0;
+      transform: translateY(-28px) scale(0.98);
+    }
+    80% {
+      opacity: 1;
+      transform: translateY(3px) scale(1);
+    } /* pequeño rebote */
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* (Opcional) respetar preferencias del usuario */
+  @media (prefers-reduced-motion: reduce) {
+    .about-header .about-title,
+    .about-left .about-title {
+      animation: none !important;
+    }
+  }
+
   /* visibilidad desktop/mobile */
-  .mobile-only{ display: none; }
-  .desktop-only{ display: block; }
+  .mobile-only {
+    display: none;
+  }
+  .desktop-only {
+    display: block;
+  }
 }
