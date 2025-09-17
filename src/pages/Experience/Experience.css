@@ -1,138 +1,202 @@
- .experience-container {
+/* ====== Layout general ====== */
+.experience-container {
   position: relative;
-  width: 100%;
-  min-height: 100vh;
-  overflow: hidden;
+  height: var(--height-h);
+  overflow-x: clip;
+  color: var(--fg-body);
+
 }
 
-.experience-video {
+/* ====== Fondos ====== */
+.experience-bg {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  inset: 0;
+  background: url("/assets/bg_texture.webp") center/cover no-repeat;
+  z-index: -3;
+}
+
+.experience-overlay-pattern {
+  position: fixed;
+  inset: 0;
+  background: url("/assets/KnowledgeGraph_bg.webp") center/contain no-repeat;
+  opacity: 0.18;
   z-index: -2;
-  opacity: 0.25;
   filter: blur(1px);
 }
 
-.experience-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 215, 100, 0.1) 100%,
-    rgba(200, 130, 255, 0.3) 0%
-  );
-  z-index: -1;
-}
-
+/* ====== Contenido ====== */
 .experience-content {
   position: relative;
   z-index: 1;
-  padding: 2rem;
+  padding: 2rem 1.2rem;
   max-width: 1000px;
-  margin: 0 auto;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
 }
 
+/* ====== Títulos ====== */
 .experience-title {
+  font-family: var(--font-title);
+  font-size: clamp(3.2rem, 8vw, 4.2rem);
+  color: #000;
+  text-align: center;
   margin-bottom: 1rem;
-  text-align: center;
+  animation: fadeInDown 0.6s ease both;
 }
 
+.experience-subtitle {
+  font-family: var(--font-title);
+  font-size: clamp(1.8rem, 5vw, 2.4rem);
+  color: #000;
+  text-align: center;
+  margin-bottom: 1rem;
+  animation: fadeInDown 0.6s ease both;
+}
+
+
+.experience-item.clickable {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.experience-item.clickable:hover {
+  transform: translateY(-3px);
+}
+
+.experience-item.clickable:hover strong {
+  background: var(--grad-rainbow);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+/* ====== Cajas generales ====== */
 .experience-box {
-  background-color: rgba(255, 255, 255, 0.7);
-  padding: 2rem;
-  border-radius: 1.5rem;
-  margin-bottom: 3rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(6px);
+  padding: 1.5rem;
+  border-radius: 1.2rem;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.55);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
-.experience-box h2 {
-  font-size: 1.6rem;
-  color: #663399;
-  margin-bottom: 1.2rem;
-  text-align: center;
-  font-weight: bold;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-  border-bottom: 2px solid #815baa;
-  padding-bottom: 0.5rem;
-}
-
+/* ====== Items ====== */
 .experience-item {
   display: flex;
-  align-items: flex-start; /* Alinea todo arriba */
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+  flex-direction: column;
+  gap: 0.5rem;
   animation: fadeInUp 0.5s ease forwards;
   opacity: 0;
 }
 
 .experience-item:nth-child(1) { animation-delay: 0.2s; }
 .experience-item:nth-child(2) { animation-delay: 0.4s; }
+.experience-item:nth-child(3) { animation-delay: 0.6s; }
+.experience-item:nth-child(4) { animation-delay: 0.8s; }
 
-
+/* Iconos */
 .experience-icon {
-  font-size: 1.8rem;
-  color: #815baa;
+  font-size: 2rem;
+  color: #000;
   flex-shrink: 0;
-  margin-top: 4px; /* opcional si quieres que baje un poco */
+  margin-right: 1rem;
 }
 
+/* Fecha */
 .experience-date {
   font-style: italic;
-  font-size: 0.95rem;
+  font-size: 1.2rem;
   color: #444;
-  opacity: 0.7;
-  margin-left: auto;
-  white-space: nowrap;
+  opacity: 0.75;
 }
 
-/* Para que el texto y párrafo estén bien organizados */
+/* Texto */
 .experience-text {
   flex: 1;
-}
-
-.experience-item div {
   color: #222;
 }
 
 .experience-item strong {
   color: #000;
+  font-size: 1.3rem;  /* igual que formación */
+  
+}
+
+
+.experience-text strong {
+  color: #000;
+  display: inline-block;
+  margin-bottom: 0.3rem;
+  font-size: 1.3rem;
 }
 
 .experience-box p {
   color: #333;
-  font-size: 0.95rem;
-  margin-top: 0.8rem;
+  font-size: 1rem;
+  margin-top: 0.5rem;
   line-height: 1.5;
 }
 
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* ====== Grid para cursos ====== */
+.experience-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
 }
 
-@media (max-width: 768px) {
+.experience-card {
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(5px);
+  padding: 1rem 1.2rem;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.experience-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+}
+
+/* ====== Animaciones ====== */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ====== Responsive ====== */
+@media (min-width: 768px) {
   .experience-item {
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
+    justify-content: space-between;
   }
 
   .experience-date {
-    margin-left: 0;
-    margin-top: 0.5rem;
+    margin-left: auto;
+    white-space: nowrap;
+  }
+
+  .experience-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .experience-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
