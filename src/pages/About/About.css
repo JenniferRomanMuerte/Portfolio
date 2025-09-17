@@ -258,13 +258,23 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
-    align-items: center;
+    align-items: stretch; /* las dos columnas ocupan el mismo alto */
   }
 
-  .mobile-only {
-    display: none;
+ .about-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;   /* 👈 centra todo verticalmente */
+    align-items: flex-start;       /* 👈 centra horizontalmente */
+    height: 100%;
+
   }
-  .desktop-only {
-    display: block;
+
+  .about-left .about-title {
+    margin-bottom: 15%;
+    padding-left: 2rem;      /* separa el título de la polaroid */
   }
+
+  .mobile-only { display: none; }
+  .desktop-only { display: block; }
 }
