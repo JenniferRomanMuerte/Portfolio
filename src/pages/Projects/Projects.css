@@ -1,62 +1,132 @@
-/* ====== Mobile First ====== */
+/* ========== Mobile first ========== */
 .projects {
   height: var(--height-h);
-  position: relative;
-  padding: 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
+  justify-content: center;
+  background: url("/assets/bg_projects.webp") center/cover no-repeat;
+  position: relative;
+  overflow: hidden; /* oculta desbordes del carrusel */
+   padding: 1rem 0;
+}
 
-  background:
-    url("/assets/bg_projects.webp"),
-    rgba(255, 255, 255, 0.7);
-  background-size: cover, cover, cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-blend-mode: lighten
+/* capa de opacidad sobre el fondo */
+.projects::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.6); /* 👈 blanco translúcido encima */
+  z-index: 0;
+}
+
+/* aseguramos que el contenido quede por encima */
+.projects > * {
+  position: relative;
+  z-index: 1;
 }
 
 /* Título */
 .projects-title {
   font-family: var(--font-title);
-  font-size: clamp(2.5rem, 8vw, 5rem);
-  font-weight: 700;
-  text-align: center;
-  margin: 5rem;
+  font-size: clamp(2rem, 6vw, 4rem);
+  margin-bottom: 0.8rem;
   color: var(--accent);
-  animation: fadeSlideIn 800ms ease-out;
+  text-align: center;
 }
 
-/* Grid de proyectos */
-.projects-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
-  width: 100%;
+/* Carrusel */
+.carousel {
+  flex: 1; /* ocupa el espacio central */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 92%;
   max-width: 1200px;
+  overflow: hidden;
 }
 
-/* Animación entrada título */
-@keyframes fadeSlideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Track y slides */
+.carousel-track {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  transition: transform 0.6s ease;
+  gap: 2rem;
 }
 
-/* ====== Tablet/Desktop ====== */
+.carousel-slide {
+  flex: 0 0 100%; /* en móvil solo 1 */
+  display: flex;
+  justify-content: center;
+}
+
+/* Tarjetas limitadas en tamaño */
+.carousel .project-card {
+  max-width: clamp(260px, 80vw, 380px);
+  max-height: 85svh; /* nunca se sale de la pantalla */
+  height: auto;
+  object-fit: contain;
+}
+
+/* Flechas debajo */
+.carousel-buttons {
+   width: 100%;                /* 👈 mismo ancho que el carrusel */
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-top: 1.8rem;
+}
+
+.carousel-btn {
+  background: none; /* sin fondo */
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.carousel-btn img {
+  width: 38px;
+  height: 38px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,.35));
+  transition: transform 0.15s ease;
+}
+
+.carousel-btn:hover img {
+  transform: scale(1.1);
+}
+
+.carousel-btn.right img {
+  transform: rotate(180deg);
+  margin-right: 5rem;
+}
+
+.carousel-btn.left img {
+  margin-left: 5rem;
+}
+/* ========== Tablet / Desktop (≥768px) ========== */
 @media (min-width: 768px) {
-  .projects-grid {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
+  .projects-title {
+    margin-bottom: 1.5rem;
   }
 
-  .projects-title {
-    font-size: clamp(3rem, 6vw, 6rem);
+  .carousel-track {
+    gap: 3rem;
+  }
+
+  .carousel-slide {
+    flex: 0 0 50%; /* 2 visibles en desktop */
+  }
+
+  .carousel .project-card {
+    max-width: min(480px, 32vw);  /* 👈 nunca más de 480px ni del 32% del ancho */
+    max-height: 72svh;            /* 👈 asegura que no rebasa la altura */
+    height: auto;
+  }
+  .carousel-buttons {
+    gap: clamp(4rem, 20vw, 18rem);
   }
 }

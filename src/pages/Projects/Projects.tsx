@@ -3,15 +3,6 @@ import ProjectCard from "../../components/ProjectCard/ProjectCard";
 import { useEffect, useState } from "react";
 
 export default function Projects() {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
-
   const projects = [
     {
       title: "Gestor de facturación",
@@ -55,16 +46,58 @@ export default function Projects() {
     },
   ];
 
+  // nº de tarjetas visibles según ancho
+  const getVisible = () => (window.innerWidth < 768 ? 1 : 2);
+
+  const [visible, setVisible] = useState(getVisible());
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const onResize = () => setVisible(getVisible());
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  const next = () =>
+    setCurrent((p) => (p + 1) % (projects.length - (visible - 1)));
+  const prev = () =>
+    setCurrent(
+      (p) =>
+        (p - 1 + (projects.length - (visible - 1))) %
+        (projects.length - (visible - 1))
+    );
+
+  const slideWidthPct = 100 / visible; // 50% en desktop, 100% en móvil
+  const translatePct = current * slideWidthPct;
+
   return (
     <main className="projects">
-      <div className="projects-header">
-        <h1 className="projects-title">Mis Proyectos</h1>
-      </div>
+      <h1 className="projects-title">Mis Proyectos</h1>
 
-      <div className="projects-grid">
-        {projects.map((project, i) => (
-          <ProjectCard key={i} {...project} />
-        ))}
+      <div className="carousel">
+        <div
+          className="carousel-track"
+          style={{ transform: `translateX(-${translatePct}%)` }}
+        >
+          {projects.map((project, i) => (
+            <div
+              className="carousel-slide"
+              key={i}
+              style={{ flex: `0 0 ${slideWidthPct}%` }} // anchura exacta del slide
+            >
+              <ProjectCard {...project} />
+            </div>
+          ))}
+        </div>
+        {/* 👇 Botones debajo */}
+        <div className="carousel-buttons">
+          <button className="carousel-btn left" onClick={prev}>
+            <img src="/assets/arrow.png" alt="Anterior" />
+          </button>
+          <button className="carousel-btn right" onClick={next}>
+            <img src="/assets/arrow.png" alt="Siguiente" />
+          </button>
+        </div>
       </div>
     </main>
   );
