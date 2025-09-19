@@ -24,6 +24,9 @@ export default function ProjectCard({
       target="_blank"
       rel="noopener noreferrer"
     >
+      {/* Pin */}
+      <img src="/assets/pin.png" alt="Pin" className="project-pin" />
+      {/* Hoja */}
       <img src="/assets/notebook_page.webp" alt="hoja" className="paper-bg" />
 
       <div className="project-content">

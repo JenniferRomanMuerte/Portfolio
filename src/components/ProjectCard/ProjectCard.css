@@ -20,7 +20,7 @@
   object-fit: cover;
   z-index: 0;
   pointer-events: none;
-  filter: drop-shadow(0 8px 12px rgba(0,0,0,.6));
+  filter: drop-shadow(0 8px 12px rgba(0,0,0,.9));
 }
 
 /* Contenido sobre la hoja */
@@ -34,6 +34,19 @@
   box-sizing: border-box;
   color: #222;
 }
+
+/* Pin */
+.project-pin {
+  position: absolute;
+  top: -16px;        /* lo sacamos un poco de la hoja */
+  left: 50%;         /* centrado horizontal */
+  transform: translateX(-50%) rotate(-12deg); /* inclinación realista */
+  width: 42px;       /* tamaño del pin */
+  height: auto;
+  z-index: 3;        /* por encima de todo */
+  pointer-events: none; /* no bloquea clicks */
+}
+
 
 /* Título */
 .project-content h3 {
@@ -49,6 +62,7 @@
   background: var(--grad-rainbow);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
 /* Texto */
@@ -68,11 +82,12 @@
 
 /* Imagen */
 .project-image {
-  width: 100%;
-  height: clamp(120px, 18vw, 150px);
+  width: 95%;  /* 👈 ocupa un poco menos del ancho */
+  height: clamp(90px, 14vw, 120px);
+  margin: 0 auto 1rem; /* centrada y con separación */
   object-fit: cover;
   border-radius: 8px;
-  border: 1px solid #9f9e9e;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.55);
 }
 
 /* Badges */
