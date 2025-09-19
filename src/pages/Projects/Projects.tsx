@@ -72,7 +72,9 @@ export default function Projects() {
 
   return (
     <main className="projects">
-      <h1 className="projects-title">Mis Proyectos</h1>
+      <h1 className="projects-title">
+         <span className="word-mis">Mis</span> <span className="word-proyectos">Proyectos</span>
+        </h1>
 
       <div className="carousel">
         <div

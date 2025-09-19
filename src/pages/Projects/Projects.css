@@ -107,6 +107,76 @@
 .carousel-btn.left img {
   margin-left: 5rem;
 }
+
+/* ===== Animaciones ===== */
+
+/* Título */
+@keyframes slideInLeft {
+  0% { transform: translateX(-120%); opacity: 0; }
+  70% { transform: translateX(8%); opacity: 1; } /* menos "rebote" */
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInRight {
+  0% { transform: translateX(120%); opacity: 0; }
+  70% { transform: translateX(-2%); opacity: 1; } /* menos "rebote" */
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+/* Flechas rebotando */
+@keyframes arrowBounceIn {
+  0% { transform: translateX(200%) scale(0.8); opacity: 0; }
+  60% { transform: translateX(-15%) scale(1.1); opacity: 1; }
+  80% { transform: translateX(5%) scale(0.95); }
+  100% { transform: translateX(0) scale(1); opacity: 1; }
+}
+
+/* Tarjetas fade in */
+@keyframes fadeInCard {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ===== Aplicamos ===== */
+
+.projects-title span {
+  display: inline-block;
+  opacity: 0;
+}
+
+.projects-title .word-mis {
+  animation: slideInLeft 1s ease forwards;
+}
+
+.projects-title .word-proyectos {
+  animation: slideInRight 1s ease forwards;
+  animation-delay: 0.2s;
+}
+
+/* Flechas */
+.carousel-btn {
+  opacity: 0;
+}
+
+.carousel-btn.left {
+  animation: arrowBounceIn 0.9s ease forwards;
+  animation-delay: 0.6s;
+}
+
+.carousel-btn.right {
+  animation: arrowBounceIn 0.9s ease forwards;
+  animation-delay: 0.8s;
+}
+
+/* Tarjetas */
+.project-card {
+  opacity: 0;
+  animation: fadeInCard 1s ease forwards;
+  animation-delay: 1s;
+}
+
+
+
 /* ========== Tablet / Desktop (≥768px) ========== */
 @media (min-width: 768px) {
   .projects-title {
