@@ -1,67 +1,62 @@
-.projects-container {
+/* ====== Mobile First ====== */
+.projects {
+  height: var(--height-h);
   position: relative;
-  width: 100%;
-  min-height: 100vh;
-  overflow: hidden;
-}
-
-.projects-video {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -2;
-  opacity: 0.3;
-  filter: blur(1px);
-}
-
-.projects-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 215, 100, 0.1) 100%,
-    rgba(200, 130, 255, 0.3) 0%
-  );
-  z-index: -1;
-}
-
-.projects-content {
-  position: relative;
-  z-index: 1;
-  padding: 0rem 2rem;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #fff;
-  text-align: center;
-  
+  gap: 2rem;
+
+  background:
+    url("/assets/bg_projects.webp"),
+    rgba(255, 255, 255, 0.7);
+  background-size: cover, cover, cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-blend-mode: lighten
 }
 
+/* Título */
+.projects-title {
+  font-family: var(--font-title);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 700;
+  text-align: center;
+  margin: 5rem;
+  color: var(--accent);
+  animation: fadeSlideIn 800ms ease-out;
+}
+
+/* Grid de proyectos */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
   width: 100%;
   max-width: 1200px;
-  margin: 0 auto;
-   box-sizing: border-box;
 }
 
-.text3d-container {
-  width: 100%;
-  height: 150px;
-  pointer-events: none;
+/* Animación entrada título */
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-
-@media (max-width: 768px) {
+/* ====== Tablet/Desktop ====== */
+@media (min-width: 768px) {
   .projects-grid {
-    padding: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .projects-title {
+    font-size: clamp(3rem, 6vw, 6rem);
   }
 }

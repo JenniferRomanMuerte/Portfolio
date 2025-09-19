@@ -1,17 +1,17 @@
 import "./Projects.css";
-import Text3D from "../../components/Text3d/Text3d";
 import ProjectCard from "../../components/ProjectCard/ProjectCard";
-import { useEffect, useState } from "react"; // al principio del archivo
+import { useEffect, useState } from "react";
 
 export default function Projects() {
   const [isMobile, setIsMobile] = useState(false);
-  
+
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile(); // detecta si es móvil al cargar
+    checkMobile();
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
+
   const projects = [
     {
       title: "Gestor de facturación",
@@ -48,7 +48,7 @@ export default function Projects() {
     {
       title: "Proyecto final de FP",
       description:
-        "Aplicación web completa de comunidad de recetas, visualizando éstas mediante filtros de ingredientes o categorías. Registro de clientes para poder subir y valorar recetas",
+        "Aplicación web completa de comunidad de recetas, visualizando éstas mediante filtros de ingredientes o categorías. Registro de clientes para poder subir y valorar recetas.",
       imageUrl: "/assets/project-helpcook.png",
       techs: ["Java", "Springboot", "SQL", "Angular"],
       link: "https://github.com/JenniferRomanMuerte/helpcook",
@@ -56,31 +56,15 @@ export default function Projects() {
   ];
 
   return (
-    <main className="projects-container">
-      <div className="projects-overlay" />
-      <video className="projects-video" autoPlay loop muted playsInline>
-        <source src="/assets/VideoProject.mp4" type="video/mp4" />
-        Tu navegador no soporta el vídeo.
-      </video>
+    <main className="projects">
+      <div className="projects-header">
+        <h1 className="projects-title">Mis Proyectos</h1>
+      </div>
 
-      <div className="projects-content">
-        <div className="projects-title">
-          <Text3D
-            text="Mis Proyectos"
-            fontUrl="/fonts/Caveat_Regular.json"
-            size={isMobile ? 2.5 : 4}
-            position={isMobile ? [-8, 0, 0] : [-12, 0, 0]}
-            color="#815baa"
-            metalness={0.8}
-            roughness={0.5}
-          />
-        </div>
-
-        <div className="projects-grid">
-          {projects.map((project, i) => (
-            <ProjectCard key={i} {...project} />
-          ))}
-        </div>
+      <div className="projects-grid">
+        {projects.map((project, i) => (
+          <ProjectCard key={i} {...project} />
+        ))}
       </div>
     </main>
   );
