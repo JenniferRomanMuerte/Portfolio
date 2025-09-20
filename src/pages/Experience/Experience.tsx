@@ -35,12 +35,10 @@ export default function Experience() {
               title="Horus Financial – Desarrolladora Web Full Stack"
               subtitle="Marzo 2025 – Septiembre 2025"
               content={[
-                "Lenguajes: JavaScript, Java, SQL, HTML, CSS.",
-                "Frontend: React, Vite, Angular, Bootstrap, Three.js.",
-                "Backend: Node.js, SpringBoot.",
-                "Bases de datos: PostgreSQL, SQLite.",
-                "Herramientas: Git, GitHub, Docker, Electron.",
-                "Metodologías: Scrum, desarrollo ágil.",
+                "Desarrollo de plataforma web de gestión de inventario y depósitos, con monitorización en tiempo real.",
+                "Implementación de alertas automáticas y reportes exportables.",
+                "Creación de un dashboard analítico con métricas clave y gráficos interactivos.",
+                "Diseño y desarrollo de la web corporativa con área privada y gestión documental.",
               ]}
             />
 
@@ -60,10 +58,6 @@ export default function Experience() {
               title="VT-LAB – Desarrolladora Web (Prácticas FP – Proyecto I+D)"
               subtitle="2023 – 2024"
               content={[
-                "Desarrollo de plataforma de gestión de inventario y depósitos con monitorización en tiempo real.",
-                "Implementación de alertas automáticas y reportes exportables.",
-                "Dashboard analítico con métricas clave y gráficos interactivos.",
-                "Diseño y desarrollo de la web corporativa con área privada y gestión documental.",
                 "Desarrollo de interfaces web con HTML, CSS, Bootstrap y JavaScript.",
                 "Creación de componentes reutilizables para mejorar eficiencia.",
                 "Soluciones web con React (frontend) y Python (backend).",
