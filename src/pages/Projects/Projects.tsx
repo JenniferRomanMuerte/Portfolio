@@ -10,7 +10,7 @@ export default function Projects() {
         "Aplicación de escritorio para gestión de citas, facturas y pagos sincronizada con Google Calendar.",
       imageUrl: "/assets/project-facturacion.png",
       techs: ["React", "Electron", "SQLite"],
-      link: "https://github.com/JenniferRomanMuerte/facturacion_fisio_pilates",
+      link: "https://youtu.be/c86ZsJ4Ew2A",
     },
     {
       title: "Asociación de fumadores",
@@ -18,7 +18,7 @@ export default function Projects() {
         "Gestión de socios, generación de contratos, inventario y transacciones usando llaveros NFC y sistema web local.",
       imageUrl: "/assets/project-asociacion.png",
       techs: ["React", "NestJS", "PostgreSQL"],
-      link: "https://github.com/JenniferRomanMuerte/asociacion-backend",
+      private:true,
     },
     {
       title: "Página web de psicología",
@@ -34,7 +34,7 @@ export default function Projects() {
         "Aplicación web con globo terráqueo 3D y escenas interactivas para mostrar fotos y vídeos de viajes. Desarrollada con integración 3D y contenido dinámico.",
       imageUrl: "/assets/project-galeria.png",
       techs: ["Angular", "Three.js"],
-      link: "https://github.com/JenniferRomanMuerte/traveling",
+      link: "https://youtu.be/TO2bkzx6ZXc",
     },
     {
       title: "Proyecto final de FP",
@@ -46,7 +46,7 @@ export default function Projects() {
     },
   ];
 
-  // nº de tarjetas visibles según ancho
+  // nº de tarjetas visibles: 1 en móvil, 2 en ≥768px
   const getVisible = () => (window.innerWidth < 768 ? 1 : 2);
 
   const [visible, setVisible] = useState(getVisible());
@@ -58,25 +58,37 @@ export default function Projects() {
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  const next = () =>
-    setCurrent((p) => (p + 1) % (projects.length - (visible - 1)));
-  const prev = () =>
-    setCurrent(
-      (p) =>
-        (p - 1 + (projects.length - (visible - 1))) %
-        (projects.length - (visible - 1))
-    );
+  const steps = projects.length - (visible - 1);
+  const next = () => setCurrent((p) => (p + 1) % steps);
+  const prev = () => setCurrent((p) => (p - 1 + steps) % steps);
 
-  const slideWidthPct = 100 / visible;   // 50% en desktop, 100% en móvil
-  const translatePct = current * slideWidthPct;
+  const slideWidthPct = 100 / visible; // 100% móvil | 50% desktop
+  const translatePct = current * slideWidthPct; // desplazamiento del track
 
   return (
     <main className="projects">
-      <h1 className="projects-title">
-        <span className="word-mis">Mis</span>{" "}
-        <span className="word-proyectos">Proyectos</span>
-      </h1>
+      {/* Barra superior: flecha – título – flecha */}
+      <div className="projects-bar">
+        <button
+          className="carousel-btn left"
+          onClick={prev}
+          aria-label="Anterior"
+        >
+          <img src="/assets/arrow.png" alt="" />
+        </button>
 
+        <h1 className="projects-title">Mis Proyectos</h1>
+
+        <button
+          className="carousel-btn right"
+          onClick={next}
+          aria-label="Siguiente"
+        >
+          <img src="/assets/arrow.png" alt="" />
+        </button>
+      </div>
+
+      {/* Carrusel */}
       <div className="carousel">
         <div
           className="carousel-track"
@@ -86,21 +98,11 @@ export default function Projects() {
             <div
               className="carousel-slide"
               key={i}
-              style={{ flex: `0 0 ${slideWidthPct}%` }} /* anchura exacta del slide */
+              style={{ flex: `0 0 ${slideWidthPct}%` }}
             >
               <ProjectCard {...project} />
             </div>
           ))}
-        </div>
-
-        {/* Botones debajo */}
-        <div className="carousel-buttons">
-          <button className="carousel-btn left" onClick={prev}>
-            <img src="/assets/arrow.png" alt="Anterior" />
-          </button>
-          <button className="carousel-btn right" onClick={next}>
-            <img src="/assets/arrow.png" alt="Siguiente" />
-          </button>
         </div>
       </div>
     </main>
