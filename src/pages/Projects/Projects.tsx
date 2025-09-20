@@ -67,14 +67,15 @@ export default function Projects() {
         (projects.length - (visible - 1))
     );
 
-  const slideWidthPct = 100 / visible; // 50% en desktop, 100% en móvil
+  const slideWidthPct = 100 / visible;   // 50% en desktop, 100% en móvil
   const translatePct = current * slideWidthPct;
 
   return (
     <main className="projects">
       <h1 className="projects-title">
-         <span className="word-mis">Mis</span> <span className="word-proyectos">Proyectos</span>
-        </h1>
+        <span className="word-mis">Mis</span>{" "}
+        <span className="word-proyectos">Proyectos</span>
+      </h1>
 
       <div className="carousel">
         <div
@@ -85,13 +86,14 @@ export default function Projects() {
             <div
               className="carousel-slide"
               key={i}
-              style={{ flex: `0 0 ${slideWidthPct}%` }} // anchura exacta del slide
+              style={{ flex: `0 0 ${slideWidthPct}%` }} /* anchura exacta del slide */
             >
               <ProjectCard {...project} />
             </div>
           ))}
         </div>
-        {/* 👇 Botones debajo */}
+
+        {/* Botones debajo */}
         <div className="carousel-buttons">
           <button className="carousel-btn left" onClick={prev}>
             <img src="/assets/arrow.png" alt="Anterior" />

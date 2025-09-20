@@ -7,8 +7,8 @@
   justify-content: center;
   background: url("/assets/bg_projects.webp") center/cover no-repeat;
   position: relative;
-  overflow: hidden; /* oculta desbordes del carrusel */
-   padding: 1rem 0;
+  overflow: hidden;       /* oculta desbordes del carrusel */
+  padding: 1rem 0;
 }
 
 /* capa de opacidad sobre el fondo */
@@ -16,7 +16,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(255, 255, 255, 0.6); /* 👈 blanco translúcido encima */
+  background: rgba(255, 255, 255, 0.6); /* blanco translúcido encima */
   z-index: 0;
 }
 
@@ -35,9 +35,9 @@
   text-align: center;
 }
 
-/* Carrusel */
+/* Carrusel (contenedor) */
 .carousel {
-  flex: 1; /* ocupa el espacio central */
+  flex: 1;                       /* ocupa el espacio central */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -53,39 +53,60 @@
   align-items: center;
   width: 100%;
   transition: transform 0.6s ease;
-  gap: 2rem;
+  gap: 0;                        /* sin gap para que el translateX por % sea exacto */
 }
 
+/* el espacio entre tarjetas lo ponemos en el slide, no en el track */
 .carousel-slide {
-  flex: 0 0 100%; /* en móvil solo 1 */
+  flex: 0 0 100%;                /* en móvil solo 1 por vista */
+  padding: 0 1rem;               /* separación lateral visual entre tarjetas */
+  box-sizing: border-box;
   display: flex;
-  justify-content: center;
+  justify-content: center;       /* centra la tarjeta dentro del slide */
+  align-items: center;
+
+  /* 👇 perspectiva aquí (padre) para que el 3D del hover se note */
+  perspective: 1000px;
+  perspective-origin: 50% 40%;
+}
+
+/* Tope de tamaño consistente para TODAS las tarjetas */
+:root{
+  --card-max-m: 380px;           /* tope en móvil */
+  --card-max-d: 520px;           /* tope en desktop */
 }
 
 /* Tarjetas limitadas en tamaño */
 .carousel .project-card {
-  max-width: clamp(260px, 80vw, 380px);
-  max-height: 85svh; /* nunca se sale de la pantalla */
+  width: 100%;
+  max-width: min(var(--card-max-m), 90vw);  /* centradas y con tope móvil */
+  max-height: 85svh;                        /* nunca se sale de la pantalla */
   height: auto;
+  margin: 0 auto;
   object-fit: contain;
+
+  /* animación de aparición (ya la tenías) */
+  opacity: 0;
+  animation: fadeInCard 1s ease forwards;
+  animation-delay: 1s;
 }
 
 /* Flechas debajo */
 .carousel-buttons {
-   width: 100%;                /* 👈 mismo ancho que el carrusel */
+  width: 100%;                  /* mismo ancho que el carrusel */
   max-width: 1200px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   margin-top: 1.8rem;
 }
 
 .carousel-btn {
-  background: none; /* sin fondo */
+  background: none;             /* sin fondo */
   border: none;
   cursor: pointer;
   padding: 0;
+  opacity: 0;                   /* para animación de entrada */
 }
 
 .carousel-btn img {
@@ -99,46 +120,45 @@
   transform: scale(1.1);
 }
 
-.carousel-btn.right img {
-  transform: rotate(180deg);
-  margin-right: 5rem;
-}
-
-.carousel-btn.left img {
-  margin-left: 5rem;
-}
+.carousel-btn.right img { transform: rotate(180deg); }
 
 /* ===== Animaciones ===== */
 
 /* Título */
 @keyframes slideInLeft {
-  0% { transform: translateX(-120%); opacity: 0; }
-  70% { transform: translateX(8%); opacity: 1; } /* menos "rebote" */
-  100% { transform: translateX(0); opacity: 1; }
+  0%   { transform: translateX(-120%); opacity: 0; }
+  70%  { transform: translateX(8%);    opacity: 1; }
+  100% { transform: translateX(0);     opacity: 1; }
 }
 
 @keyframes slideInRight {
-  0% { transform: translateX(120%); opacity: 0; }
-  70% { transform: translateX(-2%); opacity: 1; } /* menos "rebote" */
-  100% { transform: translateX(0); opacity: 1; }
+  0%   { transform: translateX(120%); opacity: 0; }
+  70%  { transform: translateX(-2%);  opacity: 1; }
+  100% { transform: translateX(0);    opacity: 1; }
 }
 
 /* Flechas rebotando */
 @keyframes arrowBounceIn {
-  0% { transform: translateX(200%) scale(0.8); opacity: 0; }
-  60% { transform: translateX(-15%) scale(1.1); opacity: 1; }
-  80% { transform: translateX(5%) scale(0.95); }
+  0%   { transform: translateX(200%) scale(0.8); opacity: 0; }
+  60%  { transform: translateX(-15%) scale(1.1); opacity: 1; }
+  80%  { transform: translateX(5%) scale(0.95); }
   100% { transform: translateX(0) scale(1); opacity: 1; }
 }
 
 /* Tarjetas fade in */
 @keyframes fadeInCard {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
+  from { opacity: 0;  }
+  to   { opacity: 1; }
 }
 
-/* ===== Aplicamos ===== */
+/* Tarjetas */
+.project-card {
+  opacity: 0;
+  animation: fadeInCard 700ms ease forwards;
+  animation-delay: 1s;
+}
 
+/* Aplicamos animaciones */
 .projects-title span {
   display: inline-block;
   opacity: 0;
@@ -153,11 +173,6 @@
   animation-delay: 0.2s;
 }
 
-/* Flechas */
-.carousel-btn {
-  opacity: 0;
-}
-
 .carousel-btn.left {
   animation: arrowBounceIn 0.9s ease forwards;
   animation-delay: 0.6s;
@@ -168,35 +183,32 @@
   animation-delay: 0.8s;
 }
 
-/* Tarjetas */
-.project-card {
-  opacity: 0;
-  animation: fadeInCard 1s ease forwards;
-  animation-delay: 1s;
-}
-
-
-
 /* ========== Tablet / Desktop (≥768px) ========== */
 @media (min-width: 768px) {
-  .projects-title {
-    margin-bottom: 1.5rem;
-  }
-
-  .carousel-track {
-    gap: 3rem;
-  }
+  .projects-title { margin-bottom: 1.5rem; }
 
   .carousel-slide {
-    flex: 0 0 50%; /* 2 visibles en desktop */
+    flex: 0 0 50%;                      /* 2 visibles en desktop */
+    padding: 0 1.2rem;                  /* un poco más de separación */
   }
 
   .carousel .project-card {
-    max-width: min(480px, 32vw);  /* 👈 nunca más de 480px ni del 32% del ancho */
-    max-height: 72svh;            /* 👈 asegura que no rebasa la altura */
+    max-width: min(var(--card-max-d), 32vw); /* tope uniforme en desktop */
+    max-height: 72svh;
     height: auto;
   }
+
   .carousel-buttons {
-    gap: clamp(4rem, 20vw, 18rem);
+    gap: clamp(4rem, 20vw, 18rem);      /* aire entre flechas en pantallas anchas */
+  }
+}
+
+/* Respeta usuarios con reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .carousel-track,
+  .carousel .project-card,
+  .carousel-btn {
+    animation: none !important;
+    transition: none !important;
   }
 }

@@ -15,23 +15,26 @@ export default function ProjectCard({
   techs,
   link,
 }: ProjectCardProps) {
-  const Wrapper = link ? "a" : "div";
+  const Wrapper: any = link ? "a" : "div";
+  const wrapperProps = link
+    ? { href: link, target: "_blank", rel: "noopener noreferrer" }
+    : {};
 
   return (
-    <Wrapper
-      className="project-card"
-      href={link}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      {/* Pin */}
-      <img src="/assets/pin.png" alt="Pin" className="project-pin" />
-      {/* Hoja */}
-      <img src="/assets/notebook_page.webp" alt="hoja" className="paper-bg" />
+    <Wrapper className="project-card" {...wrapperProps}>
+      {/* Pin decorativo */}
+      <img src="/assets/pin.png" alt="" aria-hidden="true" className="project-pin" />
 
+      {/* Contenido */}
       <div className="project-content">
         <h3>{title}</h3>
-        <img src={imageUrl} alt={title} className="project-image" />
+        <img
+          src={imageUrl}
+          alt={title}
+          className="project-image"
+          loading="lazy"
+          decoding="async"
+        />
         <p>{description}</p>
         <div className="project-techs">
           {techs.map((tech, i) => (

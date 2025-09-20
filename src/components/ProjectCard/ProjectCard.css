@@ -1,125 +1,194 @@
+/* ---------- TARJETA (div normal, con textura suave) ---------- */
 .project-card {
   position: relative;
   width: 100%;
   max-width: 640px;
-  aspect-ratio: 840 / 1080;
   margin: 0 auto 2rem;
-  transition: transform 0.3s ease;
+  border-radius: 16px;
+  background: linear-gradient(to bottom, rgba(255,255,255,.92), rgba(255,255,255,.92));
+  box-shadow: 0 8px 22px rgba(0,0,0,.88);
+  overflow: visible; /* el pin puede sobresalir */
+  will-change: transform;
+  transform: translateZ(0);               /* activa aceleración */
+  transform-style: preserve-3d;           /* prepara 3D */
+
+  /* transiciones suaves */
+  transition: transform .28s cubic-bezier(.16,1,.3,1),
+              box-shadow .28s cubic-bezier(.16,1,.3,1);
 }
 
-.project-card:hover {
-  transform: rotate(-1deg) scale(1.02);
-}
-
-/* Hoja */
-.paper-bg {
+/* textura (ajusta opacity/brightness para “más blanca”) */
+.project-card::before {
+  content: "";
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  border-radius: 16px;
+  background-image: url("/assets/fondo-sobre-mi.webp");
+  background-position: center;
+  background-repeat: repeat;
+  background-size: 520px auto;
+  opacity: .55;                 /* más blanco => sube hacia .65/.75 */
+  filter: brightness(1.25) contrast(.95);
   z-index: 0;
   pointer-events: none;
-  filter: drop-shadow(0 8px 12px rgba(0,0,0,.7));
 }
 
-/* Contenido sobre la hoja */
-.project-content {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  padding: 1.2rem 1.6rem 1.6rem 3.5rem; /* margen izq por agujeros */
+/* Hover/focus: sube y rota con sensación 3D (la perspectiva está en el slide) */
+.project-card:hover,
+.project-card:focus-visible {
+  transform: translateY(-10px) rotateZ(-2deg) rotateX(1.6deg) scale(1.018);
+  box-shadow: 0 18px 40px rgba(0,0,0,.30);
+}
+
+/* Click/active: sensación de “pulsado” */
+.project-card:active {
+  transform: translateY(-5px) rotateZ(-1.2deg) rotateX(1deg) scale(1.008);
+  box-shadow: 0 12px 28px rgba(0,0,0,.24);
+}
+
+/* Asegura que el contenido vaya por encima de la textura */
+.project-content,
+.project-pin {
+  position: relative;
   z-index: 1;
+}
+
+/* ---------- CONTENIDO (reparto vertical estable) ---------- */
+.project-content {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto; /* título | imagen | texto | badges */
+  row-gap: clamp(8px, 2.2vw, 14px);
+  padding: clamp(16px, 2.2vw, 22px);
   box-sizing: border-box;
   color: #222;
 }
 
-/* Pin */
+/* ---------- PIN (un poco más abajo) ---------- */
 .project-pin {
   position: absolute;
-  top: -16px;        /* lo sacamos un poco de la hoja */
-  left: 50%;         /* centrado horizontal */
-  transform: translateX(-50%) rotate(-12deg); /* inclinación realista */
-  width: 42px;       /* tamaño del pin */
+  top: 2px;                                  /* ↓ más bajo que antes */
+  left: 50%;
+  transform: translateX(-50%) rotate(-12deg);
+  width: clamp(26px, 4.6vw, 42px);
   height: auto;
-  z-index: 3;        /* por encima de todo */
-  pointer-events: none; /* no bloquea clicks */
+  z-index: 3;
+  pointer-events: none;
+  transform-origin: center top;
 }
 
-
-/* Título */
+/* ---------- TÍTULO (mueve + escala en hover) ---------- */
 .project-content h3 {
   font-family: var(--font-title);
-  font-size: clamp(1.6rem, 2.4vw, 2rem);
-  margin: 2.5rem 0.5 0.5rem;
+  font-size: clamp(1.6rem, 2.8vw, 2rem);
+  margin: 2.2rem 0 0;                          /* aire bajo el pin */
   text-align: center;
   color: var(--accent);
-  transition: background 0.3s ease, color 0.3s ease;
+  transition: transform .22s cubic-bezier(.16,1,.3,1),
+              letter-spacing .22s ease,
+              text-shadow .22s ease;
+  will-change: transform;
 }
 
-.project-card:hover h3 {
-  background: var(--grad-rainbow);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+/* animación del título al hover de la tarjeta */
+.project-card:hover .project-content h3 {
+  transform: translateY(-2px) scale(1.045);
+  letter-spacing: .2px;                        /* micro movimiento “vivo” */
+  text-shadow: 0 1px 0 rgba(255,255,255,.6), 0 6px 16px rgba(0,0,0,.15);
 }
 
-/* Texto */
-.project-content p {
-  flex-grow: 1;
-  font-family: var(--font-base);
-  font-size: clamp(0.95rem, 1.2vw, 1.05rem);
-  line-height: 1.55;
-  text-align: justify;
-  margin: 1.5rem 0 0;
-  padding-left: 0.5rem;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 6;
-  -webkit-box-orient: vertical;
-}
-
-/* Imagen */
+/* ---------- IMAGEN (apaisada, más pequeña y centrada de verdad) ---------- */
 .project-image {
-  width: 95%;  /* 👈 ocupa un poco menos del ancho */
-  height: clamp(90px, 14vw, 120px);
-  margin: 0 auto 1rem; /* centrada y con separación */
+  display: block;
+  width: 88%;                 /* más pequeña */
+  max-width: 480px;           /* tope desktop */
+  margin: 0 auto .9rem;       /* centrada y con separación abajo */
+  aspect-ratio: 16 / 9;       /* todas apaisadas */
+  height: auto;               /* alto derivado del ratio */
   object-fit: cover;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.55);
+  border: 1px solid #2222;
+  box-shadow: 0 4px 12px rgba(0,0,0,.28);
+  transform: translateZ(0);
+  transition: transform .28s cubic-bezier(.16,1,.3,1);
 }
 
-/* Badges */
+/* ligero parallax de la imagen */
+.project-card:hover .project-image,
+.project-card:focus-visible .project-image {
+  transform: translateZ(16px) scale(1.01);
+}
+
+/* ---------- TEXTO (rellena hueco entre imagen y badges) ---------- */
+.project-content p {
+  margin: 0;
+  margin-inline: clamp(12px, 2.6vw, 20px);  /* más margen lateral */
+  padding-top: .2rem;
+
+  font-family: var(--font-base);
+  font-size: clamp(.95rem, 1.2vw, 1.05rem);
+  line-height: 1.6;
+  text-align: justify;
+
+  overflow: hidden;                         /* tope suave */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 7;
+}
+
+/* ---------- BADGES (siempre abajo a la derecha) ---------- */
 .project-techs {
+  margin-top: auto;
   display: flex;
   justify-content: flex-end;
-  gap: 1.5rem;
-  margin-top: 1rem;
-
+  align-items: center;
+  gap: .8rem;
+  padding-right: clamp(8px, 2.2vw, 14px);
+  padding-top: .3rem;
 }
 
 .tech-badge {
   background: #fff;
-  border: 1px solid #ddd;
+  border: .5px solid var(--accent-alt);
   color: #333;
-  font-size: 0.8rem;
-  padding: 0.35rem 0.7rem;
-  border-radius: 5px;
-  border: 0.5px solid var(--accent-alt);
+  font-size: .8rem;
+  padding: .35rem .7rem;
+  border-radius: 6px;
+  white-space: nowrap;
 }
 
-
-
-/* ——— Responsivo ——— */
-@media (max-width: 768px) {
-  .project-card {
-    max-width: 520px;
-  }
+/* ---------- RESPONSIVE (tablet/desktop) ---------- */
+@media (min-width: 768px) {
   .project-content {
-    padding: 1rem 1.2rem 1.2rem 2.4rem;
+    row-gap: clamp(10px, 1.6vw, 16px);
+    padding:
+      clamp(14px, 2vw, 22px)
+      clamp(20px, 2.2vw, 26px)
+      clamp(16px, 2vw, 22px)
+      clamp(20px, 2.2vw, 26px);
   }
+
+  .project-image {
+    width: 86%;                         /* un pelín más compacta aún */
+    max-width: 520px;                   /* tope algo mayor en desktop */
+    margin-inline: auto;                /* centra perfecto */
+  }
+
   .project-content p {
-    -webkit-line-clamp: 5;
+    -webkit-line-clamp: 9;              /* más texto en pantallas grandes */
+    margin-inline: clamp(14px, 2.2vw, 22px);
+  }
+}
+
+/* --------- Móviles muy pequeños --------- */
+@media (max-width: 380px) {
+  .project-image { width: 86%; }
+}
+
+/* Respeta usuarios con reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .project-card,
+  .project-image {
+    transition: none !important;
+    transform: none !important;
   }
 }
