@@ -30,7 +30,7 @@
   padding: 2rem;
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
   animation: fadeInScale 0.3s ease forwards;
-  z-index: 102; /* por encima de todo */
+  z-index: 102;
 }
 
 /* Botón cerrar */
@@ -48,13 +48,12 @@
 /* Título y subtítulo */
 .modal-title {
   font-family: var(--font-title);
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
+  font-size: 2.3rem; /* 🔹 más grande */
+  margin-bottom: 0.4rem;
   text-align: left;
   background: var(--grad-rainbow);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-
 }
 
 .modal-title::after {
@@ -68,26 +67,20 @@
 }
 
 .modal-subtitle {
-  font-size: 1.9rem;
-  color: #555;
+  font-size: 1.1rem; /* 🔹 más pequeño */
+  color: #666;
   font-style: italic;
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
 }
 
-/* Lista de contenido */
-.modal-content {
-  margin: 0;
-  padding-left: 1.2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
 
-.modal-content li {
+/* Contenido como texto */
+.modal-paragraph {
+  margin: 1.5rem 0 0 1.5rem;
   color: #222;
-  line-height: 1.5;
-  font-size: 1.2rem;
-  list-style-type: "• ";
+  line-height: 1.6;
+  font-size: 1.1rem;
+  text-align: justify;
 }
 
 /* Animación */

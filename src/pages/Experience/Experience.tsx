@@ -35,10 +35,10 @@ export default function Experience() {
               title="Horus Financial – Desarrolladora Web Full Stack"
               subtitle="Marzo 2025 – Septiembre 2025"
               content={[
-                "Desarrollo de plataforma web de gestión de inventario y depósitos, con monitorización en tiempo real.",
-                "Implementación de alertas automáticas y reportes exportables.",
-                "Creación de un dashboard analítico con métricas clave y gráficos interactivos.",
-                "Diseño y desarrollo de la web corporativa con área privada y gestión documental.",
+                "- Desarrollo de plataforma web de gestión de inventario y depósitos, con monitorización en tiempo real.",
+                "- Implementación de alertas automáticas y reportes exportables.",
+                "- Creación de un dashboard analítico con métricas clave y gráficos interactivos.",
+                "- Diseño y desarrollo de la web corporativa con área privada y gestión documental.",
               ]}
             />
 
@@ -58,13 +58,13 @@ export default function Experience() {
               title="VT-LAB – Desarrolladora Web (Prácticas FP – Proyecto I+D)"
               subtitle="2023 – 2024"
               content={[
-                "Desarrollo de interfaces web con HTML, CSS, Bootstrap y JavaScript.",
-                "Creación de componentes reutilizables para mejorar eficiencia.",
-                "Soluciones web con React (frontend) y Python (backend).",
-                "Integración de modelos BIM con datos externos.",
-                "Gestión de bases de datos grafo (Neo4j) para Knowledge Graphs.",
-                "Validaciones de datos con JSON Schema para calidad e interoperabilidad.",
-                "Automatización de procesos con Celery, optimizando tareas asíncronas.",
+                "- Desarrollo de interfaces web con HTML, CSS, Bootstrap y JavaScript.",
+                "- Creación de componentes reutilizables para mejorar eficiencia.",
+                "- Soluciones web con React (frontend) y Python (backend).",
+                "- Integración de modelos BIM con datos externos.",
+                "- Gestión de bases de datos grafo (Neo4j) para Knowledge Graphs.",
+                "- Validaciones de datos con JSON Schema para calidad e interoperabilidad.",
+                "- Automatización de procesos con Celery, optimizando tareas asíncronas.",
               ]}
             />
 
@@ -84,10 +84,10 @@ export default function Experience() {
               title="Proyectos Freelance – Desarrolladora Web"
               subtitle="2024 – 2025"
               content={[
-                "Web responsive con SEO y optimización de conversión.",
-                "Página corporativa con portfolio multimedia y blog autogestionable.",
-                "Aplicación multiplataforma para facturación, control de clientes y reportes de ventas.",
-                "Sistema de registro y seguimiento de miembros con base de datos segura y exportación de informes.",
+                "- Web responsive con SEO y optimización de conversión.",
+                "- Página corporativa con portfolio multimedia y blog autogestionable.",
+                "- Aplicación multiplataforma para facturación, control de clientes y reportes de ventas.",
+                "- Sistema de registro y seguimiento de miembros con base de datos segura y exportación de informes.",
               ]}
             />
           </section>
@@ -105,6 +105,8 @@ export default function Experience() {
                 IFP
                 <p>
                   Programación en HTML, CSS, Java, SQL, SpringBoot, Android Studio, Bootstrap, UML. <br />
+                  Desarrollo multiplataforma y gestión de bases de datos. <br />
+                  Diseño de interfaces y experiencia de usuario. <br />
                   Proyecto final: Web de recetas con Angular y SpringBoot.
                 </p>
               </div>
@@ -116,7 +118,10 @@ export default function Experience() {
               <div className="experience-text">
                 <strong>Bootcamp de Programación Web – Adalab</strong>
                 <br />
-                Desarrollo web con HTML, CSS, JavaScript, React, Node.js, PostgreSQL, Scrum, Git/GitHub.
+                Desarrollo web con HTML, CSS, JavaScript, React, Node.js, PostgreSQL. <br />
+                Aplicación de Scrum y metodologías ágiles. <br />
+                Uso de Git y GitHub para trabajo colaborativo.
+
               </div>
               <span className="experience-date">Actualidad</span>
             </div>
