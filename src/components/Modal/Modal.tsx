@@ -1,4 +1,5 @@
 import { createPortal } from "react-dom";
+import { Link } from "react-router-dom";
 import "./Modal.css";
 
 interface ModalProps {
@@ -39,9 +40,9 @@ export default function Modal({
         ))}
         {cta && (
           <div className="modal-cta">
-            <a href={cta.href} className="modal-link">
+            <Link to={cta.href} className="modal-link">
               {cta.text}
-            </a>
+            </Link>
           </div>
         )}
       </div>
