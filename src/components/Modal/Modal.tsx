@@ -7,6 +7,10 @@ interface ModalProps {
   title: string;
   subtitle?: string;
   content: string[];
+  cta?: {
+    text: string;
+    href: string;
+  };
 }
 
 export default function Modal({
@@ -15,6 +19,7 @@ export default function Modal({
   title,
   subtitle,
   content,
+  cta,
 }: ModalProps) {
   if (!isOpen) return null;
 
@@ -32,8 +37,15 @@ export default function Modal({
             {item}
           </p>
         ))}
+        {cta && (
+          <div className="modal-cta">
+            <a href={cta.href} className="modal-link">
+              {cta.text}
+            </a>
+          </div>
+        )}
       </div>
     </div>,
-    document.body
+    document.body,
   );
 }

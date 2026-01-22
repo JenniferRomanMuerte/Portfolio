@@ -13,14 +13,44 @@ export default function Experience() {
       <div className="experience-overlay-pattern" />
 
       <div className="experience-content">
-
         {/* EXPERIENCIA */}
         <div className="section-wrapper exp-section">
           <h1 className="experience-title">Experiencia</h1>
           <section className="experience-box">
-
+            {/* FREELANCE */}
+            <div
+              className="experience-item clickable"
+              onClick={() => setOpenModal("freelance")}
+            >
+              <FaBriefcase className="experience-icon" />
+              <div>
+                <strong>Proyectos Freelance – Desarrolladora Web</strong>
+                <br />
+                Aplicaciones multiplataforma y páginas corporativas
+              </div>
+              <span className="experience-date">2024 – 2025</span>
+            </div>
+            <Modal
+              isOpen={openModal === "freelance"}
+              onClose={() => setOpenModal(null)}
+              title="Proyectos Freelance – Desarrolladora Web"
+              subtitle="2024 – 2025"
+              content={[
+                "- Desarrollo de páginas web corporativas responsive, con optimización SEO on-page, estructura semántica y mejora de conversión orientada a visibilidad y captación de clientes.",
+                "- Diseño y desarrollo de web corporativa con portfolio multimedia y blog autogestionable, enfocada a contenidos visuales, rendimiento y facilidad de actualización por parte del cliente.",
+                "- Implementación de un sistema de registro de socios, generación de contratos, control de accesos, gestion de inventario y contabilidad.",
+                "- Desarrollo de un juego web interactivo tipo ruleta, con gestión avanzada de estado, lógica de turnos, validación de letras, puntuación dinámica y enfoque en experiencia de usuario.",
+              ]}
+              cta={{
+                text: "Ver proyectos completos",
+                href: "/projects",
+              }}
+            />
             {/* HORUS */}
-            <div className="experience-item clickable" onClick={() => setOpenModal("horus")}>
+            <div
+              className="experience-item clickable"
+              onClick={() => setOpenModal("horus")}
+            >
               <FaBriefcase className="experience-icon" />
               <div>
                 <strong>Horus Financial – Desarrolladora Web Full Stack</strong>
@@ -43,10 +73,15 @@ export default function Experience() {
             />
 
             {/* VT-LAB */}
-            <div className="experience-item clickable" onClick={() => setOpenModal("vtlab")}>
+            <div
+              className="experience-item clickable"
+              onClick={() => setOpenModal("vtlab")}
+            >
               <FaBriefcase className="experience-icon" />
               <div>
-                <strong>VT-LAB – Desarrolladora Web (Prácticas FP – Proyecto I+D)</strong>
+                <strong>
+                  VT-LAB – Desarrolladora Web (Prácticas FP – Proyecto I+D)
+                </strong>
                 <br />
                 Soluciones web con React, Python y Knowledge Graphs
               </div>
@@ -67,63 +102,43 @@ export default function Experience() {
                 "- Automatización de procesos con Celery, optimizando tareas asíncronas.",
               ]}
             />
-
-            {/* FREELANCE */}
-            <div className="experience-item clickable" onClick={() => setOpenModal("freelance")}>
-              <FaBriefcase className="experience-icon" />
-              <div>
-                <strong>Proyectos Freelance – Desarrolladora Web</strong>
-                <br />
-                Aplicaciones multiplataforma y páginas corporativas
-              </div>
-              <span className="experience-date">2024 – 2025</span>
-            </div>
-            <Modal
-              isOpen={openModal === "freelance"}
-              onClose={() => setOpenModal(null)}
-              title="Proyectos Freelance – Desarrolladora Web"
-              subtitle="2024 – 2025"
-              content={[
-                "- Web responsive con SEO y optimización de conversión.",
-                "- Página corporativa con portfolio multimedia y blog autogestionable.",
-                "- Aplicación multiplataforma para facturación, control de clientes y reportes de ventas.",
-                "- Sistema de registro y seguimiento de miembros con base de datos segura y exportación de informes.",
-              ]}
-            />
           </section>
         </div>
 
         {/* FORMACIÓN */}
         <div className="section-wrapper form-section">
-          <h1 className="experience-title">Formación</h1>
+          <h1 className="experience-title">Formación Técnica</h1>
           <section className="experience-box">
             <div className="experience-item">
               <FaGraduationCap className="experience-icon" />
               <div className="experience-text">
-                <strong>FP Superior en Desarrollo de Aplicaciones Multiplataforma (DAM)</strong>
+                <strong>Bootcamp de Programación Web – Adalab</strong>
+                <br />
+                Desarrollo web con HTML, CSS, JavaScript, React, Node.js,
+                Express, PostgreSQL. <br />
+                Aplicación de Scrum y metodologías ágiles. <br />
+                Uso de Git y GitHub para trabajo colaborativo.
+              </div>
+              <span className="experience-date">Sep 2025 - Dic 2025</span>
+            </div>
+            <div className="experience-item">
+              <FaGraduationCap className="experience-icon" />
+              <div className="experience-text">
+                <strong>
+                  FP Superior en Desarrollo de Aplicaciones Multiplataforma
+                  (DAM)
+                </strong>
                 <br />
                 IFP
                 <p>
-                  Programación en HTML, CSS, Java, SQL, SpringBoot, Android Studio, Bootstrap, UML. <br />
+                  Programación en HTML, CSS, Java, SQL, SpringBoot, Android
+                  Studio, Bootstrap, UML. <br />
                   Desarrollo multiplataforma y gestión de bases de datos. <br />
                   Diseño de interfaces y experiencia de usuario. <br />
                   Proyecto final: Web de recetas con Angular y SpringBoot.
                 </p>
               </div>
               <span className="experience-date">2021 – 2023</span>
-            </div>
-
-            <div className="experience-item">
-              <FaGraduationCap className="experience-icon" />
-              <div className="experience-text">
-                <strong>Bootcamp de Programación Web – Adalab</strong>
-                <br />
-                Desarrollo web con HTML, CSS, JavaScript, React, Node.js, PostgreSQL. <br />
-                Aplicación de Scrum y metodologías ágiles. <br />
-                Uso de Git y GitHub para trabajo colaborativo.
-
-              </div>
-              <span className="experience-date">Actualidad</span>
             </div>
           </section>
         </div>
@@ -154,7 +169,6 @@ export default function Experience() {
             </div>
           </section>
         </div>
-
       </div>
     </main>
   );
