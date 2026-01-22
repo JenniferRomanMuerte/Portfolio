@@ -5,6 +5,14 @@ import { useEffect, useState } from "react";
 export default function Projects() {
   const projects = [
     {
+      title: "Gira y Adivina",
+      description:
+        "Juego interactivo inspirado en la Ruleta de la Suerte, con lógica de turnos, puntuación, letras, comodines y gestión completa de partidas.",
+      imageUrl: "/assets/project-roulette.png",
+      techs: ["React Vite", "Node.js", "SCSS"],
+      link: "https://spin-and-guess-1.onrender.com/",
+    },
+    {
       title: "Gestor de facturación",
       description:
         "Aplicación de escritorio para gestión de citas, facturas y pagos sincronizada con Google Calendar.",
@@ -18,7 +26,7 @@ export default function Projects() {
         "Gestión de socios, generación de contratos, inventario y transacciones usando llaveros NFC y sistema web local.",
       imageUrl: "/assets/project-asociacion.png",
       techs: ["React", "NestJS", "PostgreSQL"],
-      private:true,
+      private: true,
     },
     {
       title: "Página web de psicología",
