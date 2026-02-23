@@ -1,15 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  FaBars,
-  FaIdCard,
-  FaProjectDiagram,
-  FaUser,
-  FaRobot,
-} from "react-icons/fa";
+import { FaBars, FaIdCard, FaProjectDiagram, FaUser } from "react-icons/fa";
 import emailIcon from "/assets/email.webp";
 import githubIcon from "/assets/github.webp";
 import linkedinIcon from "/assets/linkedin.webp";
+import chatboxAiIcon from "/assets/chatboxIAIcon.webp";
 import AiModal from "../AiModal/AiModal";
 import "./NavBar.css";
 
@@ -83,7 +78,7 @@ export default function Navbar() {
             className="nav-link nav-ai-button"
             onClick={() => setIsAiOpen(true)}
           >
-            <FaRobot className="icon" />
+            <img src={chatboxAiIcon} alt="AI" className="social-icon" />
             <span className="label">AI</span>
           </button>
         </li>
