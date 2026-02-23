@@ -1,24 +1,44 @@
 .ai-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.55);
+  inset: 0;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(3px);
   display: flex;
-  justify-content: center;
   align-items: center;
-  z-index: 1000;
+  justify-content: center;
+  z-index: 100;
+}
+
+.ai-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 101;
 }
 
 .ai-modal {
-  background-color: #ffffff;
-  width: 420px;
-  max-width: 90%;
-  padding: 2rem;
-  border-radius: 12px;
   position: relative;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(6px);
+  border-radius: 1rem;
+  max-width: 500px;
+  width: 80%;
+  padding: 2rem;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+  animation: fadeInScale 0.3s ease forwards;
+  z-index: 102;
+}
+
+.ai-title {
+  font-family: var(--font-title);
+  font-size: 2.2rem;
+  margin-bottom: 1.2rem;
+  text-align: center;
+  position: relative;
+  background: var(--grad-rainbow);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .ai-close {
@@ -48,19 +68,22 @@
   border-radius: 8px;
   border: none;
   cursor: pointer;
-  background-color: #111;
+  background: #222;
   color: white;
-  font-weight: 500;
-  transition: background-color 0.2s ease;
+  font-family: var(--font-title);
+  transition: all 0.3s ease;
 }
 
 .ai-button:hover {
-  background-color: #333;
+  background: var(--grad-rainbow);
+  color: #000;
 }
 
 .ai-response {
   margin-top: 1.5rem;
   line-height: 1.5;
+  font-size: 1.2rem;
+  text-align: justify;
 }
 
 .ai-sources {
