@@ -1,0 +1,71 @@
+.ai-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.ai-modal {
+  background-color: #ffffff;
+  width: 420px;
+  max-width: 90%;
+  padding: 2rem;
+  border-radius: 12px;
+  position: relative;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.ai-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.ai-textarea {
+  width: 100%;
+  height: 90px;
+  margin-bottom: 1rem;
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  resize: none;
+  font-family: inherit;
+}
+
+.ai-button {
+  width: 100%;
+  padding: 0.7rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.ai-button:hover {
+  background-color: #333;
+}
+
+.ai-response {
+  margin-top: 1.5rem;
+  line-height: 1.5;
+}
+
+.ai-sources {
+  display: block;
+  margin-top: 0.8rem;
+  opacity: 0.6;
+  font-size: 0.8rem;
+}

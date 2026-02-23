@@ -5,27 +5,50 @@ import {
   FaIdCard,
   FaProjectDiagram,
   FaUser,
+  FaRobot,
 } from "react-icons/fa";
 import emailIcon from "/assets/email.webp";
 import githubIcon from "/assets/github.webp";
 import linkedinIcon from "/assets/linkedin.webp";
+import AiModal from "../AiModal/AiModal";
 import "./NavBar.css";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isAiOpen, setIsAiOpen] = useState(false);
   const toggleMenu = () => setIsOpen((v) => !v);
   const closeMenu = () => setIsOpen(false);
 
   const pages = [
     { to: "/about", label: "Sobre mí", icon: <FaIdCard className="icon" /> },
-    { to: "/projects", label: "Proyectos", icon: <FaProjectDiagram className="icon" /> },
-    { to: "/experience", label: "Formación y experiencia", icon: <FaUser className="icon" /> },
+    {
+      to: "/projects",
+      label: "Proyectos",
+      icon: <FaProjectDiagram className="icon" />,
+    },
+    {
+      to: "/experience",
+      label: "Formación y experiencia",
+      icon: <FaUser className="icon" />,
+    },
   ];
 
   const socials = [
-    { href: "mailto:jenniferromanmuerte@gmail.com", label: "Email",    src: emailIcon },
-    { href: "https://github.com/JenniferRomanMuerte", label: "GitHub",  src: githubIcon },
-    { href: "https://www.linkedin.com/in/jenniferromanmuerte", label: "LinkedIn", src: linkedinIcon },
+    {
+      href: "mailto:jenniferromanmuerte@gmail.com",
+      label: "Email",
+      src: emailIcon,
+    },
+    {
+      href: "https://github.com/JenniferRomanMuerte",
+      label: "GitHub",
+      src: githubIcon,
+    },
+    {
+      href: "https://www.linkedin.com/in/jenniferromanmuerte",
+      label: "LinkedIn",
+      src: linkedinIcon,
+    },
   ];
 
   return (
@@ -55,12 +78,23 @@ export default function Navbar() {
 
       {/* Derecha: socials (iconos en móvil; icono+texto ≥768px) */}
       <ul className="nav-right">
+        <li className="nav-right__item">
+          <button
+            className="nav-link nav-ai-button"
+            onClick={() => setIsAiOpen(true)}
+          >
+            <FaRobot className="icon" />
+            <span className="label">AI</span>
+          </button>
+        </li>
         {socials.map((s) => (
           <li key={s.label} className="nav-right__item">
             <a
               href={s.href}
               target={s.href.startsWith("http") ? "_blank" : undefined}
-              rel={s.href.startsWith("http") ? "noopener noreferrer" : undefined}
+              rel={
+                s.href.startsWith("http") ? "noopener noreferrer" : undefined
+              }
               className="nav-link"
             >
               <img src={s.src} alt={s.label} className="social-icon" />
@@ -69,6 +103,7 @@ export default function Navbar() {
           </li>
         ))}
       </ul>
+      <AiModal isOpen={isAiOpen} onClose={() => setIsAiOpen(false)} />
     </nav>
   );
 }
