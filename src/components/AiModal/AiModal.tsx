@@ -45,7 +45,7 @@ export default function AiModal({ isOpen, onClose }: AiModalProps) {
       <div className="ai-modal">
         <button className="ai-close" onClick={onClose}>✕</button>
 
-        <h2>Pregúntame sobre mi experiencia</h2>
+        <h2 className="ai-title">Pregúntame sobre mi experiencia</h2>
 
         <textarea
           placeholder="Escribe tu pregunta..."
