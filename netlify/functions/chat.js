@@ -36,9 +36,20 @@ export const handler = async (event) => {
       score: cosineSimilarity(questionEmbedding, item.embedding),
     }));
 
-    const topChunks = scored
-      .sort((a, b) => b.score - a.score)
-      .slice(0, 4);
+    const topChunks = scored.sort((a, b) => b.score - a.score).slice(0, 4);
+
+    const highestScore = topChunks[0]?.score || 0;
+
+    if (highestScore < 0.55) {
+      return {
+        statusCode: 200,
+        body: JSON.stringify({
+          answer:
+            "No tengo información suficiente en mis documentos para responder a esa pregunta.",
+          sources: [],
+        }),
+      };
+    }
 
     const context = topChunks.map((c) => c.text).join("\n\n");
 
