@@ -29,12 +29,20 @@ export default function Projects() {
       private: true,
     },
     {
-      title: "Página web de psicología",
+      title: "Web corporativa – Desirée Porcel Psicología",
       description:
         "Diseño e implementación de una página profesional para consulta de psicología forense. Optimizada para SEO con herramientas como Google Search Console.",
       imageUrl: "/assets/project-psicologia.png",
       techs: ["Wix", "SEO", "Google Search Console"],
       link: "https://www.psicologiadesireeporcel.org/",
+    },
+    {
+      title: "Web corporativa – SAM Psicoterapia y Formación",
+      description:
+        "Evolución de la web desarrollada para Desirée Porcel, adaptada a la ampliación del negocio como centro especializado.",
+      imageUrl: "/assets/project-SAM.png",
+      techs: ["Wix Studio", "SEO técnico", "Arquitectura de información"],
+      link: "https://www.sampsicoterapia.org/",
     },
     {
       title: "Galería 3D interactiva",
