@@ -1,69 +1,201 @@
-# React + TypeScript + Vite
+# 🚀 Portfolio --- Jennifer Román
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Portfolio profesional desarrollado con **React + TypeScript + Vite**,
+que integra un sistema **RAG (Retrieval-Augmented Generation)** propio
+para responder preguntas sobre mi experiencia basándose exclusivamente
+en mis documentos.
 
-Currently, two official plugins are available:
+No es un chatbot genérico: el asistente solo responde con información
+contenida en mis propios archivos estructurados.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+------------------------------------------------------------------------
 
-## Expanding the ESLint configuration
+# 🧠 Arquitectura General
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+El proyecto combina:
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+-   SPA en React
+-   Netlify Functions como backend serverless
+-   Índice vectorial generado a partir de Markdown
+-   Búsqueda semántica con similitud coseno
+-   Llamada condicional al modelo (optimización de coste)
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+### Flujo del sistema RAG
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+1.  El usuario formula una pregunta desde el modal AI.
+2.  Se envía un `POST` a `/.netlify/functions/chat`.
+3.  La function:
+    -   Genera embedding de la pregunta.
+    -   Calcula similitud coseno contra los chunks del índice.
+    -   Selecciona los más relevantes.
+4.  Si la similitud máxima supera el umbral (0.55):
+    -   Se envía el contexto al modelo.
+5.  Si no:
+    -   Se devuelve una respuesta directa sin invocar el modelo.
+
+Esto evita consumo innecesario de tokens y respuestas fuera de contexto.
+
+------------------------------------------------------------------------
+
+# 🛠 Stack Tecnológico
+
+## Frontend
+
+-   React
+-   TypeScript
+-   Vite
+-   React Router
+-   React Icons
+-   CSS modular y animaciones personalizadas
+-   Three.js (`three`, `@react-three/fiber`, `@react-three/drei`)
+
+## Backend (Serverless)
+
+-   Netlify Functions
+-   Node.js
+
+## AI
+
+-   OpenAI API
+-   Embeddings
+-   Similitud coseno personalizada
+-   Threshold semántico para control de coste
+
+------------------------------------------------------------------------
+
+# 📂 Estructura del Proyecto
+
+    /src
+      /components
+      /pages
+
+    /public
+      /rag
+        index.json
+
+    /rag
+      CV.md
+      EXPERIENCIA.md
+      FAQ.md
+      PROYECTOS.md
+
+    /netlify/functions
+      chat.js
+
+    /scripts
+      build-rag-index.js
+
+------------------------------------------------------------------------
+
+# 📄 Secciones del Portfolio
+
+-   **Home** --- Portada con vídeo y slider visual.
+-   **About** --- Presentación con animaciones y enfoque personal.
+-   **Projects** --- Proyectos técnicos destacados.
+-   **Experience** --- Timeline con experiencia profesional y formación.
+-   **AI Modal** --- Sistema RAG interactivo.
+
+------------------------------------------------------------------------
+
+# ⚙ Instalación Local
+
+``` bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Scripts disponibles:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+``` bash
+npm run dev
+npm run build
+npm run preview
+npm run lint
 ```
+
+------------------------------------------------------------------------
+
+# 🔐 Variables de Entorno
+
+Crear archivo `.env` en la raíz:
+
+    OPENAI_API_KEY=tu_clave
+
+⚠ Nunca subir este archivo al repositorio.
+
+En producción (Netlify) la variable debe configurarse en:
+
+Site Settings → Environment Variables.
+
+------------------------------------------------------------------------
+
+# 🧠 Generar o Actualizar el Índice RAG
+
+Cuando se modifiquen los archivos dentro de `/rag`:
+
+``` bash
+node scripts/build-rag-index.js
+```
+
+Esto regenerará:
+
+    public/rag/index.json
+
+El archivo es sobrescrito completamente en cada ejecución.
+
+------------------------------------------------------------------------
+
+# 🧪 Probar Netlify Functions en Local
+
+Para que funcione la ruta:
+
+    /.netlify/functions/chat
+
+Usar:
+
+``` bash
+npx netlify dev
+```
+
+------------------------------------------------------------------------
+
+# 🚀 Despliegue
+
+-   Build: `npm run build`
+-   Output: `dist/`
+-   Netlify Functions: `netlify/functions/chat.js`
+-   Variable `OPENAI_API_KEY` configurada en entorno de producción
+
+------------------------------------------------------------------------
+
+# 💰 Optimización de Coste
+
+El sistema implementa un **umbral de similitud semántica**.
+
+Si la pregunta no tiene suficiente relación con los documentos:
+
+-   No se invoca el modelo.
+-   Se devuelve respuesta directa.
+-   Se minimiza el consumo de tokens.
+
+Esto evita llamadas innecesarias y mejora robustez.
+
+------------------------------------------------------------------------
+
+# 🎯 Objetivo del Proyecto
+
+Demostrar:
+
+-   Capacidad de estructurar proyectos desde cero.
+-   Implementación real de RAG en producción.
+-   Integración frontend + serverless + embeddings.
+-   Control consciente de arquitectura y coste.
+-   Documentación técnica clara.
+
+------------------------------------------------------------------------
+
+# 📬 Contacto
+
+-   GitHub: JenniferRomanMuerte
+-   LinkedIn: jenniferromanmuerte
+-   Email: jenniferromanmuerte@gmail.com

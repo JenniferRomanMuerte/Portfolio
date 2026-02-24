@@ -35,7 +35,7 @@ export default function Navbar() {
       src: emailIcon,
     },
     {
-      href: "https://github.com/JenniferRomanMuerte",
+      href: "https://github.com/JenniferRomanMuerte?tab=repositories",
       label: "GitHub",
       src: githubIcon,
     },
