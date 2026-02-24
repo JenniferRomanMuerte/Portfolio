@@ -40,7 +40,7 @@ export const handler = async (event) => {
 
     const highestScore = topChunks[0]?.score || 0;
 
-    if (highestScore < 0.55) {
+    if (highestScore < 0.45) {
       return {
         statusCode: 200,
         body: JSON.stringify({
