@@ -45,12 +45,12 @@ export default function Projects() {
       link: "https://www.sampsicoterapia.org/",
     },
     {
-      title: "Galería 3D interactiva",
+      title: "Travel Map",
       description:
-        "Aplicación web con globo terráqueo 3D y escenas interactivas para mostrar fotos y vídeos de viajes. Desarrollada con integración 3D y contenido dinámico.",
-      imageUrl: "/assets/project-galeria.png",
-      techs: ["Angular", "Three.js"],
-      link: "https://youtu.be/TO2bkzx6ZXc",
+        "Aplicación web para guardar viajes sobre un globo 3D, registrar destinos y subir fotos y vídeos de cada lugar. Incluye gestión multimedia, compresión de archivos y almacenamiento en la nube.",
+      imageUrl: "/assets/project-travel-map.png",
+      techs: ["React", "Vite", "Mapbox GL", "Supabase", "Cloudflare R2", "SCSS"],
+      link: "https://github.com/JenniferRomanMuerte/travel-map",
     },
     {
       title: "Proyecto final de FP",
