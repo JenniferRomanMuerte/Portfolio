@@ -18,7 +18,7 @@ export default function Projects() {
         "Aplicación de escritorio para gestión de citas, facturas y pagos sincronizada con Google Calendar.",
       imageUrl: "/assets/project-facturacion.png",
       techs: ["React", "Electron", "SQLite"],
-      link: "https://youtu.be/c86ZsJ4Ew2A",
+      link: "https://youtu.be/ikzdzZQN7eM",
     },
     {
       title: "Asociación de fumadores",
