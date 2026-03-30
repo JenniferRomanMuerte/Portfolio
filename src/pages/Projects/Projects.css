@@ -198,52 +198,6 @@
   }
 }
 
-/* ===== Modal proyectos privados ===== */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.55);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-  animation: fadeIn 0.35s ease forwards;
-}
-
-.modal-content {
-  width: min(90vw, 420px);
-  background: #fff;
-  border-radius: 12px;
-  padding: 2rem;
-  text-align: center;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
-  animation: zoomIn 0.35s ease forwards;
-}
-
-.modal-content h2 {
-  margin-top: 0;
-  font-size: 1.6rem;
-  color: var(--accent);
-}
-
-.modal-content p {
-  margin: 1rem 0;
-}
-
-.modal-content button {
-  margin-top: 1.4rem;
-  padding: 0.6rem 1.2rem;
-  background: var(--accent);
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-
-.modal-content button:hover {
-  background: var(--accent-alt);
-}
 
 .carousel-controls {
   display: none;

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Modal from "../Modal/Modal";
 import "./ProjectCard.css";
 
 interface ProjectCardProps {
@@ -76,23 +77,16 @@ export default function ProjectCard({
         </div>
       )}
 
-      {/* Modal para proyectos privados */}
-      {showModal && (
-        <div className="modal-overlay" onClick={() => setShowModal(false)}>
-          <div
-            className="modal-content"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <h2>{title}</h2>
-            <p>🔒 Este proyecto es privado y está en curso.</p>
-            <p>
-              Si quieres más detalles,{" "}
-              <a href="mailto:jenniferromanmuerte@gmail.com">contáctame</a>.
-            </p>
-            <button onClick={() => setShowModal(false)}>Cerrar</button>
-          </div>
-        </div>
-      )}
+      <Modal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        title={title}
+        subtitle="Proyecto privado"
+        content={[
+          "🔒 Este proyecto es privado y está en curso.",
+          "Si quieres más detalles, escríbeme a jenniferromanmuerte@gmail.com",
+        ]}
+      />
     </>
   );
 }
