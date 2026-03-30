@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useTypewriter } from "../../hooks/useTypewriter";
 import "./About.css";
 
 const fullText = `Soy desarrolladora web full stack, con experiencia en proyectos reales que combinan front-end moderno y back-end robusto.
@@ -10,8 +11,8 @@ Tras una trayectoria en atención al cliente y el ámbito social, he canalizado 
 Me motiva el aprendizaje continuo y disfruto enfrentando retos.`;
 
 export default function About() {
-  const [typedText, setTypedText] = useState("");
   const [showPolaroid, setShowPolaroid] = useState(false);
+  const typedText = useTypewriter(fullText, !showPolaroid);
 
   // para animar la polaroid cuando la imagen ya está decodificada
   const [polaroidReady, setPolaroidReady] = useState(false);
@@ -20,24 +21,12 @@ export default function About() {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // efecto "máquina de escribir" (menos reflows: añade 2 chars por tick)
+  // auto-scroll del papel mientras escribe
   useEffect(() => {
-    if (!showPolaroid) {
-      let i = 0;
-      const STEP = 2;
-      setTypedText("");
-      const id = setInterval(() => {
-        i += STEP;
-        setTypedText(fullText.slice(0, i));
-        // auto-scroll con menos frecuencia
-        if (paperRef.current && i % 4 === 0) {
-          paperRef.current.scrollTop = paperRef.current.scrollHeight;
-        }
-        if (i >= fullText.length) clearInterval(id);
-      }, 45);
-      return () => clearInterval(id);
+    if (paperRef.current) {
+      paperRef.current.scrollTop = paperRef.current.scrollHeight;
     }
-  }, [showPolaroid]);
+  }, [typedText]);
 
   // guardar altura del header para calcular alto útil
   useEffect(() => {
