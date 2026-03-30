@@ -8,43 +8,23 @@ import chatboxAiIcon from "/assets/chatboxIAIcon.webp";
 import AiModal from "../AiModal/AiModal";
 import "./NavBar.css";
 
+const pages = [
+  { to: "/about", label: "Sobre mí", icon: <FaIdCard className="icon" /> },
+  { to: "/projects", label: "Proyectos", icon: <FaProjectDiagram className="icon" /> },
+  { to: "/experience", label: "Formación y experiencia", icon: <FaUser className="icon" /> },
+];
+
+const socials = [
+  { href: "mailto:jenniferromanmuerte@gmail.com", label: "Email", src: emailIcon },
+  { href: "https://github.com/JenniferRomanMuerte?tab=repositories", label: "GitHub", src: githubIcon },
+  { href: "https://www.linkedin.com/in/jenniferromanmuerte", label: "LinkedIn", src: linkedinIcon },
+];
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isAiOpen, setIsAiOpen] = useState(false);
   const toggleMenu = () => setIsOpen((v) => !v);
   const closeMenu = () => setIsOpen(false);
-
-  const pages = [
-    { to: "/about", label: "Sobre mí", icon: <FaIdCard className="icon" /> },
-    {
-      to: "/projects",
-      label: "Proyectos",
-      icon: <FaProjectDiagram className="icon" />,
-    },
-    {
-      to: "/experience",
-      label: "Formación y experiencia",
-      icon: <FaUser className="icon" />,
-    },
-  ];
-
-  const socials = [
-    {
-      href: "mailto:jenniferromanmuerte@gmail.com",
-      label: "Email",
-      src: emailIcon,
-    },
-    {
-      href: "https://github.com/JenniferRomanMuerte?tab=repositories",
-      label: "GitHub",
-      src: githubIcon,
-    },
-    {
-      href: "https://www.linkedin.com/in/jenniferromanmuerte",
-      label: "LinkedIn",
-      src: linkedinIcon,
-    },
-  ];
 
   return (
     <nav className="navbar">
