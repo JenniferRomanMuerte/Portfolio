@@ -14,8 +14,26 @@ function cosineSimilarity(a, b) {
 }
 
 export const handler = async (event) => {
+  if (event.httpMethod !== "POST") {
+    return { statusCode: 405, body: JSON.stringify({ error: "Método no permitido." }) };
+  }
+
+  let question;
   try {
-    const { question } = JSON.parse(event.body);
+    ({ question } = JSON.parse(event.body ?? "{}"));
+  } catch {
+    return { statusCode: 400, body: JSON.stringify({ error: "JSON inválido." }) };
+  }
+
+  if (!question || typeof question !== "string" || !question.trim()) {
+    return { statusCode: 400, body: JSON.stringify({ error: "La pregunta no puede estar vacía." }) };
+  }
+
+  if (question.length > 500) {
+    return { statusCode: 400, body: JSON.stringify({ error: "La pregunta no puede superar los 500 caracteres." }) };
+  }
+
+  try {
 
     // 1️⃣ Cargar índice
     const indexPath = path.resolve("public/rag/index.json");
