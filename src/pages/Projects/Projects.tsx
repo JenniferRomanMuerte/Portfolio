@@ -73,7 +73,13 @@ const PROJECTS: ProjectItem[] = [
   },
 ];
 
-function getViewportMode() {
+interface ViewportMode {
+  isCarousel: boolean;
+  visibleCards: number;
+  isLargeDesktop: boolean;
+}
+
+function getViewportMode(): ViewportMode {
   if (typeof window === "undefined") {
     return {
       isCarousel: false,

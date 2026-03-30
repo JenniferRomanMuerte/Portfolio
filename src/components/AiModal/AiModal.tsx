@@ -1,6 +1,11 @@
 import { useState } from "react";
 import "./AiModal.css";
 
+interface ChatResponse {
+  answer: string;
+  sources: string[];
+}
+
 interface AiModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -29,10 +34,10 @@ export default function AiModal({ isOpen, onClose }: AiModalProps) {
         body: JSON.stringify({ question }),
       });
 
-      const data = await response.json();
+      const data: ChatResponse = await response.json();
 
       setAnswer(data.answer);
-      setSources(data.sources || []);
+      setSources(data.sources ?? []);
     } catch (error) {
       setAnswer("Ha ocurrido un error al procesar la pregunta.");
     }

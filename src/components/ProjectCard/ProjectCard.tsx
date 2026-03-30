@@ -27,43 +27,54 @@ export default function ProjectCard({
     }
   };
 
-  const Wrapper: any = link && !isPrivate ? "a" : "div";
-  const wrapperProps =
-    link && !isPrivate
-      ? { href: link, target: "_blank", rel: "noopener noreferrer" }
-      : { onClick: handleClick };
+  const cardContent = (
+    <>
+      {/* Pin decorativo */}
+      <img
+        src="/assets/pin.png"
+        alt=""
+        aria-hidden="true"
+        className="project-pin"
+      />
+
+      {/* Contenido */}
+      <div className="project-content">
+        <h3>{title}</h3>
+        <img
+          src={imageUrl}
+          alt={title}
+          className="project-image"
+          loading="lazy"
+          decoding="async"
+        />
+        <p>{description}</p>
+        <div className="project-techs">
+          {techs.map((tech, i) => (
+            <span key={i} className="tech-badge">
+              {tech}
+            </span>
+          ))}
+        </div>
+      </div>
+    </>
+  );
 
   return (
     <>
-      <Wrapper className="project-card" {...wrapperProps}>
-        {/* Pin decorativo */}
-        <img
-          src="/assets/pin.png"
-          alt=""
-          aria-hidden="true"
-          className="project-pin"
-        />
-
-        {/* Contenido */}
-        <div className="project-content">
-          <h3>{title}</h3>
-          <img
-            src={imageUrl}
-            alt={title}
-            className="project-image"
-            loading="lazy"
-            decoding="async"
-          />
-          <p>{description}</p>
-          <div className="project-techs">
-            {techs.map((tech, i) => (
-              <span key={i} className="tech-badge">
-                {tech}
-              </span>
-            ))}
-          </div>
+      {link && !isPrivate ? (
+        <a
+          className="project-card"
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {cardContent}
+        </a>
+      ) : (
+        <div className="project-card" onClick={handleClick}>
+          {cardContent}
         </div>
-      </Wrapper>
+      )}
 
       {/* Modal para proyectos privados */}
       {showModal && (

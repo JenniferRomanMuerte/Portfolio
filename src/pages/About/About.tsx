@@ -1,6 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import "./About.css";
 
+const fullText = `Soy desarrolladora web full stack, con experiencia en proyectos reales que combinan front-end moderno y back-end robusto.
+
+He trabajado con React, Angular, Node.js, Three.js, Electron, creando aplicaciones web y de escritorio.
+
+Tras una trayectoria en atención al cliente y el ámbito social, he canalizado mi capacidad resolutiva y mi pasión por la tecnología hacia el desarrollo de soluciones intuitivas, eficientes y bien estructuradas.
+
+Me motiva el aprendizaje continuo y disfruto enfrentando retos.`;
+
 export default function About() {
   const [typedText, setTypedText] = useState("");
   const [showPolaroid, setShowPolaroid] = useState(false);
@@ -11,14 +19,6 @@ export default function About() {
   const paperRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-
-  const fullText = `Soy desarrolladora web full stack, con experiencia en proyectos reales que combinan front-end moderno y back-end robusto.
-
-He trabajado con React, Angular, Node.js, Three.js, Electron, creando aplicaciones web y de escritorio.
-
-Tras una trayectoria en atención al cliente y el ámbito social, he canalizado mi capacidad resolutiva y mi pasión por la tecnología hacia el desarrollo de soluciones intuitivas, eficientes y bien estructuradas.
-
-Me motiva el aprendizaje continuo y disfruto enfrentando retos.`;
 
   // efecto "máquina de escribir" (menos reflows: añade 2 chars por tick)
   useEffect(() => {
