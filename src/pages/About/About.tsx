@@ -20,6 +20,7 @@ export default function About() {
   const paperRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
 
   // auto-scroll del papel mientras escribe
   useEffect(() => {
@@ -30,9 +31,8 @@ export default function About() {
 
   // guardar altura del header para calcular alto útil
   useEffect(() => {
-    const header = document.querySelector(".about-header");
-    if (header) {
-      const h = header.getBoundingClientRect().height;
+    if (headerRef.current) {
+      const h = headerRef.current.getBoundingClientRect().height;
       document.documentElement.style.setProperty("--about-header-h", `${h}px`);
     }
   }, []);
@@ -55,7 +55,7 @@ export default function About() {
   return (
     <section className="about">
       {/* Header móvil */}
-      <div className="about-header mobile-only">
+      <div className="about-header mobile-only" ref={headerRef}>
         <h1 className="about-title">Sobre mí</h1>
         {!showPolaroid ? (
           <img
