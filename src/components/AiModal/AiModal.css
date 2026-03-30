@@ -1,8 +1,8 @@
 .ai-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(3px);
+  background: var(--overlay-backdrop);
+  backdrop-filter: var(--modal-blur);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,19 +13,19 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.35);
+  background: var(--overlay-dark);
   z-index: 101;
 }
 
 .ai-modal {
   position: relative;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(6px);
+  background: var(--modal-bg);
+  backdrop-filter: var(--modal-inner-blur);
   border-radius: 1rem;
   max-width: 500px;
   width: 80%;
   padding: 2rem;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--modal-shadow);
   animation: fadeInScale 0.3s ease forwards;
   z-index: 102;
 }
@@ -68,10 +68,10 @@
   border-radius: 8px;
   border: none;
   cursor: pointer;
-  background: #222;
+  background: var(--fg-body);
   color: white;
   font-family: var(--font-title);
-  transition: all 0.3s ease;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .ai-button:hover {
@@ -84,7 +84,7 @@
   line-height: 1.5;
   font-size: 1.2rem;
   text-align: justify;
-  color: #222;
+  color: var(--fg-body);
 }
 
 .ai-sources {
@@ -93,3 +93,15 @@
   opacity: 0.6;
   font-size: 0.8rem;
 }
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+

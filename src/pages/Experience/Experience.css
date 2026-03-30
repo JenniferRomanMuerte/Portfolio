@@ -39,19 +39,19 @@
 .experience-title {
   font-family: var(--font-title);
   font-size: clamp(3.2rem, 8vw, 4.2rem);
-  color: #000;
+  color: var(--accent);
   text-align: center;
   margin-bottom: 1rem;
-  transition: all 0.3s ease;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
 
 .experience-subtitle {
   font-family: var(--font-title);
   font-size: clamp(1.8rem, 5vw, 2.4rem);
-  color: #000;
+  color: var(--accent);
   text-align: center;
   margin-bottom: 1rem;
-  transition: all 0.3s ease;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
 
 /* Hover de secciones → gradiente en títulos */
@@ -125,7 +125,7 @@
 /* Iconos */
 .experience-icon {
   font-size: 2rem;
-  color: #000;
+  color: var(--accent);
   flex-shrink: 0;
   margin-right: 1rem;
 }
@@ -134,18 +134,18 @@
 .experience-date {
   font-style: italic;
   font-size: 1.2rem;
-  color: #444;
+  color: var(--accent-alt);
   opacity: 0.75;
 }
 
 /* Texto */
 .experience-text {
   flex: 1;
-  color: #222;
+  color: var(--fg-body);
 }
 
 .experience-item strong {
-  color: #000;
+  color: var(--accent);
   font-size: 1.3rem;
   font-weight: 600;
 }

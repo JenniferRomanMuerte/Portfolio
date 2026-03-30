@@ -35,6 +35,14 @@
   --radius: 20px;
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 
+  /* ===== Modales / overlays ===== */
+  --overlay-backdrop: rgba(255, 255, 255, 0.4);
+  --overlay-dark: rgba(0, 0, 0, 0.35);
+  --modal-blur: blur(3px);
+  --modal-inner-blur: blur(6px);
+  --modal-bg: rgba(255, 255, 255, 0.95);
+  --modal-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+
   /* ===== Tipografías ===== */
   --font-base: "Roboto", sans-serif;  /* textos corridos */
   --font-title: "Caveat", cursive;    /* títulos */
