@@ -129,8 +129,18 @@
     brightness(1.05);
 }
 
+/* Mobile: ocultar la página en la que ya estamos */
+.nav-pages__item:has(.nav-link--active) {
+  display: none;
+}
+
 /* ≥768px: páginas visibles en línea, y socials con texto */
 @media (min-width: 768px) {
+  /* Desktop: mostrar todas las páginas, incluida la activa */
+  .nav-pages__item:has(.nav-link--active) {
+    display: list-item;
+  }
+
   .nav-burger {
     display: none;
   }

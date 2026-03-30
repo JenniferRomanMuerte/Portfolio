@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { FaBars, FaIdCard, FaProjectDiagram, FaUser } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
+import { FaBars, FaHome, FaIdCard, FaProjectDiagram, FaUser } from "react-icons/fa";
 import emailIcon from "/assets/email.webp";
 import githubIcon from "/assets/github.webp";
 import linkedinIcon from "/assets/linkedin.webp";
@@ -9,6 +9,7 @@ import AiModal from "../AiModal/AiModal";
 import "./NavBar.css";
 
 const pages = [
+  { to: "/", label: "Home", icon: <FaHome className="icon" />, end: true },
   { to: "/about", label: "Sobre mí", icon: <FaIdCard className="icon" /> },
   { to: "/projects", label: "Proyectos", icon: <FaProjectDiagram className="icon" /> },
   { to: "/experience", label: "Formación y experiencia", icon: <FaUser className="icon" /> },
@@ -42,10 +43,15 @@ export default function Navbar() {
         <ul className={`nav-pages ${isOpen ? "open" : ""}`}>
           {pages.map((p) => (
             <li key={p.to} className="nav-pages__item">
-              <Link to={p.to} className="nav-link" onClick={closeMenu}>
+              <NavLink
+                to={p.to}
+                end={p.end}
+                className={({ isActive }) => `nav-link${isActive ? " nav-link--active" : ""}`}
+                onClick={closeMenu}
+              >
                 {p.icon}
                 <span className="label">{p.label}</span>
-              </Link>
+              </NavLink>
             </li>
           ))}
         </ul>
