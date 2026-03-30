@@ -50,8 +50,8 @@ export default function ProjectCard({
         />
         <p>{description}</p>
         <div className="project-techs">
-          {techs.map((tech, i) => (
-            <span key={i} className="tech-badge">
+          {techs.map((tech) => (
+            <span key={tech} className="tech-badge">
               {tech}
             </span>
           ))}

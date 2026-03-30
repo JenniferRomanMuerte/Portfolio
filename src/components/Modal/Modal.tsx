@@ -33,8 +33,8 @@ export default function Modal({
         <h2 className="modal-title">{title}</h2>
         {subtitle && <p className="modal-subtitle">{subtitle}</p>}
 
-        {content.map((item, i) => (
-          <p key={i} className="modal-paragraph">
+        {content.map((item) => (
+          <p key={item} className="modal-paragraph">
             {item}
           </p>
         ))}
