@@ -63,6 +63,7 @@ export default function Navbar() {
           <button
             className="nav-link nav-ai-button"
             onClick={() => setIsAiOpen(true)}
+            aria-label="Abrir chat IA"
           >
             <img src={chatboxAiIcon} alt="AI" className="social-icon" />
             <span className="label">AI</span>

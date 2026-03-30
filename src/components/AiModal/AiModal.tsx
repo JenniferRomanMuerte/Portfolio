@@ -48,20 +48,24 @@ export default function AiModal({ isOpen, onClose }: AiModalProps) {
   return (
     <div className="ai-overlay">
       <div className="ai-modal">
-        <button className="ai-close" onClick={onClose}>✕</button>
+        <button className="ai-close" onClick={onClose} aria-label="Cerrar">✕</button>
 
         <h2 className="ai-title">Pregúntame sobre mi experiencia</h2>
 
-        <textarea
-          placeholder="Escribe tu pregunta..."
-          value={question}
-          onChange={(e) => setQuestion(e.target.value)}
-          className="ai-textarea"
-        />
+        <form
+          onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}
+        >
+          <textarea
+            placeholder="Escribe tu pregunta..."
+            value={question}
+            onChange={(e) => setQuestion(e.target.value)}
+            className="ai-textarea"
+          />
 
-        <button onClick={handleSubmit} disabled={loading} className="ai-button">
-          {loading ? "Pensando..." : "Enviar"}
-        </button>
+          <button type="submit" disabled={loading} className="ai-button">
+            {loading ? "Pensando..." : "Enviar"}
+          </button>
+        </form>
 
         {answer && (
           <div className="ai-response">

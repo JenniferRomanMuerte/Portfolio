@@ -42,7 +42,6 @@
 
 /* ───────────────────────── Títulos base (Caveat) ───────────────────────── */
 .home__title,
-.home__title,
 .home__subtitle{
   position: relative;
   font-family: var(--font-title);   /* Caveat */
