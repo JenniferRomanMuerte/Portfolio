@@ -56,9 +56,15 @@ export default function AiModal({ isOpen, onClose }: AiModalProps) {
           onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}
         >
           <textarea
-            placeholder="Escribe tu pregunta..."
+            placeholder="Escribe tu pregunta... (Enter para enviar, Shift+Enter para nueva línea)"
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                handleSubmit();
+              }
+            }}
             className="ai-textarea"
           />
 
