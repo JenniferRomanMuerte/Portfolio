@@ -1,14 +1,14 @@
 # Pregunta: ¿Qué tecnologías domina?
 
-Domina principalmente React (Vite), JavaScript, TypeScript, Node.js, Express, NestJS y bases de datos como PostgreSQL y SQLite.
+Domina principalmente React (Vite), JavaScript, TypeScript, Node.js, Express, NestJS y bases de datos como PostgreSQL, MySQL y SQLite.
 
-También tiene experiencia con Electron para aplicaciones de escritorio, autenticación JWT, Python y Neo4j en entornos de Knowledge Graph.
+También tiene experiencia con Angular, Electron para aplicaciones de escritorio, autenticación JWT, Python y Neo4j en entornos de Knowledge Graph.
 
 ---
 
 # Pregunta: ¿Tiene experiencia profesional real?
 
-Sí. Ha trabajado como Desarrolladora Full Stack en Horus Financial y VT-LAB, desarrollando plataformas reales para clientes, incluyendo sistemas de gestión financiera, visualización avanzada de datos y soluciones basadas en grafos.
+Sí. Ha trabajado como Desarrolladora Full Stack en Horus Financial (junio–octubre 2025) y VT-LAB (septiembre 2023–diciembre 2024), desarrollando plataformas reales para clientes, incluyendo sistemas de gestión financiera, visualización avanzada de datos y soluciones basadas en grafos.
 
 Además, ha desarrollado proyectos freelance completos para clientes reales.
 
@@ -32,9 +32,35 @@ Ha diseñado esquemas desde cero priorizando consistencia de datos y escalabilid
 
 # Pregunta: ¿Qué la diferencia como desarrolladora?
 
-Su capacidad de estructurar proyectos desde cero con enfoque arquitectónico, su orientación a producto y su criterio técnico para tomar decisiones mantenibles a largo plazo.
+Viene de una reconversión profesional tras más de 20 años en gestión y atención al cliente. Eso le da algo que pocos juniors tienen: criterio de negocio, autonomía y capacidad para entender lo que necesita un cliente antes de escribir una línea de código.
 
-No se limita a implementar funcionalidades, sino que analiza impacto estructural y escalabilidad.
+Además, su capacidad de estructurar proyectos desde cero con enfoque arquitectónico y su orientación a producto hacen que no se limite a implementar funcionalidades, sino que analice impacto estructural y escalabilidad.
+
+---
+
+# Pregunta: ¿Por qué cambió de carrera?
+
+Tras más de 20 años trabajando en gestión y atención al cliente, decidió formarse en desarrollo web porque quería crear cosas, no solo usarlas.
+
+Fue una decisión consciente y planificada: estudió el FP Superior en DAM, completó un bootcamp Full Stack y desarrolló proyectos reales durante el proceso.
+
+---
+
+# Pregunta: ¿Habla inglés?
+
+Su nivel de inglés es técnico básico: puede leer documentación técnica en inglés y entender conversaciones sencillas, pero no mantiene conversaciones fluidas en inglés.
+
+---
+
+# Pregunta: ¿Está disponible?
+
+Sí, tiene disponibilidad inmediata.
+
+---
+
+# Pregunta: ¿Dónde está ubicada?
+
+Vive en Madrid, España.
 
 ---
 
@@ -128,6 +154,8 @@ Con mayor responsabilidad técnica, participando en decisiones arquitectónicas 
 
 # Pregunta: ¿Por qué deberían contratarte?
 
-Porque combina capacidad técnica, criterio arquitectónico y orientación a producto.
+Porque combina capacidad técnica real, criterio arquitectónico y orientación a producto.
 
-No solo implementa funcionalidades, sino que piensa en sostenibilidad, estructura y evolución futura del sistema.
+Viene de una reconversión profesional con más de 20 años de experiencia en gestión y atención al cliente, lo que le da una perspectiva de negocio que pocos desarrolladores junior tienen.
+
+No solo implementa funcionalidades, sino que piensa en sostenibilidad, estructura y evolución futura del sistema. Tiene disponibilidad inmediata y está ubicada en Madrid.

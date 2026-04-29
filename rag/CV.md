@@ -2,7 +2,9 @@
 
 Jennifer Román es Desarrolladora Web Full Stack especializada en React, Node.js y bases de datos relacionales.
 
-Cuenta con experiencia en el desarrollo de aplicaciones web y de escritorio orientadas a producto real, incluyendo sistemas completos de gestión, visualización avanzada de datos y herramientas administrativas para clientes.
+Viene de una reconversión profesional consciente: tras más de 20 años trabajando en gestión y atención al cliente, decidió formarse en desarrollo web porque quería crear cosas, no solo usarlas. Esa trayectoria le da algo que pocos juniors tienen: criterio de negocio, autonomía y capacidad para entender lo que necesita un cliente antes de escribir una línea de código.
+
+Cuenta con experiencia real en el desarrollo de aplicaciones web y de escritorio orientadas a producto real, incluyendo sistemas completos de gestión, visualización avanzada de datos y herramientas administrativas para clientes.
 
 Se caracteriza por un enfoque estructurado del desarrollo: prioriza la arquitectura limpia, la modularidad y la mantenibilidad antes de añadir complejidad innecesaria.
 
@@ -14,17 +16,21 @@ Es una desarrolladora resolutiva, orientada a entender el problema antes de impl
 
 - React (Vite)
 - JavaScript / TypeScript
+- Angular
 - Node.js
 - Express
 - NestJS
 - PostgreSQL
+- MySQL
 - SQLite
 - Electron
 - JWT
-- SCSS
+- SCSS / SASS
 - Java
+- Spring Boot
 - Python
 - Neo4j
+- Git / GitHub
 
 ---
 
@@ -44,7 +50,7 @@ Diseño e implementación de APIs REST, autenticación con JWT, validación de d
 
 ## Bases de Datos
 
-Modelado relacional en PostgreSQL y SQLite. Experiencia también en Neo4j para estructuras basadas en grafos y Knowledge Graph.
+Modelado relacional en PostgreSQL, MySQL y SQLite. Experiencia también en Neo4j para estructuras basadas en grafos y Knowledge Graph.
 
 ## Aplicaciones de Escritorio
 
@@ -58,6 +64,14 @@ Desarrollo con Electron integrando frontend React y base de datos local, incluye
 - Divide los retos complejos en partes pequeñas y manejables.
 - Documenta decisiones técnicas importantes.
 - Prefiere soluciones claras y mantenibles frente a soluciones rápidas pero frágiles.
+
+---
+
+# Información personal y disponibilidad
+
+- Ubicación: Madrid, España
+- Disponibilidad: inmediata
+- Idiomas: español nativo. Inglés técnico básico (lectura de documentación y comprensión básica).
 
 ---
 
