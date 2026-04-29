@@ -14,7 +14,8 @@ function cosineSimilarity(a, b) {
 }
 
 export const handler = async (event) => {
-  if (event.httpMethod !== "POST") {
+  const method = (event.httpMethod || event.method || "").toUpperCase();
+  if (method !== "POST") {
     return { statusCode: 405, body: JSON.stringify({ error: "Método no permitido." }) };
   }
 
@@ -94,10 +95,11 @@ ${question}
       }),
     };
   } catch (error) {
-    console.error(error);
+    const message = error instanceof Error ? error.message : String(error);
+    console.error("[chat]", message);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: "Error procesando la solicitud." }),
+      body: JSON.stringify({ error: message }),
     };
   }
 };
